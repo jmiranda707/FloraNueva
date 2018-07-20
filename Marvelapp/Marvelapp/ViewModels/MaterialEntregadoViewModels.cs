@@ -1,12 +1,18 @@
 ﻿using GalaSoft.MvvmLight.Command;
 using Marvelapp.Models;
 using Marvelapp.Views;
+using Marvelapp.Views.Popups;
+using Rg.Plugins.Popup.Services;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Text;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System.Net.Http;
+using System.Net.Http.Headers;
+using System.Linq;
+
 
 namespace Marvelapp.ViewModels
 {
@@ -14,10 +20,16 @@ namespace Marvelapp.ViewModels
     {
         #region Attributes
         private ObservableCollection<Material> material;
+        private Double heighList;
         private bool isRefreshing;
         #endregion
 
         #region Properties
+        public Double HeighListView
+        {
+            get { return heighList; }
+            set { SetValue(ref heighList, value); }
+        }
         public ObservableCollection<Material> Materiales
         {
             get { return material; }
@@ -41,19 +53,69 @@ namespace Marvelapp.ViewModels
         }
 
         #endregion
-
         #region Methods
         private void LoadMateriales()
         {
             Materiales.Add(new Material()
             {
-                Boleta = 0,
+                Boleta = 1,
                 Cantidad = 0,
                 Comentario = "",
                 Fecha = "",
                 NombreMaterial = ""
             });
+            Materiales.Add(new Material()
+            {
+                Boleta = 2,
+                Cantidad = 0,
+                Comentario = "",
+                Fecha = "",
+                NombreMaterial = ""
+            });
+            Materiales.Add(new Material()
+            {
+                Boleta = 3,
+                Cantidad = 0,
+                Comentario = "",
+                Fecha = "",
+                NombreMaterial = ""
+            });
+            Materiales.Add(new Material()
+            {
+                Boleta = 4,
+                Cantidad = 0,
+                Comentario = "",
+                Fecha = "",
+                NombreMaterial = ""
+            });
+            Materiales.Add(new Material()
+            {
+                Boleta = 5,
+                Cantidad = 0,
+                Comentario = "",
+                Fecha = "",
+                NombreMaterial = ""
+            });
+            Materiales.Add(new Material()
+            {
+                Boleta = 6,
+                Cantidad = 0,
+                Comentario = "",
+                Fecha = "",
+                NombreMaterial = ""
+            });
+            Materiales.Add(new Material()
+            {
+                Boleta = 7,
+                Cantidad = 0,
+                Comentario = "",
+                Fecha = "",
+                NombreMaterial = ""
+            });
+            // MaterialesOrder= Materiales.LastOrDefault();
             IsRefreshing = false;
+            
+            HeighListView = 44*Materiales.Count();
         }
 
         private async void NuevaVisita()//me envia a agregar una nueva visita individual-prod (VISTA 33)
@@ -66,21 +128,32 @@ namespace Marvelapp.ViewModels
             await Application.Current.MainPage.Navigation.PushAsync(new BuscarVisitaIndividual());
         }
 
-        
-        private void TapAgregar()//me envia a buscar una visita individual (VISTA 40)
+
+        private async void TapPopup()//me envia a buscar una visita individual (VISTA 40)
         {
 
-            IsRefreshing = true;
-            Materiales.Add(new Material()
-            {
-                Boleta = 0,
-                NombreMaterial = "este",
-                Cantidad = 0,
-                Fecha = "",
-                Comentario = "ACABAS DE AGREGARLO"
-            });
-            IsRefreshing = false;
+            ///Aqui viene el popup para agregar un nuevo Material///
+            //PopupNavigation.Instance.PushAsync;
+            await PopupNavigation.PushAsync(new MaterialEntregadoPopup());
         }
+
+
+        private void TapAgregar()//me envia a buscar una visita individual (VISTA 40)
+        {
+            
+                        IsRefreshing = true;
+                        Materiales.Add(new Material()
+                        {
+                            Boleta = 0,
+                            NombreMaterial = "",
+                            Cantidad = 0,
+                            Fecha = "",
+                            Comentario = ""
+                        });
+                        IsRefreshing = false;
+        }
+
+
 
         private async void Guardar()
         {
@@ -163,7 +236,14 @@ namespace Marvelapp.ViewModels
                 return new RelayCommand(TapAgregar);
             }
         }
-        
+       
+        public ICommand TapPopupCommand
+        {
+            get
+            {
+                return new RelayCommand(TapPopup);
+            }
+        }
         #endregion
         #region Singleton 
         private static MaterialEntregadoViewModels instance;

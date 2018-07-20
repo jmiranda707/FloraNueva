@@ -1,0 +1,182 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<popups:PopupPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marvelapp.Views.Popups.MaterialEntregadoPopup"
+             xmlns:custom="clr-namespace:Marvelapp.Customs"
+             xmlns:popups="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
+             xmlns:viewmodels="clr-namespace:Marvelapp.ViewModels"
+             >
+    <ContentPage.BindingContext>
+        <viewmodels:MaterialEntregadoViewModels/>
+    </ContentPage.BindingContext>
+
+    <ContentPage.Content>
+        <StackLayout Margin="20,15,15,20" 
+                     BackgroundColor="WhiteSmoke">
+
+
+            <Grid Margin="15,5,0,5">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                
+                <!---opcion 1: Agregar Nueva Fila-->
+                <Label Text="Agregar Nuevo"
+                   TextColor="Green"
+                   VerticalOptions="Center"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   Grid.Row="0"
+                   HorizontalOptions="EndAndExpand"
+                   Grid.Column="0"/>
+                <Image Source="new_black"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"
+                           Grid.Column="1"
+                           WidthRequest="35"
+                           Grid.Row="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding TapAgregarCommand}"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+            </Grid>
+
+            <Grid Margin="0,0,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="30"></ColumnDefinition>
+                    <ColumnDefinition Width=".65*"></ColumnDefinition>
+                    <ColumnDefinition Width=".4*"></ColumnDefinition>
+                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                    <ColumnDefinition Width=".4*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="Fecha"
+                           TextColor="Black"
+                           VerticalOptions="End"
+                           HorizontalOptions="StartAndExpand"
+                           Grid.Column="1"
+                           Grid.Row="0"/>
+                <Label Text="#Boleta"
+                           TextColor="Black"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="End"
+                           Grid.Column="2"
+                           Grid.Row="0"/>
+                <Label Text="Material Entregado"
+                           TextColor="Black"
+                           VerticalOptions="End"
+                           HorizontalOptions="StartAndExpand"
+                           Grid.Column="3"
+                           Grid.Row="0"/>
+                <Label Text="Cantidad"
+                           TextColor="Black"
+                           VerticalOptions="End"
+                           HorizontalOptions="StartAndExpand"
+                           Grid.Column="4"
+                           Grid.Row="0"/>
+                <Label Text="Comentario"
+                           TextColor="Black"
+                           VerticalOptions="End"
+                           HorizontalOptions="StartAndExpand"
+                           Grid.Column="5"
+                           Grid.Row="0"/>
+            </Grid>
+
+            <ListView ItemsSource="{Binding Materiales}"
+                      HasUnevenRows="True"
+                      BackgroundColor="White"
+                      SeparatorVisibility="None"
+                      IsPullToRefreshEnabled="False"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      Margin="6,0,6,0">
+
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+
+                            <Grid Margin="0,1,0,1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="30"></ColumnDefinition>
+                                    <ColumnDefinition Width=".65*"></ColumnDefinition>
+                                    <ColumnDefinition Width=".4*"></ColumnDefinition>
+                                    <ColumnDefinition Width="2*"></ColumnDefinition>
+                                    <ColumnDefinition Width=".4*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+
+
+
+
+                                <Image Source="close_black"
+                           Grid.Column="0"
+                           Grid.Row="0">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding SelectedEliminarCommand}"></TapGestureRecognizer>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <custom:CustomDatePicker
+                                    x:Name="picker"
+                           BackgroundColor="WhiteSmoke"
+                           VerticalOptions="CenterAndExpand"
+                           Date="{Binding Fecha, Mode=TwoWay}"
+                           FontSize="Small"
+                           HorizontalOptions="FillAndExpand"
+                           Grid.Row="0"
+                           Grid.Column="1">
+                                </custom:CustomDatePicker>
+                                <custom:CustomEntryCenter
+                           BackgroundColor="LightGray"
+                           VerticalOptions="CenterAndExpand"
+                           Text="{Binding Boleta, Mode=TwoWay}"
+                           FontSize="Small"
+                           HorizontalOptions="FillAndExpand"
+                           Grid.Row="0"
+                           Grid.Column="2">
+                                </custom:CustomEntryCenter>
+                                <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        BackgroundColor="WhiteSmoke"
+                        SelectedItem="{Binding NombreMaterial}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        Grid.Column="3"
+                        Grid.Row="0"
+                        >
+                                    <Picker.Items>
+                                        <x:String>Cajas Mariolas</x:String>
+                                    </Picker.Items>
+                                </Picker>
+                                <custom:CustomEntryCenter
+                           BackgroundColor="LightGray"
+                           VerticalOptions="CenterAndExpand"
+                           Text="{Binding Cantidad, Mode=TwoWay}"
+                           FontSize="Small"
+                           HorizontalOptions="FillAndExpand"
+                           Grid.Row="0"
+                           Grid.Column="4">
+                                </custom:CustomEntryCenter>
+                                <custom:CustomEntryCenter
+                           BackgroundColor="LightGray"
+                           VerticalOptions="CenterAndExpand"
+                           Text="{Binding Comentario, Mode=TwoWay}"
+                           FontSize="Small"
+                           HorizontalOptions="FillAndExpand"
+                           Grid.Row="0"
+                           Grid.Column="5">
+                                </custom:CustomEntryCenter>
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</popups:PopupPage>

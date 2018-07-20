@@ -14,11 +14,11 @@ namespace Marvelapp.Views
 	{
 		public Proyectos ()
 		{
-			InitializeComponent (); 
-            
+			InitializeComponent ();
            //Integracion.Date = DateTime.Now; 
            // Salida.Date = DateTime.Now;
+           
 		}
-      
+     
 	}
 }

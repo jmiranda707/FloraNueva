@@ -12,7 +12,7 @@ namespace Marvelapp
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new VisitaGrupalPro());
+			MainPage = new NavigationPage(new MaterialEntregadoView());
 		}
 
 		protected override void OnStart ()
