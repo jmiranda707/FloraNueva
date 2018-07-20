@@ -1,0 +1,118 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marvelapp.Views.BuscarVisitaGrupal"
+             xmlns:viewmodels="clr-namespace:Marvelapp.ViewModels"
+             xmlns:custom="clr-namespace:Marvelapp.Customs"
+             Title="38 Buscar Visita Grupal">
+    <ContentPage.BindingContext>
+        <viewmodels:BuscarVisitasGrupalesViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_close_white"
+            Name="Cerrar" 
+            Order="Primary"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Margin="10,10,10,2" 
+                     HorizontalOptions="FillAndExpand">
+            <Label Text="Nombre del Productor"
+                   TextColor="Black"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+            <custom:CustomEntry
+                    BackgroundColor="LightGray"
+                    Text="{Binding NombreProductor, Mode=TwoWay}"
+                    HorizontalOptions="FillAndExpand">
+            </custom:CustomEntry>
+            <Label Text="Nombre del Grupo"
+                   TextColor="Black"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+            <custom:CustomEntry
+                    BackgroundColor="LightGray"
+                    Text="{Binding NombreGrupo, Mode=TwoWay}"
+                    HorizontalOptions="FillAndExpand">
+            </custom:CustomEntry>
+            <Grid Margin="0,5,0,0">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="Fecha Desde:"
+                   TextColor="Black"
+                   FontSize="Medium"
+                   VerticalOptions="Center"
+                   FontAttributes="Bold"
+                   Grid.Row="0"
+                   HorizontalOptions="StartAndExpand"
+                   Grid.Column="0"/>
+                <custom:CustomDatePicker
+                    BackgroundColor="LightGray"
+                    VerticalOptions="Center"
+                    Date="{Binding FechaDesde, Mode=TwoWay}"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="0"
+                    Grid.Column="1">
+                </custom:CustomDatePicker>
+                <!--<custom:CustomEntry
+                    BackgroundColor="LightGray"
+                    Text="{Binding FechaDesde, Mode=TwoWay}"
+                    FontSize="Small"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="0"
+                    Grid.Column="1">
+                </custom:CustomEntry>-->
+                <Label Text="Fecha Hasta:"
+                   TextColor="Black"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   HorizontalOptions="StartAndExpand"
+                   Grid.Row="1"
+                   Grid.Column="0"/>
+                <custom:CustomDatePicker
+                    BackgroundColor="LightGray"
+                    VerticalOptions="Center"
+                    Date="{Binding FechaHasta, Mode=TwoWay}"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="1"
+                    Grid.Column="1">
+                </custom:CustomDatePicker>
+            </Grid>
+            
+            <!--BOTONES-->
+            <StackLayout Padding="4,0,4,0" Margin="0,10,0,15">
+                <Button BackgroundColor="#910b20"
+                    Command="{Binding BuscarCommand}"
+                    IsEnabled="{Binding IsEnabled}"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HeightRequest="50"
+                    BorderRadius="8"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Buscar"
+                    TextColor="White">
+                </Button>
+                <Button BackgroundColor="#910b20"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    BorderRadius="8"
+                    FontSize="Medium"
+                    Command="{Binding VolverCommand}"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Volver"
+                    TextColor="White">
+                </Button>
+            </StackLayout>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

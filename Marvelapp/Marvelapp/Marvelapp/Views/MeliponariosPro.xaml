@@ -1,0 +1,99 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marvelapp.Views.MeliponariosPro"
+             Title="32- Meliponarios (productor)"
+             xmlns:imagecircular="clr-namespace:ImageCircle.Forms.Plugin.Abstractions;assembly=ImageCircle.Forms.Plugin"
+             xmlns:viewmodels="clr-namespace:Marvelapp.ViewModels">
+    <ContentPage.BindingContext>
+        <viewmodels:MeliponariosProViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Command="{Binding AgregarMeliponarioCommand, Mode=TwoWay}"
+            Icon="ic_new"
+            Name="Nuevo" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_close_white"
+            Name="Cerrar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BuscarMeliponarioCommand, Mode=TwoWay}"
+            Icon="search"
+            Name="Search" 
+            Order="Primary"/>
+
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <StackLayout>
+
+
+            <ListView ItemsSource="{Binding Meliponarios}"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="Default"
+                      SeparatorColor="#910b20"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      Margin="6,5,6,5">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <Frame
+                                BackgroundColor="Gray"
+                                CornerRadius="15"
+                                Margin="4,7,3,7"
+                                HasShadow="True"
+                                >
+                                <Frame.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                        Command="{Binding SelectMeliponarioCommand}"
+                                        ></TapGestureRecognizer>
+                                </Frame.GestureRecognizers>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="80"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="30"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+
+
+                                    <imagecircular:CircleImage
+                                            Aspect="AspectFill"
+                                            BorderThickness="2"
+                                            BorderColor="White"           
+                                            Grid.Column="0"
+                                            HorizontalOptions="FillAndExpand"
+                                            HeightRequest="80"
+                                            Source="{Binding FotoProductor}"
+                                            >
+                                    </imagecircular:CircleImage>
+
+
+                                    <StackLayout Grid.Column="1" VerticalOptions="Center" Padding="7,1,0,1">
+                                        <Label Text="{Binding IdMeliponario, StringFormat='Id Meliponario: {0}'}" 
+                                               TextColor="White" 
+                                               FontAttributes="Bold"
+                                               FontSize="Medium"
+                                               ></Label>
+                                        <Label Text="{Binding Tipo, StringFormat='Tipo: {0}'}" 
+                                               TextColor="White"
+                                               ></Label>
+                                        <Label Text="{Binding FechaCreacion, StringFormat='Fecha de Creación: {0}'}" 
+                                               TextColor="White"></Label>
+                                    </StackLayout>
+                                    <Image Source="ic_chevron_right_white.png" Grid.Column="2" HorizontalOptions="End"></Image>
+                                </Grid>
+                            </Frame>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

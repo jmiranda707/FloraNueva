@@ -1,0 +1,907 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marvelapp.Pagina19"
+             Title="19 Meliponicultura"
+             xmlns:viewmodels="clr-namespace:Marvelapp.ViewModels">
+    <!-- <ContentPage.BindingContext>
+        <viewmodels:AQUIVALAPAGINANOMBRE/>
+    </ContentPage.BindingContext>-->
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="0,0,0,0"
+                     Margin="5,0,5,0">
+
+                <Label Text="Caracteristicas generales"
+                   TextColor="Orange"
+                   FontSize="Medium"
+                   FontAttributes="Bold">
+                </Label>
+                <StackLayout Orientation="Horizontal">
+                    <Label Text="*"
+                       TextColor="Red"   >
+                    </Label>
+                    <Label Text="Forma Jurídica de la explotación"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       FontSize="Small"></Label>
+                </StackLayout>
+                <Picker
+                        HorizontalOptions="FillAndExpand"
+                        Title="Seleccione"
+                        FontSize="Small">
+                    <Picker.Items>
+                        <x:String>Persona Individual</x:String>
+                        <x:String>Sociedad de Derecho</x:String>
+                        <x:String>Sociedad de Hecho</x:String>
+                        <x:String>Otro</x:String>
+                    </Picker.Items>
+                </Picker>
+                <StackLayout Orientation="Horizontal" 
+                         HorizontalOptions="FillAndExpand">
+                    <Label Text="*"
+                       TextColor="Red"   >
+                    </Label>
+                    <Label Text="¿Pertenece a una organización Agropecuaria?"
+                       FontAttributes="Bold"
+                       FontSize="Small"
+                       TextColor="Black"></Label>
+                    <Label Text="                                                  "
+                           HorizontalOptions="CenterAndExpand"></Label>
+                    <Label Text="Si"
+                       FontAttributes="Bold"
+                       FontSize="Small"
+                       TextColor="Black"
+                           HorizontalOptions="EndAndExpand"></Label>
+                    <Switch IsToggled="{Binding IsToggled}"
+                            HorizontalOptions="EndAndExpand"
+                        ></Switch>
+                    <Label Text="No"
+                       FontAttributes="Bold"
+                       FontSize="Small"
+                       TextColor="Black"
+                           HorizontalOptions="EndAndExpand"></Label>
+                </StackLayout>
+                <Label Text="Nombre de la(s) organización(es)"
+                   FontAttributes="Bold"
+                   FontSize="Small"
+                   TextColor="Black">
+                </Label>
+                <Entry HorizontalOptions="FillAndExpand"
+                   BackgroundColor="LightGray"
+                   FontSize="Small">
+                </Entry>
+                <Label Text="Tierras Agrícolas"
+                          TextColor="Orange"
+                          FontAttributes="Bold"
+                          FontSize="Medium"></Label>
+                <Grid Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".3*"></ColumnDefinition>
+                        <ColumnDefinition Width="5*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="*" 
+                       TextColor="Red"
+                       Grid.Row="0"
+                       Grid.Column="0"></Label>
+                    <Label Text="Tenencia de la tierra"
+                       FontAttributes="Bold"
+                       FontSize="Small"
+                       TextColor="Black"
+                       Grid.Column="1"
+                       Grid.Row="0"></Label>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        >
+                        <Picker.Items>
+                            <x:String>Propia Totalmente Pagada</x:String>
+                            <x:String>Propia Parcialmente Pagada</x:String>
+                            <x:String>Alquilada</x:String>
+                            <x:String>En Precario</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <Label Text="*" 
+                       TextColor="Red"
+                       Grid.Row="2"
+                       Grid.Column="0"></Label>
+                    <Label Text="¿A nombre de quién está el Terreno?"
+                       FontAttributes="Bold"
+                       FontSize="Small"
+                       TextColor="Black"
+                       Grid.Column="1"
+                       Grid.Row="2"></Label>
+                    <Label Text="Del Productor"
+                       FontAttributes="Bold"
+                       FontSize="Small"
+                       TextColor="Black"
+                       Grid.Row="2"
+                       Grid.Column="2"></Label>
+                    <Switch IsToggled="{Binding IsToggled}"
+                        Grid.Column="3"
+                        Grid.Row="2"></Switch>
+                    <Label Text="De otra persona"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       FontSize="Small"
+                       Grid.Column="4"
+                       Grid.Row="2"></Label>
+                    <Label Text="Si es a nombre de otra persona, especificar"
+                       TextColor="Black"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="4"
+                       Grid.Row="3"></Label>
+                    <Entry Text="{Binding AQuiénTerreno, Mode=TwoWay}"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="4"
+                       Grid.Row="4"
+                       BackgroundColor="LightGray"></Entry>
+                    <Label Text="*"
+                       TextColor="Red"
+                       Grid.Column="0"
+                       Grid.Row="5"></Label>
+                    <Label Text="Especificar Ubicación de la Tierra"
+                       TextColor="Black"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       Grid.Column="1"
+                       Grid.Row="5"></Label>
+                    <Entry Text="{Binding UbicacionTierra, Mode=TwoWay}"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="4"
+                       Grid.Row="6"
+                       BackgroundColor="LightGray"></Entry>
+                    <Label Text="*"
+                       TextColor="Red"
+                       Grid.Column="0"
+                       Grid.Row="7"></Label>
+                    <Label Text="Superficie de la Parcela/ finca (en ha)"
+                       TextColor="Black"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       Grid.Column="1"
+                       Grid.Row="7"></Label>
+                    <Entry Text="{Binding SuperficieParcela, Mode=TwoWay}"
+                       Grid.Column="2"
+                       Grid.ColumnSpan="3"
+                       Grid.Row="7"
+                       BackgroundColor="LightGray"
+                       FontSize="Small"></Entry>
+                    <Label Text="Mini descripción de la finca/ parcela y de su entorno"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="3"
+                       Grid.Row="8"></Label>
+                    <Entry Text="{Binding DescripcionFinca, Mode=TwoWay}"
+                       TextColor="Black"
+                       FontSize="Small"
+                       BackgroundColor="LightGray"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="2"
+                       Grid.Row="9"
+                       ></Entry>
+                    <BoxView BackgroundColor="Gray"
+                         Grid.Column="3"
+                         Grid.ColumnSpan="2"
+                         Grid.Row="9"
+                         ></BoxView>
+                    <Label Text="Produccion"
+                           TextColor="Orange"
+                           FontSize="Medium"
+                           FontAttributes="Bold"
+                           Grid.Column="1"
+                           Grid.Row="10">
+                    </Label>
+                    <Label Text="*" 
+                       TextColor="Red"
+                       Grid.Row="11"
+                       Grid.Column="0"></Label>
+                    <Label Text="¿Cuál es su Producción principal?"
+                       TextColor="Black"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="4"
+                       Grid.Row="11"></Label>
+                    <Entry Text="{Binding ProduccionPrincipal, Mode=TwoWay}"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="4"
+                       Grid.Row="12"
+                       BackgroundColor="LightGray"></Entry>
+                    <Label Text="*" 
+                       TextColor="Red"
+                       Grid.Row="13"
+                       Grid.Column="0"></Label>
+                    <Label Text="¿Cuáles son las otras producciones que tiene?"
+                       TextColor="Black"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="4"
+                       Grid.Row="13"></Label>
+                    <Entry Text="{Binding OtrasProduccionesTiene, Mode=TwoWay}"
+                       Grid.Column="1"
+                       Grid.ColumnSpan="4"
+                       Grid.Row="14"
+                       BackgroundColor="LightGray"></Entry>
+                    <Label Text="  Detalle de producción vegetal (opcional)"
+                       TextColor="Black"
+                       FontSize="Small"
+                       FontAttributes="Bold"
+                       Grid.Column="1"
+                       Grid.Row="15"></Label>
+                    <Image WidthRequest="10"
+                       HeightRequest="10"
+                       Grid.Column="3"
+                       Grid.Row="15"></Image>
+                </Grid>
+                <Grid Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".2*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width=".2*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width=".2*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="*" 
+                       TextColor="Red"
+                       Grid.Row="0"
+                       Grid.Column="0"></Label>
+                    <Label Text="Categoría de uso de suelo"
+                       TextColor="Black"
+                       FontSize="Small"
+                       Grid.Column="1"
+                       Grid.Row="0"></Label>
+                    <Label Text="*" 
+                       TextColor="Red"
+                       Grid.Row="0"
+                       Grid.Column="2"></Label>
+                    <Label Text="Detalles"
+                       TextColor="Black"
+                       FontSize="Small"
+                       Grid.Column="3"
+                       Grid.Row="0"></Label>
+                    <Label Text="*" 
+                       TextColor="Red"
+                       Grid.Row="0"
+                       Grid.Column="4"></Label>
+                    <Label Text="Superficie"
+                       TextColor="Black"
+                       FontSize="Small"
+                       Grid.Column="5"
+                       Grid.Row="0"></Label>
+                    <Label Text="X"
+                           FontAttributes="Bold"
+                           FontSize="Large"
+                           HorizontalOptions="End"
+                           VerticalOptions="Center"
+                           TextColor="Black"
+                           Grid.Column="0"
+                           Grid.Row="1"></Label>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        >
+                        <Picker.Items>
+                            <x:String>Cultivos anuales</x:String>
+                            <x:String>-</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Entry Text="{Binding DetalleProduccionVegetal1, Mode=TwoWay}"
+                       Grid.Column="3"
+                       Grid.Row="1"
+                       BackgroundColor="LightGray"></Entry>
+                    <Entry Text="{Binding SuperficieProduccionVegetal1, Mode=TwoWay}"
+                       Grid.Column="5"
+                       Grid.Row="1"
+                       BackgroundColor="LightGray"></Entry>
+                    <Label Text="X"
+                           FontAttributes="Bold"
+                           FontSize="Large"
+                           HorizontalOptions="End"
+                           VerticalOptions="Center"
+                           TextColor="Black"
+                           Grid.Column="0"
+                           Grid.Row="2"></Label>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        >
+                        <Picker.Items>
+                            <x:String>Cultivos anuales</x:String>
+                            <x:String>-</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Entry Text="{Binding DetalleProduccionVegetal2, Mode=TwoWay}"
+                       Grid.Column="3"
+                       Grid.Row="2"
+                       BackgroundColor="LightGray"></Entry>
+                    <Entry Text="{Binding SuperficieProduccionVegetal2, Mode=TwoWay}"
+                       Grid.Column="5"
+                       Grid.Row="2"
+                       BackgroundColor="LightGray"></Entry>
+                </Grid>
+
+                <StackLayout Orientation="Horizontal" Padding="5,0,0,0" VerticalOptions="Center">
+                    <Label Text="       Detalle de producción animal (opcional)"
+                       TextColor="Black"
+                       FontSize="Small"
+                       FontAttributes="Bold">
+                    </Label>
+                    <Image Source="ico.png"
+                       WidthRequest="10"
+                       HeightRequest="10"
+                       ></Image>
+                </StackLayout>
+
+
+                <Grid Padding="0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".2*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width=".2*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width=".2*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="*" 
+                       TextColor="Red"
+                       Grid.Row="0"
+                       Grid.Column="0"></Label>
+                    <Label Text="Animales"
+                       TextColor="Black"
+                       FontSize="Small"
+                       Grid.Column="1"
+                       Grid.Row="0"></Label>
+                    <Label Text="*" 
+                       TextColor="Red"
+                       Grid.Row="0"
+                       Grid.Column="2"></Label>
+                    <Label Text="Detalles"
+                       TextColor="Black"
+                       FontSize="Small"
+                       Grid.Column="3"
+                       Grid.Row="0"></Label>
+                    <Label Text="*" 
+                       TextColor="Red"
+                       Grid.Row="0"
+                       Grid.Column="4"></Label>
+                    <Label Text="Cantidad"
+                       TextColor="Black"
+                       FontSize="Small"
+                       Grid.Column="5"
+                       Grid.Row="0"></Label>
+                    <Label Text="X"
+                           FontAttributes="Bold"
+                           FontSize="Large"
+                           HorizontalOptions="End"
+                           VerticalOptions="Center"
+                           TextColor="Black"
+                           Grid.Column="0"
+                           Grid.Row="1"></Label>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        >
+                        <Picker.Items>
+                            <x:String>Ganado vacuno</x:String>
+                            <x:String>-</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Entry Text="{Binding DetalleProduccionanimal1, Mode=TwoWay}"
+                       Grid.Column="3"
+                       Grid.Row="1"
+                       BackgroundColor="LightGray"></Entry>
+                    <Entry Text="{Binding CantidadProduccionAnimal1, Mode=TwoWay}"
+                       Grid.Column="5"
+                       Grid.Row="1"
+                       BackgroundColor="LightGray"></Entry>
+                    <Label Text="X"
+                           FontAttributes="Bold"
+                           FontSize="Large"
+                           HorizontalOptions="End"
+                           VerticalOptions="Center"
+                           TextColor="Black"
+                           Grid.Column="0"
+                           Grid.Row="2"></Label>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        >
+                        <Picker.Items>
+                            <x:String>Ganado Vacuno</x:String>
+                            <x:String>-</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Entry Text="{Binding DetalleProduccionAnimal2, Mode=TwoWay}"
+                       Grid.Column="3"
+                       Grid.Row="2"
+                       BackgroundColor="LightGray"></Entry>
+                    <Entry Text="{Binding CantidadProduccionAnimal2, Mode=TwoWay}"
+                       Grid.Column="5"
+                       Grid.Row="2"
+                       BackgroundColor="LightGray"></Entry>
+
+                </Grid>
+                <Label TextColor="Orange"
+                       Text="       Prácticas Agropecuarias"
+                       FontAttributes="Bold"
+                       FontSize="Medium"
+                       Grid.Column="1"
+                       Grid.Row="3"></Label>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".06*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="0"></Label>
+                    <Label Text="Abono"
+                           FontAttributes="Bold"
+                           FontSize="Small"
+                           TextColor="Black"
+                           Grid.Column="1"
+                           Grid.Row="0"></Label>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        >
+                        <Picker.Items>
+                            <x:String>No Abona</x:String>
+                            <x:String>Abono Orgánico</x:String>
+                            <x:String>Fertilizante Químico</x:String>
+                            <x:String>Combinación</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="2"></Label>
+                    <Label Text="Control de Malezas"
+                           FontAttributes="Bold"
+                           FontSize="Small"
+                           TextColor="Black"
+                           Grid.Column="1"
+                           Grid.Row="2"></Label>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        >
+                        <Picker.Items>
+                            <x:String>No Controla</x:String>
+                            <x:String>Manual ó Mecánico</x:String>
+                            <x:String>Químico</x:String>
+                            <x:String>Combinación</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="4"></Label>
+                    <Label Text="Plaguicidas"
+                           FontAttributes="Bold"
+                           FontSize="Small"
+                           TextColor="Black"
+                           Grid.Column="1"
+                           Grid.Row="4"></Label>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="5"
+                        >
+                        <Picker.Items>
+                            <x:String>No utiliza</x:String>
+                            <x:String>Órganico(bioinsumo)</x:String>
+                            <x:String>Químico</x:String>
+                            <x:String>Combinación</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="6"></Label>
+                    <Label Text="Origen de las Semillas"
+                           FontAttributes="Bold"
+                           FontSize="Small"
+                           TextColor="Black"
+                           Grid.Column="1"
+                           Grid.Row="6"></Label>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="7"
+                        >
+                        <Picker.Items>
+                            <x:String>Propias</x:String>
+                            <x:String>Compradas</x:String>
+                            <x:String>Combinación</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="8"></Label>
+                    <Label Text="Sistema de Riego de los Cultivos"
+                           FontAttributes="Bold"
+                           FontSize="Small"
+                           TextColor="Black"
+                           Grid.Column="1"
+                           Grid.Row="8"></Label>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="9"
+                        >
+                        <Picker.Items>
+                            <x:String>No Riega</x:String>
+                            <x:String>Manual</x:String>
+                            <x:String>Aspersión</x:String>
+                            <x:String>Gravedad</x:String>
+                            <x:String>Goteo</x:String>
+                            <x:String>Otro</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </Grid>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label TextColor="Red"></Label>
+                    <Label Text="¿Posee una certificación?"
+                                  TextColor="Black"
+                                  FontSize="Small"
+                                  FontAttributes="Bold"
+                                  ></Label>
+                    <Label Text="                                                                          "
+                           HorizontalOptions="CenterAndExpand"></Label>
+                    <Label Text="SI"
+                                         TextColor="Black"
+                                         FontAttributes="Bold"
+                                         FontSize="Small"
+                                         HorizontalOptions="EndAndExpand"></Label>
+                    <Switch IsToggled="{Binding IsToggled, Mode=TwoWay}"
+                            HorizontalOptions="EndAndExpand"></Switch>
+                    <Label Text="NO"
+                                         TextColor="Black"
+                                         FontAttributes="Bold"
+                                         FontSize="Small"
+                                         HorizontalOptions="EndAndExpand"></Label>
+                </StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.06*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="0"></Label>
+                    <Label Text="Especificar certificación"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="0"
+                           Grid.Column="1"></Label>
+                    <Entry Text="{Binding EspecificarCertificacion, Mode=TwoWay}"
+                           BackgroundColor="LightGray"
+                           Grid.Column="1"
+                           Grid.Row="1"></Entry>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="2"></Label>
+                    <Label Text="Categoría de Manejo"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="2"
+                           Grid.Column="1"></Label>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        >
+                        <Picker.Items>
+                            <x:String>Orgánico</x:String>
+                            <x:String>Convencional extensivo</x:String>
+                            <x:String>Convencional intensivo</x:String>
+                            <x:String>Otro</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="4"></Label>
+                    <Label Text="Comentario de Manejo"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="4"
+                           Grid.Column="1"></Label>
+                    <Entry Text="{Binding ComentarioManejo, Mode=TwoWay}"
+                           BackgroundColor="LightGray"
+                           Grid.Column="1"
+                           Grid.Row="5"></Entry>
+                    <Label Text="Maquinaria, equipo e infraestructura"
+                           FontAttributes="Bold"
+                           TextColor="Orange"
+                           FontSize="Medium"
+                           Grid.Row="6"
+                           Grid.Column="1"></Label>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="7"></Label>
+                    <Label Text="Lista de maquinaria disponible en la finca"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="7"
+                           Grid.Column="1"></Label>
+                    <Entry Text="{Binding MaquinariaDisponible, Mode=TwoWay}"
+                           BackgroundColor="LightGray"
+                           Grid.Column="1"
+                           Grid.Row="8"></Entry>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="9"></Label>
+                    <Label Text="Categoria de mecanización"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="9"
+                           Grid.Column="1"></Label>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="10"
+                        >
+                        <Picker.Items>
+                            <x:String>Trabajo Principalmente Manual</x:String>
+                            <x:String>Trabajo Parcialmente Mecanizado</x:String>
+                            <x:String>-</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="11"></Label>
+                    <Label Text="Lista de infraestructura disponible en la finca"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="11"
+                           Grid.Column="1"></Label>
+                    <Entry Text="{Binding InfraestructuraDisponible, Mode=TwoWay}"
+                           BackgroundColor="LightGray"
+                           Grid.Column="1"
+                           Grid.Row="12"></Entry>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="13"></Label>
+                    <Label Text="Categoría de Infraestructura"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="13"
+                           Grid.Column="1"></Label>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="14"
+                        >
+                        <Picker.Items>
+                            <x:String>Sin infraestructura dedicada</x:String>
+                            <x:String>Infraestructuras existentes pero deficientes</x:String>
+                            <x:String>-</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label Text="Transformación y valor agregado a la producción"
+                           FontAttributes="Bold"
+                           TextColor="Orange"
+                           FontSize="Medium"
+                           Grid.Row="15"
+                           Grid.Column="1"></Label>
+                </Grid>
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                    <Label TextColor="Red"></Label>
+                    <Label Text="¿Realiza algún proceso de transformación o de valor agregado de su producción?"
+                                  TextColor="Black"
+                                  FontSize="Small"
+                                  FontAttributes="Bold"></Label> 
+                    <Label Text="                       "
+                           HorizontalOptions="CenterAndExpand"></Label>
+                    <Label Text="SI"
+                                         TextColor="Black"
+                                         FontAttributes="Bold"
+                                         FontSize="Small"
+                                         HorizontalOptions="EndAndExpand"></Label>
+                    <Switch IsToggled="{Binding IsToggled, Mode=TwoWay}"
+                            HorizontalOptions="EndAndExpand"></Switch>
+                    <Label Text="NO"
+                                         TextColor="Black"
+                                         FontAttributes="Bold"
+                                         FontSize="Small"
+                                         HorizontalOptions="EndAndExpand"></Label>
+                </StackLayout>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width=".06*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="0"></Label>
+                    <Label Text="Especificar transformación o valor agregado"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="0"
+                           Grid.Column="1"></Label>
+                    <Entry Text="{Binding EspecificarTransformacion, Mode=TwoWay}"
+                           BackgroundColor="LightGray"
+                           Grid.Column="1"
+                           Grid.Row="1"></Entry>
+                    <Label Text="Destino de la Producción"
+                           TextColor="Orange"
+                           FontAttributes="Bold"
+                           FontSize="Medium"
+                           Grid.Column="1"
+                           Grid.Row="2"></Label>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="3"></Label>
+                    <Label Text="Destino de la Producción"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="3"
+                           Grid.Column="1"></Label>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="4"
+                        >
+                        <Picker.Items>
+                            <x:String>Exclusivamente autoconsumo</x:String>
+                            <x:String>Exclusivamente Venta</x:String>
+                            <x:String>-</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="5"></Label>
+                    <Label Text="Si venta, Especificar canales de comercialización"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="5"
+                           Grid.Column="1"></Label>
+                    <Entry Text="{Binding EspecificarCanalesComercio, Mode=TwoWay}"
+                           BackgroundColor="LightGray"
+                           Grid.Column="1"
+                           Grid.Row="6"></Entry>
+
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="7"></Label>
+                    <Label Text="Categoria de explotación agrícola"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="7"
+                           Grid.Column="1"></Label>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="8"
+                        >
+                        <Picker.Items>
+                            <x:String>De hobby</x:String>
+                            <x:String>Subsistencia familiar</x:String>
+                            <x:String>Empresarial Pequeña</x:String>
+                            <x:String>Empresarial mediana</x:String>
+                            <x:String>-</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="9"></Label>
+                    <Label Text="Orientación técnico-eco"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="9"
+                           Grid.Column="1"></Label>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        Grid.Column="1"
+                        Grid.Row="10"
+                        >
+                        <Picker.Items>
+                            <x:String>Producción agropecuaria diversificada</x:String>
+                            <x:String>Producción agrícola diversificada</x:String>
+                            <x:String>-</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <Label Text="*"
+                           TextColor="Red"
+                           Grid.Column="0"
+                           Grid.Row="11"></Label>
+                    <Label Text="Comentario explotación agrícola"
+                           FontAttributes="Bold"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="11"
+                           Grid.Column="1"></Label>
+                    <Entry Text="{Binding ComentarioExplotacionAgricola, Mode=TwoWay}"
+                           BackgroundColor="LightGray"
+                           Grid.Column="1"
+                           Grid.Row="12"></Entry>
+                </Grid>
+                <StackLayout Padding="4,0,4,0" Margin="0,10,0,0">
+                    <Button BackgroundColor="#910b20"
+                    Command="{Binding GuardarCommand}"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HeightRequest="50"
+                    BorderRadius="8"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Guardar"
+                    TextColor="White">
+                    </Button>
+                    <Button BackgroundColor="#910b20"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    BorderRadius="8"
+                    FontSize="Medium"
+                    Command="{Binding VolverCommand}"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Volver"
+                    TextColor="White">
+                    </Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

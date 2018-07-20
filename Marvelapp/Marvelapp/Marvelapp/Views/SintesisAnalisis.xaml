@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marvelapp.Views.SintesisAnalisis"
+             xmlns:custom="clr-namespace:Marvelapp.Customs"
+             Title="23 Sintesis y Analisis"
+             xmlns:viewmodels="clr-namespace:Marvelapp.ViewModels">
+    <ContentPage.BindingContext>
+        <viewmodels:SintesisAnalisisViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_chevron_left.png"
+            Name="Atras" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="editar.png"
+            Name="Editar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="guardar.png"
+            Name="Guardar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_close_white"
+            Name="Cerrar" 
+            Order="Primary"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Margin="15,10,15,2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="FODA Evolutivo del Productor"
+                       TextColor="Orange"
+                       FontAttributes="Bold"
+                       FontSize="Medium"
+                       Grid.Row="0"
+                       Grid.Column="1"></Label>
+                <Label Text="*"
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       TextColor="Red"
+                       >
+                </Label>
+                <Label Text="Fortalezas"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       FontSize="Medium"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                       HorizontalOptions="Start">
+                </Label>
+                <custom:CustomEntry
+                    Text="{Binding Fortalezas, Mode=TwoWay}"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="LightGray"/>
+
+                <Label Text="*"
+                       Grid.Column="0"
+                       Grid.Row="3"
+                       TextColor="Red">
+                </Label>
+                <Label Text="Debilidades"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       FontSize="Medium"
+                       Grid.Column="1"
+                       Grid.Row="3"
+                      HorizontalOptions="Start">
+                </Label>
+                <custom:CustomEntry
+                    Text="{Binding Debilidades, Mode=TwoWay}"
+                    Grid.Column="1"
+                    Grid.Row="4"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="LightGray"/>
+                <Label Text="*"
+                       Grid.Column="0"
+                       Grid.Row="5"
+                       TextColor="Red">
+                </Label>
+                <Label Text="Oportunidades"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       FontSize="Medium"
+                       Grid.Column="1"
+                       Grid.Row="5"
+                       HorizontalOptions="Start">
+                </Label>
+                <custom:CustomEntry
+                    Text="{Binding Oportunidades, Mode=TwoWay}"
+                    Grid.Column="1"
+                    Grid.Row="6"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="LightGray"/>
+                <Label Text="*"
+                       Grid.Column="0"
+                       Grid.Row="7"
+                       TextColor="Red">
+                </Label>
+                <Label Text="Amenazas"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       Grid.Column="1"
+                       FontSize="Medium"
+                       Grid.Row="7"
+                       HorizontalOptions="Start">
+                </Label>
+                <custom:CustomEntry
+                    Text="{Binding Amenazas, Mode=TwoWay}"
+                    Grid.Column="1"
+                    Grid.Row="8"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="LightGray"/>
+                
+            </Grid>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="Potencial"
+                       TextColor="Orange"
+                       FontAttributes="Bold"
+                       FontSize="Medium"
+                       Grid.Row="0"
+                       Grid.Column="1"></Label>
+                <Label Text="*"
+                       Grid.Column="0"
+                       Grid.Row="1"
+                       TextColor="Red"
+                       >
+                </Label>
+                <Label Text="Proyectos Potenciales"
+                       FontAttributes="Bold"
+                       TextColor="Black"
+                       FontSize="Medium"
+                       Grid.Column="1"
+                       Grid.Row="1"
+                      HorizontalOptions="Start">
+                </Label>
+                <custom:CustomEntry
+                    Text="{Binding ProyectosPotenciales, Mode=TwoWay}"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="LightGray"/>
+
+                <Label Text=""
+                       Grid.Column="0"
+                       Grid.Row="3"
+                       TextColor="Red">
+                </Label>
+                <Label Text="Comentario General"
+                       FontAttributes="Bold"
+                       FontSize="Medium"
+                       TextColor="Black"
+                       Grid.Column="1"
+                       Grid.Row="3"
+                       HorizontalOptions="Start">
+                </Label>
+                <custom:CustomEntry
+                    Text="{Binding ComentarioGeneral, Mode=TwoWay}"
+                    Grid.Column="1"
+                    Grid.Row="4"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="LightGray"/>
+                
+            </Grid>
+            <StackLayout Padding="4,0,4,0" Margin="0,10,0,10">
+                <Button BackgroundColor="#910b20"
+                    Command="{Binding GuardarCommand}"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HeightRequest="50"
+                    BorderRadius="8"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Guardar"
+                    TextColor="White">
+                </Button>
+                <Button BackgroundColor="#910b20"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    BorderRadius="8"
+                    FontSize="Medium"
+                    Command="{Binding VolverCommand}"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Volver"
+                    TextColor="White">
+                </Button>
+            </StackLayout>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

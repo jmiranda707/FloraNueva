@@ -1,0 +1,135 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marvelapp.Views.Indicadores"
+             Title="24 Indicadores"
+             xmlns:viewmodels="clr-namespace:Marvelapp.ViewModels">
+    <ContentPage.BindingContext>
+        <viewmodels:IndicadoresViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_chevron_left.png"
+            Name="Atras" 
+            Order="Primary"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Margin="10,15,10,15" Padding="5,5,5,5">
+                <Frame
+                                BackgroundColor="DarkViolet"
+                                CornerRadius="15"
+                                HasShadow="True"
+                                >
+                    <StackLayout BackgroundColor="DarkViolet" 
+                                 VerticalOptions="Center"
+                                 HeightRequest="100"
+                                 Margin="10,10,10,10"
+                                 Padding="0">
+                        <Label Text="BIENESTAR SOCIAL Y FAMILIAR DEL HOGAR"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="Medium"
+                       Margin="0"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="End"></Label>
+                        <Label Text="{Binding BienestarSocialFamiliar, Mode=TwoWay}"
+                       FontSize="80"
+                       Margin="0"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Start"></Label>
+                        <Label></Label>
+                    </StackLayout>
+                </Frame>
+                <Frame
+                                BackgroundColor="Orange"
+                                CornerRadius="15"
+                                HasShadow="True"
+                                >
+                    <StackLayout BackgroundColor="Orange"
+                         HeightRequest="100"
+                         Margin="10,10,10,10"
+                                 Padding="0">
+                        <Label Text="BIENESTAR ECONÓMICO Y MATERIAL DEL HOGAR"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="Medium"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center"></Label>
+                        <Label Text="{Binding BienestarEconomicoHogar, Mode=TwoWay}"
+                       FontSize="80"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center"></Label>
+                        <Label></Label>
+                    </StackLayout>
+                </Frame>
+                <Frame
+                                BackgroundColor="DarkGreen"
+                                CornerRadius="15"
+                                HasShadow="True"
+                                >
+                    <StackLayout BackgroundColor="DarkGreen" 
+                         Margin="10,10,10,10"
+                         HeightRequest="100"
+                                 Padding="0">
+                        <Label Text="SOBERANÍA ALIMENTICIA"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="Medium"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center"></Label>
+                        <Label Text="{Binding SoberaniaAlimenticia, Mode=TwoWay}"
+                       FontSize="80"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center"></Label>
+                        <Label></Label>
+                    </StackLayout>
+                </Frame>
+                <Frame
+                                BackgroundColor="DeepSkyBlue"
+                                CornerRadius="15"
+                                HasShadow="True"
+                                >
+                    <StackLayout BackgroundColor="DeepSkyBlue" 
+                         Margin="10,10,10,10"    
+                         HeightRequest="100"
+                                 Padding="0">
+                        <Label Text="FELICIDAD"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       FontSize="Medium"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center"></Label>
+                        <Label Text="{Binding Felicidad, Mode=TwoWay}"
+                       FontSize="80"
+                       FontAttributes="Bold"
+                       TextColor="White"
+                       HorizontalOptions="CenterAndExpand"
+                       VerticalOptions="Center"></Label>
+                    </StackLayout>
+                </Frame>
+                <!--BOTON-->
+            <StackLayout Padding="4,0,4,0" Margin="0,10,0,10">
+                    <Button BackgroundColor="#910b20"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    BorderRadius="8"
+                    FontSize="Medium"
+                    Command="{Binding VolverCommand}"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Volver"
+                    TextColor="White">
+                    </Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marvelapp.Views.Proyectos"
+             xmlns:custom="clr-namespace:Marvelapp.Customs"
+             Title="25 Proyectos"
+             xmlns:viewmodels="clr-namespace:Marvelapp.ViewModels">
+    <ContentPage.BindingContext>
+        <viewmodels:ProyectosViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_chevron_left.png"
+            Name="Atras" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="editar.png"
+            Name="Editar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="guardar.png"
+            Name="Guardar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_close_white"
+            Name="Cerrar" 
+            Order="Primary"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+        <StackLayout Margin="10,10,10,2">
+            <StackLayout Orientation="Horizontal">
+                <Label Text="Código Flora Nueva"
+                       TextColor="Black"
+                       FontSize="Medium"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center"
+                       HorizontalOptions="StartAndExpand"></Label>
+                <custom:CustomEntryCenter
+                    Keyboard="Numeric"
+                    Text="{Binding CodigoFlora, Mode=TwoWay}"
+                    TextColor="Black"   
+                    WidthRequest="120"
+                    FontSize="Medium"
+                    HorizontalOptions="EndAndExpand"
+                    BackgroundColor="LightGray"/>
+            </StackLayout>
+            <StackLayout Orientation="Horizontal">
+            <Label Text="Proyectos asociados al productor"
+                   TextColor="Black"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   HorizontalOptions="Start"></Label>
+            <Image Source="new_black.png"
+                   HorizontalOptions="Start"
+                   VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding AgregarProyectoCommand}"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                    <ColumnDefinition Width="*"></ColumnDefinition>
+                </Grid.ColumnDefinitions>
+                <Label Text="Nombre"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   FontSize="Small"
+                   Grid.Row="0"
+                   Grid.Column="0"></Label>
+                <Label Text="Estatus Integración"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   FontSize="Small"
+                   Grid.Row="0"
+                   Grid.Column="1"></Label>
+                <Label Text="Fecha Integración"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   FontSize="Small"
+                   Grid.Row="0"
+                   Grid.Column="2"></Label>
+                <Label Text="Fecha de Salida"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   FontSize="Small"
+                   Grid.Row="0"
+                   Grid.Column="3"></Label>
+                <Label Text="Razón de Salida"
+                   FontAttributes="Bold"
+                   TextColor="Black"
+                   FontSize="Small"
+                   Grid.Row="0"
+                   Grid.Column="4"></Label>
+
+            </Grid>
+            <ListView ItemsSource="{Binding Proyects}"
+                      HasUnevenRows="True"
+                      SeparatorVisibility="None"
+                      SeparatorColor="#910b20"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      Margin="6,1,6,1">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                          
+                            
+                            <Grid Margin="0,1,0,1">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                    <ColumnDefinition Width="*"></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                
+                                <custom:CustomEntry
+                    Text="{Binding NombreProyecto, Mode=TwoWay}"
+                    x:Name="label"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="LightGray"/>
+                                <custom:CustomEntry
+                    Text="{Binding EstatusIntegracion, Mode=TwoWay}"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="LightGray"/>
+                                <custom:CustomDatePicker
+                                    x:Name="Fecha"
+                    BackgroundColor="LightGray"
+                    Date="{Binding FechaIntegracion, Mode=TwoWay}"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="0"
+                    Grid.Column="2">
+                                </custom:CustomDatePicker>
+                                <custom:CustomDatePicker
+                                    x:Name="FechaSali"
+                    BackgroundColor="LightGray"
+                    Date="{Binding FechaSalida, Mode=TwoWay}"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="0"
+                    Grid.Column="3">
+                                </custom:CustomDatePicker>
+                                <custom:CustomEntry
+                    Text="{Binding RazonSalida, Mode=TwoWay}"
+                    Grid.Column="4"
+                    Grid.Row="0"
+                    HorizontalOptions="FillAndExpand"
+                    BackgroundColor="LightGray"/>
+                            </Grid>
+
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+
+
+
+
+
+
+
+            <StackLayout Padding="4,0,4,0" Margin="0,10,0,15">
+                <Button BackgroundColor="#910b20"
+                    Command="{Binding GuardarCommand}"
+                    IsEnabled="{Binding IsEnabled}"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HeightRequest="50"
+                    BorderRadius="8"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Guardar"
+                    TextColor="White">
+                </Button>
+                <Button BackgroundColor="#910b20"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    BorderRadius="8"
+                    FontSize="Medium"
+                    Command="{Binding VolverCommand}"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Volver"
+                    TextColor="White">
+                </Button>
+            </StackLayout>
+        </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

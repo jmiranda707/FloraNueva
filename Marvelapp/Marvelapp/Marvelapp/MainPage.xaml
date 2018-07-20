@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:Marvelapp"
+             x:Class="Marvelapp.MainPage"
+             Title="Alejandro Navarro Producción Agricola eleazar">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_chevron_left_white"
+            Name="IconBar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_edit_white"
+            Name="IconEdir" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_save_white"
+            Name="IconGuardar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_close_white"
+            Name="IconCerrar" 
+            Order="Primary"/>
+    </ContentPage.ToolbarItems>
+
+    <ScrollView>
+        <StackLayout
+            Margin="0,5,20,5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <!--Row #0-->
+                    <RowDefinition Height="0.6*"/>
+                    <!--Row #1-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #2-->
+                    <RowDefinition Height="0.6*"/>
+                    <!--Row #3-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #4-->
+                    <RowDefinition Height="0.6*"/>
+                    <!--Row #5-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #6-->
+                    <RowDefinition Height="0.6*"/>
+                    <!--Row #7-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #8-->
+                    <RowDefinition Height="0.6*"/>
+                    <!--Row #9-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #10-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #11-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #12-->
+                    <RowDefinition Height="0.6*"/>
+                    <!--Row #13-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #14-->
+                    <RowDefinition Height="0.6*"/>
+                    <!--Row #15-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #16-->
+                    <RowDefinition Height="0.4*"/>
+                    <!--Row #17-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #18-->
+                    <RowDefinition Height="0.6*"/>
+                    <!--Row #19-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #20-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #21-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #22-->
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <!--Row #0-->
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Orange"
+                    VerticalOptions="Center"/>
+
+                <Label
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Text="Apellido 1"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #1-->
+                <Entry
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1"
+                    BackgroundColor="LightGray"/>
+                <!--Row #2-->
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Orange"/>
+
+                <Label
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Text="Apellido 2"
+                    TextColor="Black"/>
+                <!--Row #3-->
+                <Entry
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="3"
+                    BackgroundColor="LightGray"/>
+                <!--Row #4-->
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="4"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Orange"/>
+
+                <Label
+                    Grid.Column="1"
+                    Grid.Row="4"
+                    Text="Nombres"
+                    TextColor="Black"/>
+                <!--Row #5-->
+                <Entry
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="5"
+                    BackgroundColor="LightGray"/>
+                <!--Row #6-->
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="6"
+                    Text=""
+                    TextColor="Orange"/>
+
+                <Label
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="6"
+                    Text="Código Flora Nueva"
+                    TextColor="Black"/>
+                <!--Row #7-->
+                <Entry
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="7"
+                    BackgroundColor="LightGray"/>
+                <!--Row #8-->
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="8"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Orange"/>
+                <Label
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="8"
+                    Text="Sexo"
+                    TextColor="Black"/>
+
+                <StackLayout
+                    Grid.Column="3"
+                    Grid.Row="8"
+                    HorizontalOptions="Center"
+                    Orientation="Horizontal">
+
+                    <Label
+                        Text="Hombre"
+                        TextColor="Black"/>
+
+                    <Switch
+                        VerticalOptions="Center"/>
+
+                    <Label
+                        Text="Mujer"
+                        TextColor="Black"/>
+
+                </StackLayout>
+                <!--Row #9-->
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="9"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Orange"
+                    VerticalOptions="Center"/>
+
+                <Label
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="9"
+                    Text="Número de cédula"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <Entry
+                    Grid.Column="3"
+                    Grid.Row="9"
+                    BackgroundColor="LightGray"/>
+                <!--Row #10-->
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="10"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Orange"
+                    VerticalOptions="Center"/>
+
+                <Label
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="10"
+                    Text="Fecha de nacimiento"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <DatePicker
+                    BackgroundColor="LightGray"
+                    Grid.Column="3"
+                    Grid.Row="10"
+                    />
+                <!--Row #11-->
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="11"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Orange"
+                    VerticalOptions="Center"/>
+                <Label
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="11"
+                    Text="Edad"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <Entry
+                    BackgroundColor="LightGray"
+                    Grid.Column="3"
+                    Grid.Row="11"
+                    HorizontalTextAlignment="Center"
+                    Text="35 años"/>
+                <!--Row #12-->
+                <Label
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="12"
+                    Text="Estado civil"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #13-->
+                <Picker
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="13"
+                    Title="Seleccione">
+                    <Picker.Items>
+                        <x:String>Soltero(a)</x:String>
+                        <x:String>Unión libre</x:String>
+                        <x:String>Casado(a)</x:String>
+                        <x:String>Divorciado(a)</x:String>
+                        <x:String>Viudo(a)</x:String>
+                    </Picker.Items>
+                </Picker>
+                <!--Row #14-->
+                <Label
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="14"
+                    Text="Pertenece a algún grupo étnico?"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #15-->
+                <Entry
+                    BackgroundColor="LightGray"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="15"/>
+                <!--Row #16-->
+
+                <!--Row #17-->
+                <StackLayout
+                    Grid.Column="1"
+                    Grid.Row="17"
+                    Orientation="Horizontal">
+                    <Label
+                        Text="Contactos"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <Image
+                        HorizontalOptions="Start"
+                        Source="ic_plus_black">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding AgregarCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <!--Row #18-->
+                <Label
+                    Grid.Column="0"
+                    Grid.Row="18"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Orange"
+                    VerticalOptions="Center"/>
+                <Label
+                    Grid.Column="1"
+                    Grid.Row="18"
+                    Text="Titpo de contacto"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+
+                <StackLayout
+                    Grid.Column="2"
+                    Grid.Row="18"
+                    Orientation="Horizontal"
+                    VerticalOptions="Center">
+                    <Label
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Orange"
+                        VerticalOptions="Center"/>
+                    <Label
+                        Text="Contacto"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                </StackLayout>
+
+                <Label
+                    Grid.Column="3"
+                    Grid.Row="18"
+                    Text="Detalle"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+
+                <!--Row #19-->
+                <StackLayout
+                    Grid.Column="1"
+                    Grid.Row="19"
+                    Orientation="Horizontal">
+                    <Image
+                        HorizontalOptions="Start"
+                        Source="ic_close_black"/>
+                    <Picker
+                        HorizontalOptions="FillAndExpand"
+                        Title="Seleccione">
+                        <Picker.Items>
+                            <x:String>Fijo</x:String>
+                            <x:String>Celular</x:String>
+                            <x:String>E-mail</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+                <Entry
+                    BackgroundColor="LightGray"
+                    Grid.Column="2"
+                    Grid.Row="19"/>
+                <Entry
+                    BackgroundColor="LightGray"
+                    Grid.Column="3"
+                    Grid.Row="19"/>
+                <!--Row #20-->
+                <StackLayout
+                    Grid.Column="1"
+                    Grid.Row="20"
+                    Orientation="Horizontal">
+                    <Image
+                        HorizontalOptions="Start"
+                        Source="ic_close_black"/>
+                    <Picker
+                        HorizontalOptions="FillAndExpand"
+                        Title="Seleccione">
+                        <Picker.Items>
+                            <x:String>Fijo</x:String>
+                            <x:String>Celular</x:String>
+                            <x:String>E-mail</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+                <Entry
+                    BackgroundColor="LightGray"
+                    Grid.Column="2"
+                    Grid.Row="20"/>
+                <Entry
+                    BackgroundColor="LightGray"
+                    Grid.Column="3"
+                    Grid.Row="20"/>
+                <!--Row #21-->
+                <Button
+                    BackgroundColor="#910b20"
+                    FontAttributes="Bold"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="21"
+                    Text="Guardar"
+                    TextColor="White"/>
+                <!--Row #22-->
+                <Button
+                    BackgroundColor="#910b20"
+                    FontAttributes="Bold"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="22"
+                    Text="Volver"
+                    TextColor="White"/>
+                <!--Row #23-->
+                <!--Row #24-->
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+
+</ContentPage>
+

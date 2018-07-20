@@ -1,0 +1,189 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marvelapp.Views.MaterialEntregado"
+             xmlns:viewmodels="clr-namespace:Marvelapp.ViewModels"
+             xmlns:custom="clr-namespace:Marvelapp.Customs"
+             Title="42 Material Entregado (Productor)">
+    <ContentPage.BindingContext>
+        <viewmodels:MaterialEntregadoViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_chevron_left.png"
+            Name="Atras" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="editar.png"
+            Name="Editar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="guardar.png"
+            Name="Guardar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_close_white"
+            Name="Cerrar" 
+            Order="Primary"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="10,10,10,2" 
+                     HorizontalOptions="FillAndExpand">
+
+                <Grid Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Control de Material Entregado"
+                   TextColor="Black"
+                   VerticalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   Grid.Row="0"
+                   HorizontalOptions="StartAndExpand"
+                   Grid.Column="0"/>
+                    <Image Source="new_black"
+                           HorizontalOptions="Start"
+                           Grid.Column="1"
+                           Grid.Row="0">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TapAgregarCommand}"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </Grid>
+                <Grid Margin="0,3,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width=".65*"></ColumnDefinition>
+                        <ColumnDefinition Width=".4*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width=".4*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Fecha"
+                           TextColor="Black"
+                           FontSize="Small"
+                           VerticalOptions="End"
+                           HorizontalOptions="StartAndExpand"
+                           Grid.Column="1"
+                           Grid.Row="0"/>
+                    <Label Text="#Boleta"
+                           TextColor="Black"
+                           FontSize="Small"
+                           HorizontalOptions="StartAndExpand"
+                           VerticalOptions="End"
+                           Grid.Column="2"
+                           Grid.Row="0"/>
+                    <Label Text="Material Entregado"
+                           TextColor="Black"
+                           FontSize="Small"
+                           VerticalOptions="End"
+                           HorizontalOptions="StartAndExpand"
+                           Grid.Column="3"
+                           Grid.Row="0"/>
+                    <Label Text="Cantidad"
+                           TextColor="Black"
+                           FontSize="Small"
+                           VerticalOptions="End"
+                           HorizontalOptions="StartAndExpand"
+                           Grid.Column="4"
+                           Grid.Row="0"/>
+                    <Label Text="Comentario"
+                           TextColor="Black"
+                           FontSize="Small"
+                           VerticalOptions="End"
+                           HorizontalOptions="StartAndExpand"
+                           Grid.Column="5"
+                           Grid.Row="0"/>
+                    <Image Source="close_black"
+                           Grid.Column="0"
+                           Grid.Row="1">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding TapEliminarCommand}"></TapGestureRecognizer>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <custom:CustomDatePicker
+                           BackgroundColor="LightGray"
+                           VerticalOptions="CenterAndExpand"
+                           Date="{Binding FechaEntrega, Mode=TwoWay}"
+                           FontSize="Small"
+                           HorizontalOptions="FillAndExpand"
+                           Grid.Row="1"
+                           Grid.Column="1">
+                    </custom:CustomDatePicker>
+                    <custom:CustomEntryCenter
+                           BackgroundColor="LightGray"
+                           VerticalOptions="CenterAndExpand"
+                           Text="{Binding NumBoleta, Mode=TwoWay}"
+                           FontSize="Small"
+                           HorizontalOptions="FillAndExpand"
+                           Grid.Row="1"
+                           Grid.Column="2">
+                    </custom:CustomEntryCenter>
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        SelectedItem="{Binding MaterialEntregado}"
+                        HorizontalOptions="FillAndExpand"
+                        VerticalOptions="CenterAndExpand"
+                        Grid.Column="3"
+                        Grid.Row="1"
+                        >
+                        <Picker.Items>
+                            <x:String>Cajas Mariolas</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <custom:CustomEntryCenter
+                           BackgroundColor="LightGray"
+                           VerticalOptions="CenterAndExpand"
+                           Text="{Binding Cantidad, Mode=TwoWay}"
+                           FontSize="Small"
+                           HorizontalOptions="FillAndExpand"
+                           Grid.Row="1"
+                           Grid.Column="4">
+                    </custom:CustomEntryCenter>
+                    <custom:CustomEntryCenter
+                           BackgroundColor="LightGray"
+                           VerticalOptions="CenterAndExpand"
+                           Text="{Binding Comentario, Mode=TwoWay}"
+                           FontSize="Small"
+                           HorizontalOptions="FillAndExpand"
+                           Grid.Row="1"
+                           Grid.Column="5">
+                    </custom:CustomEntryCenter>
+                </Grid>
+
+                <StackLayout Padding="4,0,4,0" Margin="0,10,0,15">
+                    <Button BackgroundColor="#910b20"
+                    Command="{Binding GuardarCommand}"
+                    IsEnabled="{Binding IsEnabled}"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HeightRequest="50"
+                    BorderRadius="8"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Guardar"
+                    TextColor="White">
+                    </Button>
+                    <Button BackgroundColor="#910b20"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    BorderRadius="8"
+                    FontSize="Medium"
+                    Command="{Binding VolverCommand}"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Volver"
+                    TextColor="White">
+                    </Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

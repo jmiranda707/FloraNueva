@@ -1,0 +1,535 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marvelapp.Views.MeliponarioCosechaView"
+             xmlns:viewmodels="clr-namespace:Marvelapp.ViewModels"
+             xmlns:custom="clr-namespace:Marvelapp.Customs"
+             Title="34 Meliponario- Cosecha">
+    <ContentPage.BindingContext>
+        <viewmodels:MeliponarioCosechaViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_chevron_left.png"
+            Name="Atras" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="editar.png"
+            Name="Editar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="guardar.png"
+            Name="Guardar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_close_white"
+            Name="Cerrar" 
+            Order="Primary"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="10,10,10,2" 
+                     HorizontalOptions="FillAndExpand">
+
+                <Grid Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Fecha de la Cosecha:"
+                   TextColor="Black"
+                   VerticalOptions="Center"
+                   FontAttributes="Bold"
+                   Grid.Row="0"
+                   HorizontalOptions="StartAndExpand"
+                   Grid.Column="0"/>
+                    <custom:CustomDatePicker
+                    BackgroundColor="LightGray"
+                    VerticalOptions="Center"
+                    Date="{Binding FechaCosecha, Mode=TwoWay}"
+                    FontSize="Small"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="0"
+                    Grid.Column="1">
+                    </custom:CustomDatePicker>
+                    <Label Text="Responsable"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="StartAndExpand"
+                   Grid.Row="1"
+                   Grid.Column="0"/>
+
+                    <Picker 
+                        Title="Seleccione"
+                        FontSize="Small"
+                        HorizontalOptions="FillAndExpand"
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        >
+                        <Picker.Items>
+                            <x:String>Clemence Padioleau</x:String>
+                        </Picker.Items>
+                    </Picker>
+
+                    <StackLayout Orientation="Horizontal"
+                                 Grid.Row="3"
+                                 Grid.Column="0"
+                                 >
+                        <Label Text="Control de Lote y Cantidad de Miel"
+                               TextColor="Black"
+                               FontAttributes="Bold"
+                               FontSize="Small"
+                               VerticalOptions="Center"
+                               HorizontalOptions="Start"></Label>
+                        <Image Source="new_black"
+                               HorizontalOptions="Start"
+                               VerticalOptions="Center"></Image>
+                    </StackLayout>
+                                 
+                     
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="2*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Lote"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="0"
+                           Grid.Column="1">
+                    </Label>
+                    <Label Text="Especie"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="0"
+                           Grid.Column="2">
+                    </Label>
+                    <Label Text="Cajas"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="0"
+                           Grid.Column="3">
+                    </Label>
+                    <Label Text="Alzas"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="0"
+                           Grid.Column="4">
+                    </Label>
+                    <Label Text="Peso (Kg)"
+                           TextColor="Black"
+                           FontSize="Small"
+                           Grid.Row="0"
+                           Grid.Column="5">
+                    </Label>
+                    <Image Source="close_black"
+                           Grid.Row="1"
+                           Grid.Column="0">
+                    </Image>
+                    <custom:CustomEntryCenter
+                    BackgroundColor="LightGray"
+                    Text="{Binding Lote, Mode=TwoWay}"
+                    FontSize="Small"
+                    HorizontalOptions="FillAndExpand"
+                        Grid.Row="1"
+                        Grid.Column="0">
+                    </custom:CustomEntryCenter>
+                    <custom:CustomEntryCenter
+                    BackgroundColor="LightGray"
+                    Text="{Binding Especie, Mode=TwoWay}"
+                    FontSize="Small"
+                    HorizontalOptions="FillAndExpand"
+                        Grid.Row="1"
+                        Grid.Column="2">
+                    </custom:CustomEntryCenter>
+                    <StackLayout Orientation="Horizontal"
+                                 Grid.Row="1"
+                                 Grid.Column="3"></StackLayout>
+                    <custom:CustomEntryCenter
+                    BackgroundColor="LightGray"
+                    Text="{Binding Alzas, Mode=TwoWay}"
+                    FontSize="Small"
+                    HorizontalOptions="FillAndExpand"
+                        Grid.Row="1"
+                        Grid.Column="4">
+                    </custom:CustomEntryCenter>
+                    <custom:CustomEntryCenter
+                    BackgroundColor="LightGray"
+                    Text="{Binding Peso, Mode=TwoWay}"
+                    FontSize="Small"
+                    HorizontalOptions="FillAndExpand"
+                        Grid.Row="1"
+                        Grid.Column="5">
+                    </custom:CustomEntryCenter>
+                </Grid>
+                
+                <Label Text="Otra Persona Presente"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+                <custom:CustomEditor
+                    BackgroundColor="LightGray"
+                    HeightRequest="50"
+                    Text="{Binding OtraPersonaPresente, Mode=TwoWay}"
+                    FontSize="Small"
+                    HorizontalOptions="FillAndExpand">
+                </custom:CustomEditor>
+                <Label Text="Motivo"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+                <custom:CustomEditor
+                    HeightRequest="100"
+                    BackgroundColor="LightGray"
+                    Text="{Binding Motivo, Mode=TwoWay}"
+                    FontSize="Small"
+                    HorizontalOptions="FillAndExpand">
+                </custom:CustomEditor>
+                <Label Text="Observaciones"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+                <custom:CustomEditor
+                    HeightRequest="100"
+                    BackgroundColor="LightGray"
+                    Text="{Binding Observaciones, Mode=TwoWay}"
+                    FontSize="Small"
+                    HorizontalOptions="FillAndExpand">
+                </custom:CustomEditor>
+                <Label Text="Acciones Correctivas Obligatorias"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+                <custom:CustomEditor
+                    HeightRequest="50"
+                    BackgroundColor="LightGray"
+                    Text="{Binding AccionCorrectiva1, Mode=TwoWay}"
+                    FontSize="Small"
+                    HorizontalOptions="FillAndExpand">
+                </custom:CustomEditor>
+                <custom:CustomEditor
+                    HeightRequest="50"
+                    BackgroundColor="LightGray"
+                    Text="{Binding AccionCorrectiva2, Mode=TwoWay}"
+                    FontSize="Small"
+                    HorizontalOptions="FillAndExpand">
+                </custom:CustomEditor>
+                <custom:CustomEditor
+                    HeightRequest="50"
+                    BackgroundColor="LightGray"
+                    Text="{Binding AccionCorrectiva3, Mode=TwoWay}"
+                    FontSize="Small"
+                    HorizontalOptions="FillAndExpand">
+                </custom:CustomEditor>
+                <custom:CustomEditor
+                    HeightRequest="50"
+                    BackgroundColor="LightGray"
+                    Text="{Binding AccionCorrectiva4, Mode=TwoWay}"
+                    FontSize="Small"
+                    HorizontalOptions="FillAndExpand">
+                </custom:CustomEditor>
+                <Label Text="Recomendaciones"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+                <custom:CustomEditor
+                    HeightRequest="100"
+                    BackgroundColor="LightGray"
+                    Text="{Binding Recomendaciones, Mode=TwoWay}"
+                    FontSize="Small"
+                    HorizontalOptions="FillAndExpand">
+                </custom:CustomEditor>
+                <!-- Aqui abajo vienen las primeras 2 matrices-->
+
+                <Label Text="Actualizacion de Colmenas en Trampa"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Mariola"
+                           TextColor="Black"
+                           VerticalOptions="End"
+                           HorizontalOptions="StartAndExpand"
+                           Grid.Column="1"
+                           Grid.Row="0"/>
+                    <Label Text="Sancuano"
+                           TextColor="Black"
+                           Grid.Column="2"
+                           Grid.Row="0"
+                           VerticalOptions="End"
+                           HorizontalOptions="StartAndExpand" />
+                    <Label Text="Otro"
+                           TextColor="Black"
+                           Grid.Column="3"
+                           Grid.Row="0"
+                           VerticalOptions="End"
+                           HorizontalOptions="StartAndExpand" />
+                    <Label Text="En Meliponario"
+                           TextColor="Black"
+                           Grid.Column="0"
+                           Grid.Row="1"
+                           VerticalOptions="Center"
+                           HorizontalOptions="StartAndExpand" />
+                    <custom:CustomEntryCenter
+                           BackgroundColor="LightGray"
+                           Text="{Binding MeliponarioMariola, Mode=TwoWay}"
+                           FontSize="Small"
+                           HorizontalOptions="FillAndExpand"
+                           Grid.Column="1"
+                           Grid.Row="1">
+                    </custom:CustomEntryCenter>
+                    <custom:CustomEntryCenter
+                            BackgroundColor="LightGray"
+                            Text="{Binding MeliponarioSancuano, Mode=TwoWay}"
+                            FontSize="Small"
+                            HorizontalOptions="FillAndExpand"
+                            Grid.Column="2"
+                            Grid.Row="1">
+                    </custom:CustomEntryCenter>
+                    <custom:CustomEntryCenter
+                            BackgroundColor="LightGray"
+                            Text="{Binding MeliponarioOtro, Mode=TwoWay}"
+                            FontSize="Small"
+                            HorizontalOptions="FillAndExpand"
+                            Grid.Column="3"
+                            Grid.Row="1">
+                    </custom:CustomEntryCenter>
+
+                    <Label Text="En Campo"
+                           TextColor="Black"
+                           Grid.Column="0"
+                           Grid.Row="2"
+                           VerticalOptions="Center"
+                           HorizontalOptions="StartAndExpand" />
+                    <custom:CustomEntryCenter
+                           BackgroundColor="LightGray"
+                           Text="{Binding CampoMariola, Mode=TwoWay}"
+                           FontSize="Small"
+                           HorizontalOptions="FillAndExpand"
+                           Grid.Column="1"
+                           Grid.Row="2">
+                    </custom:CustomEntryCenter>
+                    <custom:CustomEntryCenter
+                            BackgroundColor="LightGray"
+                            Text="{Binding CampoSancuano, Mode=TwoWay}"
+                            FontSize="Small"
+                            HorizontalOptions="FillAndExpand"
+                            Grid.Column="2"
+                            Grid.Row="2">
+                    </custom:CustomEntryCenter>
+                    <custom:CustomEntryCenter
+                            BackgroundColor="LightGray"
+                            Text="{Binding CampoOtro, Mode=TwoWay}"
+                            FontSize="Small"
+                            HorizontalOptions="FillAndExpand"
+                            Grid.Column="3"
+                            Grid.Row="2">
+                    </custom:CustomEntryCenter>
+                    <Label Text="Total"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           Grid.Column="0"
+                           Grid.Row="3"
+                           VerticalOptions="Start"
+                           HorizontalOptions="StartAndExpand" />
+                    <Label Text="{Binding TotalMariolaTrampa}"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           Grid.Column="1"
+                           Grid.Row="3"
+                           VerticalOptions="Start"
+                           HorizontalOptions="End" />
+                    <Label Text="{Binding TotalSancuanoTrampa}"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           Grid.Column="2"
+                           Grid.Row="3"
+                           VerticalOptions="Start"
+                           HorizontalOptions="End" />
+                    <Label Text="{Binding TotalOtroTrampa}"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           Grid.Column="3"
+                           Grid.Row="3"
+                           VerticalOptions="Start"
+                           HorizontalOptions="End" />
+                </Grid>
+
+                <!-- Aqui abajo vienen las ultimas 2 matrices restantes-->
+
+                <Label Text="Actualizacion de Colmenas en Cajas"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Mariola"
+                           TextColor="Black"
+                           VerticalOptions="End"
+                           HorizontalOptions="StartAndExpand"
+                           Grid.Column="1"
+                           Grid.Row="0"/>
+                    <Label Text="Sancuano"
+                           TextColor="Black"
+                           Grid.Column="2"
+                           Grid.Row="0"
+                           VerticalOptions="End"
+                           HorizontalOptions="StartAndExpand" />
+                    <Label Text="Otro"
+                           TextColor="Black"
+                           Grid.Column="3"
+                           Grid.Row="0"
+                           VerticalOptions="End"
+                           HorizontalOptions="StartAndExpand" />
+                    <Label Text="ACFN"
+                           TextColor="Black"
+                           Grid.Column="0"
+                           Grid.Row="1"
+                           VerticalOptions="Center"
+                           HorizontalOptions="StartAndExpand" />
+                    <custom:CustomEntryCenter
+                           BackgroundColor="LightGray"
+                           Text="{Binding ACFNMariola, Mode=TwoWay}"
+                           FontSize="Small"
+                           HorizontalOptions="FillAndExpand"
+                           Grid.Column="1"
+                           Grid.Row="1">
+                    </custom:CustomEntryCenter>
+                    <custom:CustomEntryCenter
+                            BackgroundColor="LightGray"
+                            Text="{Binding ACFNSancuano, Mode=TwoWay}"
+                            FontSize="Small"
+                            HorizontalOptions="FillAndExpand"
+                            Grid.Column="2"
+                            Grid.Row="1">
+                    </custom:CustomEntryCenter>
+                    <custom:CustomEntryCenter
+                            BackgroundColor="LightGray"
+                            Text="{Binding ACFNOtro, Mode=TwoWay}"
+                            FontSize="Small"
+                            HorizontalOptions="FillAndExpand"
+                            Grid.Column="3"
+                            Grid.Row="1">
+                    </custom:CustomEntryCenter>
+
+                    <Label Text="Rústica"
+                           TextColor="Black"
+                           Grid.Column="0"
+                           Grid.Row="2"
+                           VerticalOptions="Center"
+                           HorizontalOptions="StartAndExpand" />
+                    <custom:CustomEntryCenter
+                           BackgroundColor="LightGray"
+                           Text="{Binding RusticaMariola, Mode=TwoWay}"
+                           FontSize="Small"
+                           HorizontalOptions="FillAndExpand"
+                           Grid.Column="1"
+                           Grid.Row="2">
+                    </custom:CustomEntryCenter>
+                    <custom:CustomEntryCenter
+                            BackgroundColor="LightGray"
+                            Text="{Binding RusticaSancuano, Mode=TwoWay}"
+                            FontSize="Small"
+                            HorizontalOptions="FillAndExpand"
+                            Grid.Column="2"
+                            Grid.Row="2">
+                    </custom:CustomEntryCenter>
+                    <custom:CustomEntryCenter
+                            BackgroundColor="LightGray"
+                            Text="{Binding RusticaOtro, Mode=TwoWay}"
+                            FontSize="Small"
+                            HorizontalOptions="FillAndExpand"
+                            Grid.Column="3"
+                            Grid.Row="2">
+                    </custom:CustomEntryCenter>
+                    <Label Text="Total"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           Grid.Column="0"
+                           Grid.Row="3"
+                           VerticalOptions="Start"
+                           HorizontalOptions="StartAndExpand" />
+                    <Label Text="{Binding TotalMariolaCajas}"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           Grid.Column="1"
+                           Grid.Row="3"
+                           VerticalOptions="Start"
+                           HorizontalOptions="End" />
+                    <Label Text="{Binding TotalSancuanoCajas}"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           Grid.Column="2"
+                           Grid.Row="3"
+                           VerticalOptions="Start"
+                           HorizontalOptions="End" />
+                    <Label Text="{Binding TotalOtroCajas}"
+                           TextColor="Black"
+                           FontAttributes="Bold"
+                           Grid.Column="3"
+                           Grid.Row="3"
+                           VerticalOptions="Start"
+                           HorizontalOptions="End" />
+                </Grid>
+                <Label Text="Otros"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+                <custom:CustomEditor
+                    HeightRequest="100"
+                    BackgroundColor="LightGray"
+                    Text="{Binding Otros, Mode=TwoWay}"
+                    FontSize="Small"
+                    HorizontalOptions="FillAndExpand">
+                </custom:CustomEditor>
+
+                <StackLayout Padding="4,0,4,0" Margin="0,10,0,15">
+                    <Button BackgroundColor="#910b20"
+                    Command="{Binding GuardarCommand}"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HeightRequest="50"
+                    BorderRadius="8"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Guardar"
+                    TextColor="White">
+                    </Button>
+                    <Button BackgroundColor="#910b20"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    BorderRadius="8"
+                    FontSize="Medium"
+                    Command="{Binding VolverCommand}"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Volver"
+                    TextColor="White">
+                    </Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

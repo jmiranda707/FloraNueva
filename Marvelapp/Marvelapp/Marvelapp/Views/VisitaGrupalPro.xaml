@@ -1,0 +1,223 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marvelapp.Views.VisitaGrupalPro"
+             xmlns:viewmodels="clr-namespace:Marvelapp.ViewModels"
+             xmlns:custom="clr-namespace:Marvelapp.Customs"
+             Title="37- Visita Grupal (productor)">
+    <ContentPage.BindingContext>
+        <viewmodels:VisitaGrupalProViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_chevron_left.png"
+            Name="Atras" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="editar.png"
+            Name="Editar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="guardar.png"
+            Name="Guardar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding BellCommand, Mode=TwoWay}"
+            Icon="ic_close_white"
+            Name="Cerrar" 
+            Order="Primary"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Margin="10,10,10,2" 
+                     HorizontalOptions="FillAndExpand">
+                <Label Text="Grupo:"
+                   TextColor="Black"
+                   VerticalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   HorizontalOptions="StartAndExpand"
+                   />
+                <Picker 
+                        Title="Seleccione"
+                        FontSize="Medium"
+                        SelectedItem="{Binding GrupoSelected}"
+                        HorizontalOptions="FillAndExpand"
+                        >
+                    <Picker.Items>
+                        <x:String>La Esperanza</x:String>
+                        <x:String>El Guarco</x:String>
+                        <x:String>San Carlos</x:String>
+                        <x:String>Puntarenas</x:String>
+                    </Picker.Items>
+                </Picker>
+                <Grid Margin="0,5,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Label Text="Fecha Desde:"
+                   TextColor="Black"
+                   FontSize="Medium"
+                   VerticalOptions="CenterAndExpand"
+                   FontAttributes="Bold"
+                   Grid.Row="0"
+                   HorizontalOptions="StartAndExpand"
+                   Grid.Column="0"/>
+                    <custom:CustomDatePicker
+                    x:Name="FechaDesde"
+                    BackgroundColor="LightGray"
+                    VerticalOptions="CenterAndExpand"
+                    Date="{Binding FechaDesde, Mode=TwoWay}"
+                    FontSize="Medium"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="0"
+                    Grid.Column="1">
+                    </custom:CustomDatePicker>
+                    <Label Text="Fecha Hasta:"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   VerticalOptions="CenterAndExpand"
+                   HorizontalOptions="StartAndExpand"
+                   Grid.Row="1"
+                   Grid.Column="0"/>
+                    <custom:CustomDatePicker
+                    x:Name="FechaHasta"
+                    BackgroundColor="LightGray"
+                    Date="{Binding FechaHastaVisitaGrupal, Mode=TwoWay}"
+                    FontSize="Medium"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Grid.Row="1"
+                    Grid.Column="1">
+                    </custom:CustomDatePicker>
+                    <Label Text="Participantes"
+                   TextColor="Black"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   HorizontalOptions="StartAndExpand"
+                   Grid.Row="2"
+                   Grid.Column="0"/>
+                    <custom:CustomEntryCenter
+                    BackgroundColor="LightGray"
+                    Text="{Binding ParticipantesVisitaGrupal, Mode=TwoWay}"
+                    HorizontalTextAlignment="Center"
+                    HorizontalOptions="FillAndExpand"
+                    VerticalOptions="CenterAndExpand"
+                    Grid.Row="2"
+                    Grid.Column="1">
+                    </custom:CustomEntryCenter>
+                </Grid>
+                <Label Text="Equipo Flora Nueva Presente"
+                   TextColor="Black"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   HorizontalOptions="StartAndExpand" />
+                <custom:CustomEditor
+                    BackgroundColor="LightGray"
+                    HeightRequest="100"
+                    Text="{Binding EquipoFloraPresente, Mode=TwoWay}"
+                    HorizontalOptions="FillAndExpand">
+                </custom:CustomEditor>
+                <Label Text="Otros Participantes"
+                   TextColor="Black"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+                <custom:CustomEditor
+                    HeightRequest="100"
+                    BackgroundColor="LightGray"
+                    Text="{Binding OtrosParticipantes, Mode=TwoWay}"
+                    HorizontalOptions="FillAndExpand">
+                </custom:CustomEditor>
+                <Label Text="Tema y Objetivo de la Visita"
+                   TextColor="Black"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+                <custom:CustomEditor
+                    HeightRequest="100"
+                    BackgroundColor="LightGray"
+                    Text="{Binding TemaObjetivo, Mode=TwoWay}"
+                    HorizontalOptions="FillAndExpand">
+                </custom:CustomEditor>
+                <Label Text="Desarrollo de la Visita/Acciones"
+                   TextColor="Black"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+                <custom:CustomEditor
+                    HeightRequest="100"
+                    BackgroundColor="LightGray"
+                    Text="{Binding DesarrolloAcciones, Mode=TwoWay}"
+                    HorizontalOptions="FillAndExpand">
+                </custom:CustomEditor>
+                <Label Text="Material Entregado"
+                   TextColor="Black"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+                <custom:CustomEditor
+                    HeightRequest="100"
+                    BackgroundColor="LightGray"
+                    Text="{Binding MaterialEntregado, Mode=TwoWay}"
+                    HorizontalOptions="FillAndExpand">
+                </custom:CustomEditor>
+                <Label Text="Problemas Detectados"
+                   TextColor="Black"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+                <custom:CustomEditor
+                    HeightRequest="100"
+                    BackgroundColor="LightGray"
+                    Text="{Binding ProblemasDetectados, Mode=TwoWay}"
+                    HorizontalOptions="FillAndExpand">
+                </custom:CustomEditor>
+                <Label Text="Recomendaciones para la proxima visita"
+                   TextColor="Black"
+                   FontSize="Medium"
+                   FontAttributes="Bold"
+                   HorizontalOptions="StartAndExpand" />
+                <custom:CustomEditor
+                    HeightRequest="100"
+                    BackgroundColor="LightGray"
+                    Text="{Binding Recomendaciones, Mode=TwoWay}"
+                    HorizontalOptions="FillAndExpand">
+                </custom:CustomEditor>
+                
+                <!--BOTONES-->
+                <StackLayout Padding="4,0,4,0" Margin="0,10,0,15">
+                    <Button BackgroundColor="#910b20"
+                    Command="{Binding GuardarCommand}"
+                    IsEnabled="{Binding IsEnabled}"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HeightRequest="50"
+                    BorderRadius="8"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Guardar"
+                    TextColor="White">
+                    </Button>
+                    <Button BackgroundColor="#910b20"
+                    FontAttributes="Bold"
+                    HeightRequest="50"
+                    BorderRadius="8"
+                    FontSize="Medium"
+                    Command="{Binding VolverCommand}"
+                    VerticalOptions="CenterAndExpand"
+                    HorizontalOptions="FillAndExpand"
+                    Text="Volver"
+                    TextColor="White">
+                    </Button>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>
