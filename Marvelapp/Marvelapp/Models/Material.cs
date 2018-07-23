@@ -12,10 +12,11 @@ namespace Marvelapp.Models
 {
     public class Material
     {
+        public int IdMaterial { set; get; }
         public string Fecha { set; get; }
-        public int Boleta { set; get; }
+        public string Boleta { set; get; }
         public string NombreMaterial { set; get; }
-        public int Cantidad { set; get; }
+        public string Cantidad { set; get; }
         public string Comentario { set; get; }
 
         #region Exception

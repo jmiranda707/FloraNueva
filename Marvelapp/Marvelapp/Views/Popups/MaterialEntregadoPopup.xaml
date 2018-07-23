@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Marvelapp.Views.Popups.MaterialEntregadoPopup"
              xmlns:custom="clr-namespace:Marvelapp.Customs"
+             Title="Popup Material Entregado"
              xmlns:popups="clr-namespace:Rg.Plugins.Popup.Pages;assembly=Rg.Plugins.Popup"
              xmlns:viewmodels="clr-namespace:Marvelapp.ViewModels"
              >
@@ -17,6 +18,9 @@
 
             <Grid Margin="15,5,0,5">
                 <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="50"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -39,6 +43,25 @@
                            Grid.Row="0">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding TapAgregarCommand}"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <!--opcion 2: Guardar Cambios en Popup-->
+                <Label Text="Listo"
+                   TextColor="Red"
+                   VerticalOptions="Center"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   Grid.Row="0"
+                   HorizontalOptions="EndAndExpand"
+                   Grid.Column="3"/>
+                <Image Source="guardar.png"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"
+                           Grid.Column="1"
+                           WidthRequest="35"
+                           Grid.Row="4">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding ListoCommand}"></TapGestureRecognizer>
                     </Image.GestureRecognizers>
                 </Image>
             </Grid>
@@ -132,6 +155,7 @@
                            VerticalOptions="CenterAndExpand"
                            Text="{Binding Boleta, Mode=TwoWay}"
                            FontSize="Small"
+                           Keyboard="Numeric"
                            HorizontalOptions="FillAndExpand"
                            Grid.Row="0"
                            Grid.Column="2">
@@ -155,6 +179,7 @@
                            VerticalOptions="CenterAndExpand"
                            Text="{Binding Cantidad, Mode=TwoWay}"
                            FontSize="Small"
+                           Keyboard="Numeric"
                            HorizontalOptions="FillAndExpand"
                            Grid.Row="0"
                            Grid.Column="4">

@@ -22,6 +22,10 @@ namespace Marvelapp.ViewModels
         private ObservableCollection<Material> material;
         private Double heighList;
         private bool isRefreshing;
+        string cantidad, fecha, nombre, comentario;
+        string boleta;
+        int i;
+
         #endregion
 
         #region Properties
@@ -35,6 +39,8 @@ namespace Marvelapp.ViewModels
             get { return material; }
             set { SetValue(ref material, value); }
         }
+        
+       
         public bool IsRefreshing //para refrescar el listview
         {
             get { return isRefreshing; }
@@ -53,66 +59,65 @@ namespace Marvelapp.ViewModels
         }
 
         #endregion
+
+        int Elementos;
         #region Methods
         private void LoadMateriales()
         {
-            Materiales.Add(new Material()
+            
+            IsRefreshing = true;
+            if (Application.Current.Properties.ContainsKey("Contador"))
             {
-                Boleta = 1,
-                Cantidad = 0,
-                Comentario = "",
-                Fecha = "",
-                NombreMaterial = ""
-            });
-            Materiales.Add(new Material()
+                Elementos = int.Parse((Application.Current.Properties["Contador"]) as string);
+            }
+            else { Elementos = 0; }
+            for (int j = 0; i < 1; j++)
             {
-                Boleta = 2,
-                Cantidad = 0,
-                Comentario = "",
-                Fecha = "",
-                NombreMaterial = ""
-            });
-            Materiales.Add(new Material()
+
+                if (Application.Current.Properties.ContainsKey("Boleta"+i))
+                {
+                    boleta = (Application.Current.Properties["Boleta"+i]) as string;
+                }
+                if (Application.Current.Properties.ContainsKey("Cantidad"+i))
+                {
+                    cantidad = (Application.Current.Properties["Cantidad"+i] as string);
+                }
+                if (Application.Current.Properties.ContainsKey("Comentario"+i))
+                {
+                    comentario = (Application.Current.Properties["Comentario"+i] as string);
+                }
+                if (Application.Current.Properties.ContainsKey("Fecha"+i))
+                {
+                    fecha = (Application.Current.Properties["Fecha"+i] as string);
+                }
+                if (Application.Current.Properties.ContainsKey("NombreMaterial"+i))
+                {
+                    nombre = (Application.Current.Properties["NombreMaterial"+i] as string);
+                }
+
+
+                Materiales.Add(new Material()
+                {
+                    Boleta = boleta,
+                    Cantidad = cantidad,
+                    Comentario = comentario,
+                    Fecha = fecha,
+                    NombreMaterial = nombre,
+                });
+                
+
+
+            }
+           
+            
+           
+            ///OJOOOOOOOOOOOOOOOOO: despues que haga mis pruebas le coloco un if, si la lista esta vacia, agrego un material vacio para que la vista previa no se vea vaciaaa
+          /*  using( var datos= new DataAccess())
             {
-                Boleta = 3,
-                Cantidad = 0,
-                Comentario = "",
-                Fecha = "",
-                NombreMaterial = ""
-            });
-            Materiales.Add(new Material()
-            {
-                Boleta = 4,
-                Cantidad = 0,
-                Comentario = "",
-                Fecha = "",
-                NombreMaterial = ""
-            });
-            Materiales.Add(new Material()
-            {
-                Boleta = 5,
-                Cantidad = 0,
-                Comentario = "",
-                Fecha = "",
-                NombreMaterial = ""
-            });
-            Materiales.Add(new Material()
-            {
-                Boleta = 6,
-                Cantidad = 0,
-                Comentario = "",
-                Fecha = "",
-                NombreMaterial = ""
-            });
-            Materiales.Add(new Material()
-            {
-                Boleta = 7,
-                Cantidad = 0,
-                Comentario = "",
-                Fecha = "",
-                NombreMaterial = ""
-            });
-            // MaterialesOrder= Materiales.LastOrDefault();
+                
+                this.MaterialesLista = datos.GetMateriales(); //obtener desde persistencia mi lista de Materiales Guardados
+            }
+        Materiales = new ObservableCollection<Material>(MaterialesLista);*/
             IsRefreshing = false;
             
             HeighListView = 44*Materiales.Count();
@@ -144,16 +149,14 @@ namespace Marvelapp.ViewModels
                         IsRefreshing = true;
                         Materiales.Add(new Material()
                         {
-                            Boleta = 0,
+                            Boleta = "0",
                             NombreMaterial = "",
-                            Cantidad = 0,
+                            Cantidad = "0",
                             Fecha = "",
                             Comentario = ""
                         });
                         IsRefreshing = false;
         }
-
-
 
         private async void Guardar()
         {
@@ -183,12 +186,59 @@ namespace Marvelapp.ViewModels
             }
             #endregion
             */
+            
             await Application.Current.MainPage.DisplayAlert("Guardado", "Usted ha Guardado Exitosamente", "Excelente");
         }
 
+
+        private async void Listo()
+        {
+            /*
+            #region Validaciones  
+            if (string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty() ||
+                string.IsNullOrEmpty())
+            {
+                await Application.Current.MainPage.DisplayAlert("Mensaje", "Por Favor Llene los Campos Obligatorios", "Aceptar");
+                return;
+            }
+            #endregion
+            */
+
+                i = 0;
+                foreach (var material in Materiales)
+                {
+                Application.Current.Properties["Boleta"+i] = material.Boleta;
+                Application.Current.Properties["Cantidad"+i] = material.Cantidad;
+                Application.Current.Properties["Comentario"+i] = material.Comentario;
+                Application.Current.Properties["Fecha"+i] = material.Fecha;
+                //Application.Current.Properties["IdMaterial"] = material.IdMaterial;
+                Application.Current.Properties["NombreMaterial"+i] = material.NombreMaterial;
+
+                i = i + 1;
+                Application.Current.Properties["Contador"] = i;
+                await Application.Current.SavePropertiesAsync();
+                }
+                await Application.Current.MainPage.DisplayAlert("Notificación", (Application.Current.Properties["Contador"]as string), "Excelente");
+        } 
+
         private async void Volver()
         {
-
             await Application.Current.MainPage.Navigation.PopAsync();
         }
         #endregion
@@ -201,6 +251,14 @@ namespace Marvelapp.ViewModels
                 return new RelayCommand(Guardar);
             }
         }
+        public ICommand ListoCommand
+        {
+            get
+            {
+                return new RelayCommand(Listo);
+            }
+        }
+
         public ICommand VolverCommand
         {
             get
@@ -245,6 +303,7 @@ namespace Marvelapp.ViewModels
             }
         }
         #endregion
+
         #region Singleton 
         private static MaterialEntregadoViewModels instance;
 

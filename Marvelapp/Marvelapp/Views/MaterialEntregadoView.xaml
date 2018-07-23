@@ -55,6 +55,8 @@
                             <TapGestureRecognizer Command="{Binding TapPopupCommand}"></TapGestureRecognizer>
                     </Image.GestureRecognizers>
                 </Image>
+                
+                
             </Grid>
             
                     <Grid Margin="0,0,0,0">
