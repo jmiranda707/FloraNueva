@@ -24,7 +24,7 @@ namespace Marvelapp.ViewModels
         private bool isRefreshing;
         string cantidad, fecha, nombre, comentario;
         string boleta;
-        //int i;
+        int i, Elementos;
 
         #endregion
 
@@ -64,16 +64,62 @@ namespace Marvelapp.ViewModels
         private void LoadMateriales()
         {
 
-            IsRefreshing = true;
-            /*if (Application.Current.Properties.ContainsKey("Contador"))
+            if (Application.Current.Properties.ContainsKey("Contador"))
             {
                 Elementos = int.Parse((Application.Current.Properties["Contador"]) as string);
             }
-            else { Elementos = 0; }*/
+            else { Elementos = 0; }
+
+            IsRefreshing = true;
+            for (int j = 0; j < Elementos; j++) //i va a representar el total de elementos o filas existentes en mi persistencia
+            {
+                if (Application.Current.Properties.ContainsKey("Boleta"+j))
+                {
+                    boleta = (Application.Current.Properties["Boleta"+j]) as string;
+                }
+                else { boleta = "0"; }
+                if (Application.Current.Properties.ContainsKey("Cantidad"+j))
+                {
+                    cantidad = (Application.Current.Properties["Cantidad"+j] as string);
+                }
+                else { cantidad = "0"; }
+                if (Application.Current.Properties.ContainsKey("Comentario"+j))
+                {
+                    comentario = (Application.Current.Properties["Comentario"+j] as string);
+                }
+                else { comentario = ""; }
+                if (Application.Current.Properties.ContainsKey("Fecha"+j))
+                {
+                    fecha = (Application.Current.Properties["Fecha"+j] as string);
+                }
+                else { fecha = ""; }
+                if (Application.Current.Properties.ContainsKey("NombreMaterial"+j))
+                {
+                    nombre = (Application.Current.Properties["NombreMaterial"+j] as string);
+                }
+                else { nombre = ""; }
+                Materiales.Add(new Material()
+                {
+                    Boleta = boleta,
+                    Cantidad = cantidad,
+                    Comentario = comentario,
+                    Fecha = fecha,
+                    NombreMaterial = nombre,
+                });
+            }
+            IsRefreshing = false;
+
+            HeighListView = 44 * Materiales.Count;
+            
 
 
 
 
+
+
+            #region DESCOMENTAR 1 SOLA FILA 100% FUNCIONAL Y BORRAR LO DEMAS
+            /* 
+            IsRefreshing = true;
             if (Application.Current.Properties.ContainsKey("Boleta"))
             {
                 boleta = (Application.Current.Properties["Boleta"]) as string;
@@ -102,23 +148,11 @@ namespace Marvelapp.ViewModels
                 Fecha = fecha,
                 NombreMaterial = nombre,
             });
-
-
-
-
-
-
-
-            ///OJOOOOOOOOOOOOOOOOO: despues que haga mis pruebas le coloco un if, si la lista esta vacia, agrego un material vacio para que la vista previa no se vea vaciaaa
-            /*  using( var datos= new DataAccess())
-              {
-
-                  this.MaterialesLista = datos.GetMateriales(); //obtener desde persistencia mi lista de Materiales Guardados
-              }
-            Materiales = new ObservableCollection<Material>(MaterialesLista);*/
             IsRefreshing = false;
 
             HeighListView = 44 * Materiales.Count;
+            */
+            #endregion
         }
 
         private async void NuevaVisita()//me envia a agregar una nueva visita individual-prod (VISTA 33)
@@ -215,19 +249,22 @@ namespace Marvelapp.ViewModels
             #endregion
             */
 
-
+            i = 0; //inicio el contador de mis elementos o filas en (0)
             foreach (var material in Materiales)
             {
-                Application.Current.Properties["Boleta"] = material.Boleta.ToString();
-                Application.Current.Properties["Cantidad"] = material.Cantidad.ToString();
-                Application.Current.Properties["Comentario"] = material.Comentario;
-                Application.Current.Properties["Fecha"] = material.Fecha;
+                Application.Current.Properties["Boleta"+i] = material.Boleta.ToString();
+                Application.Current.Properties["Cantidad"+i] = material.Cantidad.ToString();
+                Application.Current.Properties["Comentario"+i] = material.Comentario;
+                Application.Current.Properties["Fecha"+i] = material.Fecha;
                 //Application.Current.Properties["IdMaterial"] = material.IdMaterial;
-                Application.Current.Properties["NombreMaterial"] = material.NombreMaterial;
+                Application.Current.Properties["NombreMaterial"+i] = material.NombreMaterial;
+                i++;
+                Application.Current.Properties["Contador"] = i.ToString();
                 await Application.Current.SavePropertiesAsync();
+
             }
-            await Application.Current.MainPage.DisplayAlert("Notificación", "el Numero de Boleta es: "+Application.Current.Properties["Boleta"] as string, "Excelente");
-            await Application.Current.MainPage.Navigation.PushAsync(new MaterialEntregadoView());
+            await Application.Current.MainPage.DisplayAlert("Notificación", "el Numero de Filas Guardadas es: "+Application.Current.Properties["Contador"] as string, "Excelente");
+            await Application.Current.MainPage.Navigation.PushAsync(new MaterialEntregadoView()); //esto es provisional, debo buscar otra forma que no me apile la misma vista
         }
 
         private async void Volver()
