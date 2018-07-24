@@ -1,4 +1,5 @@
-﻿using GalaSoft.MvvmLight.Command;
+﻿
+using GalaSoft.MvvmLight.Command;
 using Marvelapp.Models;
 using Marvelapp.Views;
 using Marvelapp.Views.Popups;
@@ -11,7 +12,6 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using System.Net.Http;
 using System.Net.Http.Headers;
-using System.Linq;
 
 
 namespace Marvelapp.ViewModels
@@ -22,9 +22,9 @@ namespace Marvelapp.ViewModels
         private ObservableCollection<Material> material;
         private Double heighList;
         private bool isRefreshing;
-        string cantidad, fecha, nombre, comentario;
-        string boleta;
-        int i;
+        //string cantidad, fecha, nombre, comentario;
+        //string boleta;
+        //int i;
 
         #endregion
 
@@ -60,18 +60,18 @@ namespace Marvelapp.ViewModels
 
         #endregion
 
-        int Elementos;
         #region Methods
         private void LoadMateriales()
         {
             
             IsRefreshing = true;
-            if (Application.Current.Properties.ContainsKey("Contador"))
+            /*if (Application.Current.Properties.ContainsKey("Contador"))
             {
                 Elementos = int.Parse((Application.Current.Properties["Contador"]) as string);
             }
-            else { Elementos = 0; }
-            for (int j = 0; i < 1; j++)
+            else { Elementos = 0; }*/
+            /*
+            for (int j = 0; i < 2; j++)
             {
 
                 if (Application.Current.Properties.ContainsKey("Boleta"+i))
@@ -105,11 +105,11 @@ namespace Marvelapp.ViewModels
                     NombreMaterial = nombre,
                 });
                 
-
+            
 
             }
            
-            
+            */
            
             ///OJOOOOOOOOOOOOOOOOO: despues que haga mis pruebas le coloco un if, si la lista esta vacia, agrego un material vacio para que la vista previa no se vea vaciaaa
           /*  using( var datos= new DataAccess())
@@ -120,7 +120,7 @@ namespace Marvelapp.ViewModels
         Materiales = new ObservableCollection<Material>(MaterialesLista);*/
             IsRefreshing = false;
             
-            HeighListView = 44*Materiales.Count();
+            HeighListView = 44*Materiales.Count;
         }
 
         private async void NuevaVisita()//me envia a agregar una nueva visita individual-prod (VISTA 33)
@@ -219,7 +219,7 @@ namespace Marvelapp.ViewModels
             }
             #endregion
             */
-
+            /*
                 i = 0;
                 foreach (var material in Materiales)
                 {
@@ -231,10 +231,9 @@ namespace Marvelapp.ViewModels
                 Application.Current.Properties["NombreMaterial"+i] = material.NombreMaterial;
 
                 i = i + 1;
-                Application.Current.Properties["Contador"] = i;
                 await Application.Current.SavePropertiesAsync();
-                }
-                await Application.Current.MainPage.DisplayAlert("Notificación", (Application.Current.Properties["Contador"]as string), "Excelente");
+                }*/
+                await Application.Current.MainPage.DisplayAlert("Notificación", "ok", "Excelente");
         } 
 
         private async void Volver()
