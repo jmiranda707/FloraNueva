@@ -16,14 +16,14 @@ using System.Net.Http.Headers;
 
 namespace Marvelapp.ViewModels
 {
-    public class MaterialEntregadoViewModels :BaseViewModel
+    public class MaterialEntregadoViewModels : BaseViewModel
     {
         #region Attributes
         private ObservableCollection<Material> material;
         private Double heighList;
         private bool isRefreshing;
-        //string cantidad, fecha, nombre, comentario;
-        //string boleta;
+        string cantidad, fecha, nombre, comentario;
+        string boleta;
         //int i;
 
         #endregion
@@ -39,8 +39,8 @@ namespace Marvelapp.ViewModels
             get { return material; }
             set { SetValue(ref material, value); }
         }
-        
-       
+
+
         public bool IsRefreshing //para refrescar el listview
         {
             get { return isRefreshing; }
@@ -63,64 +63,62 @@ namespace Marvelapp.ViewModels
         #region Methods
         private void LoadMateriales()
         {
-            
+
             IsRefreshing = true;
             /*if (Application.Current.Properties.ContainsKey("Contador"))
             {
                 Elementos = int.Parse((Application.Current.Properties["Contador"]) as string);
             }
             else { Elementos = 0; }*/
-            /*
-            for (int j = 0; i < 2; j++)
+
+
+
+
+            if (Application.Current.Properties.ContainsKey("Boleta"))
             {
-
-                if (Application.Current.Properties.ContainsKey("Boleta"+i))
-                {
-                    boleta = (Application.Current.Properties["Boleta"+i]) as string;
-                }
-                if (Application.Current.Properties.ContainsKey("Cantidad"+i))
-                {
-                    cantidad = (Application.Current.Properties["Cantidad"+i] as string);
-                }
-                if (Application.Current.Properties.ContainsKey("Comentario"+i))
-                {
-                    comentario = (Application.Current.Properties["Comentario"+i] as string);
-                }
-                if (Application.Current.Properties.ContainsKey("Fecha"+i))
-                {
-                    fecha = (Application.Current.Properties["Fecha"+i] as string);
-                }
-                if (Application.Current.Properties.ContainsKey("NombreMaterial"+i))
-                {
-                    nombre = (Application.Current.Properties["NombreMaterial"+i] as string);
-                }
-
-
-                Materiales.Add(new Material()
-                {
-                    Boleta = boleta,
-                    Cantidad = cantidad,
-                    Comentario = comentario,
-                    Fecha = fecha,
-                    NombreMaterial = nombre,
-                });
-                
-            
-
+                boleta = (Application.Current.Properties["Boleta"]) as string;
             }
-           
-            */
-           
+            if (Application.Current.Properties.ContainsKey("Cantidad"))
+            {
+                cantidad = (Application.Current.Properties["Cantidad"] as string);
+            }
+            if (Application.Current.Properties.ContainsKey("Comentario"))
+            {
+                comentario = (Application.Current.Properties["Comentario"] as string);
+            }
+            if (Application.Current.Properties.ContainsKey("Fecha"))
+            {
+                fecha = (Application.Current.Properties["Fecha"] as string);
+            }
+            if (Application.Current.Properties.ContainsKey("NombreMaterial"))
+            {
+                nombre = (Application.Current.Properties["NombreMaterial"] as string);
+            }
+            Materiales.Add(new Material()
+            {
+                Boleta = boleta,
+                Cantidad = cantidad,
+                Comentario = comentario,
+                Fecha = fecha,
+                NombreMaterial = nombre,
+            });
+
+
+
+
+
+
+
             ///OJOOOOOOOOOOOOOOOOO: despues que haga mis pruebas le coloco un if, si la lista esta vacia, agrego un material vacio para que la vista previa no se vea vaciaaa
-          /*  using( var datos= new DataAccess())
-            {
-                
-                this.MaterialesLista = datos.GetMateriales(); //obtener desde persistencia mi lista de Materiales Guardados
-            }
-        Materiales = new ObservableCollection<Material>(MaterialesLista);*/
+            /*  using( var datos= new DataAccess())
+              {
+
+                  this.MaterialesLista = datos.GetMateriales(); //obtener desde persistencia mi lista de Materiales Guardados
+              }
+            Materiales = new ObservableCollection<Material>(MaterialesLista);*/
             IsRefreshing = false;
-            
-            HeighListView = 44*Materiales.Count;
+
+            HeighListView = 44 * Materiales.Count;
         }
 
         private async void NuevaVisita()//me envia a agregar una nueva visita individual-prod (VISTA 33)
@@ -133,7 +131,6 @@ namespace Marvelapp.ViewModels
             await Application.Current.MainPage.Navigation.PushAsync(new BuscarVisitaIndividual());
         }
 
-
         private async void TapPopup()//me envia a buscar una visita individual (VISTA 40)
         {
 
@@ -142,20 +139,19 @@ namespace Marvelapp.ViewModels
             await PopupNavigation.PushAsync(new MaterialEntregadoPopup());
         }
 
-
         private void TapAgregar()//me envia a buscar una visita individual (VISTA 40)
         {
-            
-                        IsRefreshing = true;
-                        Materiales.Add(new Material()
-                        {
-                            Boleta = "0",
-                            NombreMaterial = "",
-                            Cantidad = "0",
-                            Fecha = "",
-                            Comentario = ""
-                        });
-                        IsRefreshing = false;
+
+            IsRefreshing = true;
+            Materiales.Add(new Material()
+            {
+                Boleta = "0",
+                NombreMaterial = "",
+                Cantidad = "0",
+                Fecha = "",
+                Comentario = ""
+            });
+            IsRefreshing = false;
         }
 
         private async void Guardar()
@@ -186,10 +182,9 @@ namespace Marvelapp.ViewModels
             }
             #endregion
             */
-            
+
             await Application.Current.MainPage.DisplayAlert("Guardado", "Usted ha Guardado Exitosamente", "Excelente");
         }
-
 
         private async void Listo()
         {
@@ -219,22 +214,21 @@ namespace Marvelapp.ViewModels
             }
             #endregion
             */
-            /*
-                i = 0;
-                foreach (var material in Materiales)
-                {
-                Application.Current.Properties["Boleta"+i] = material.Boleta;
-                Application.Current.Properties["Cantidad"+i] = material.Cantidad;
-                Application.Current.Properties["Comentario"+i] = material.Comentario;
-                Application.Current.Properties["Fecha"+i] = material.Fecha;
-                //Application.Current.Properties["IdMaterial"] = material.IdMaterial;
-                Application.Current.Properties["NombreMaterial"+i] = material.NombreMaterial;
 
-                i = i + 1;
+
+            foreach (var material in Materiales)
+            {
+                Application.Current.Properties["Boleta"] = material.Boleta.ToString();
+                Application.Current.Properties["Cantidad"] = material.Cantidad.ToString();
+                Application.Current.Properties["Comentario"] = material.Comentario;
+                Application.Current.Properties["Fecha"] = material.Fecha;
+                //Application.Current.Properties["IdMaterial"] = material.IdMaterial;
+                Application.Current.Properties["NombreMaterial"] = material.NombreMaterial;
                 await Application.Current.SavePropertiesAsync();
-                }*/
-                await Application.Current.MainPage.DisplayAlert("Notificación", "ok", "Excelente");
-        } 
+            }
+            await Application.Current.MainPage.DisplayAlert("Notificación", "el Numero de Boleta es: "+Application.Current.Properties["Boleta"] as string, "Excelente");
+            await Application.Current.MainPage.Navigation.PushAsync(new MaterialEntregadoView());
+        }
 
         private async void Volver()
         {
@@ -293,7 +287,7 @@ namespace Marvelapp.ViewModels
                 return new RelayCommand(TapAgregar);
             }
         }
-       
+
         public ICommand TapPopupCommand
         {
             get
@@ -317,3 +311,5 @@ namespace Marvelapp.ViewModels
         #endregion
     }
 }
+
+

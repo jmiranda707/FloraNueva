@@ -15,6 +15,10 @@ namespace Marvelapp.Views
 		public MaterialEntregadoView ()
 		{
 			InitializeComponent ();
+            OnAppearing();
 		}
-	}
+
+    }
+
+   
 }
