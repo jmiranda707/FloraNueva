@@ -13,6 +13,7 @@ using Xamarin.Forms;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Marvelapp.ViewModels
 {
@@ -40,6 +41,7 @@ namespace Marvelapp.ViewModels
             set { SetValue(ref material, value); }
         }
 
+
         public bool IsRefreshing //para refrescar el listview
         {
             get { return isRefreshing; }
@@ -61,6 +63,8 @@ namespace Marvelapp.ViewModels
         #endregion
 
         #region Methods
+       
+
         private void LoadMateriales()
         {
             if (Application.Current.Properties.ContainsKey("Contador"))
@@ -110,48 +114,6 @@ namespace Marvelapp.ViewModels
 
             HeighListView = 44 * Materiales.Count; //cantidad de filas en mi lista, multiplicado por 44 que es el alto maximo de cada fila
             
-
-
-
-
-
-
-            #region DESCOMENTAR 1 SOLA FILA 100% FUNCIONAL Y BORRAR LO DEMAS
-            /* 
-            IsRefreshing = true;
-            if (Application.Current.Properties.ContainsKey("Boleta"))
-            {
-                boleta = (Application.Current.Properties["Boleta"]) as string;
-            }
-            if (Application.Current.Properties.ContainsKey("Cantidad"))
-            {
-                cantidad = (Application.Current.Properties["Cantidad"] as string);
-            }
-            if (Application.Current.Properties.ContainsKey("Comentario"))
-            {
-                comentario = (Application.Current.Properties["Comentario"] as string);
-            }
-            if (Application.Current.Properties.ContainsKey("Fecha"))
-            {
-                fecha = (Application.Current.Properties["Fecha"] as string);
-            }
-            if (Application.Current.Properties.ContainsKey("NombreMaterial"))
-            {
-                nombre = (Application.Current.Properties["NombreMaterial"] as string);
-            }
-            Materiales.Add(new Material()
-            {
-                Boleta = boleta,
-                Cantidad = cantidad,
-                Comentario = comentario,
-                Fecha = fecha,
-                NombreMaterial = nombre,
-            });
-            IsRefreshing = false;
-
-            HeighListView = 44 * Materiales.Count;
-            */
-            #endregion
         }
 
         private async void NuevaVisita()//me envia a agregar una nueva visita individual-prod (VISTA 33)
@@ -248,7 +210,6 @@ namespace Marvelapp.ViewModels
             }*/
             #endregion
             
-
             #region Limpiar Cache
 
             if (Application.Current.Properties.ContainsKey("Contador"))
@@ -298,16 +259,17 @@ namespace Marvelapp.ViewModels
                 await Application.Current.SavePropertiesAsync();
             }
             #endregion
-
             await Application.Current.MainPage.DisplayAlert("Notificación", "el Numero de Filas Guardadas es: "+Application.Current.Properties["Contador"] as string, "Excelente");
             await PopupNavigation.PopAsync(); //para cerrar el popup
             await Application.Current.MainPage.Navigation.PushAsync(new MaterialEntregadoView()); //esto es provisional, debo buscar otra forma que no me apile la misma vista
 
         }
+
         private async void Volver()
         {
             await Application.Current.MainPage.Navigation.PopAsync();
         }
+
         private async void Salir()
         {
             await PopupNavigation.PopAsync(); //para cerrar el popup

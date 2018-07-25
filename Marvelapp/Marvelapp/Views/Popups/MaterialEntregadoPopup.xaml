@@ -134,7 +134,7 @@
                       BackgroundColor="White"
                       SeparatorVisibility="None"
                       IsPullToRefreshEnabled="False"
-                      RefreshCommand="{Binding RefreshCommand}"
+                      RefreshCommand="{Binding renombrarrrrrrCommand}"
                       IsRefreshing="{Binding IsRefreshing}"
                       Margin="6,0,6,0">
 
