@@ -12,7 +12,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 using System.Net.Http;
 using System.Net.Http.Headers;
-
+using System.ComponentModel;
 
 namespace Marvelapp.ViewModels
 {
@@ -39,7 +39,6 @@ namespace Marvelapp.ViewModels
             get { return material; }
             set { SetValue(ref material, value); }
         }
-
 
         public bool IsRefreshing //para refrescar el listview
         {
@@ -109,7 +108,7 @@ namespace Marvelapp.ViewModels
             }
             IsRefreshing = false;
 
-            HeighListView = 44 * Materiales.Count;
+            HeighListView = 44 * Materiales.Count; //cantidad de filas en mi lista, multiplicado por 44 que es el alto maximo de cada fila
             
 
 
@@ -170,7 +169,7 @@ namespace Marvelapp.ViewModels
 
             ///Aqui viene el popup para agregar un nuevo Material///
             //PopupNavigation.Instance.PushAsync;
-            await PopupNavigation.PushAsync(new MaterialEntregadoPopup());
+            await PopupNavigation.PushAsync(new MaterialEntregadoPopup()); //me redirecciona al popup page
         }
 
         private void TapAgregar()//me envia a buscar una visita individual (VISTA 40)
@@ -222,8 +221,9 @@ namespace Marvelapp.ViewModels
 
         private async void Listo()
         {
-            /*
+            
             #region Validaciones  
+            /*
             if (string.IsNullOrEmpty() ||
                 string.IsNullOrEmpty() ||
                 string.IsNullOrEmpty() ||
@@ -245,24 +245,60 @@ namespace Marvelapp.ViewModels
             {
                 await Application.Current.MainPage.DisplayAlert("Mensaje", "Por Favor Llene los Campos Obligatorios", "Aceptar");
                 return;
-            }
+            }*/
             #endregion
-            */
+            
 
+            #region Limpiar Cache
+
+            if (Application.Current.Properties.ContainsKey("Contador"))
+            {
+                Elementos = int.Parse((Application.Current.Properties["Contador"]) as string);
+            }
+            else { Elementos = 0; }
+
+            for (int j = 0; j < Elementos; j++) //i va a representar el total de elementos o filas existentes en mi persistencia
+            {
+                if (Application.Current.Properties.ContainsKey("Boleta" + j))
+                {
+                    Application.Current.Properties.Remove("Boleta" + j);
+                }
+                if (Application.Current.Properties.ContainsKey("Cantidad" + j))
+                {
+                    Application.Current.Properties.Remove("Cantidad" + j);
+                }
+                if (Application.Current.Properties.ContainsKey("Comentario" + j))
+                {
+                    Application.Current.Properties.Remove("Comentario" + j);
+                }
+                if (Application.Current.Properties.ContainsKey("Fecha" + j))
+                {
+                    Application.Current.Properties.Remove("Fecha" + j);
+                }
+                if (Application.Current.Properties.ContainsKey("NombreMaterial" + j))
+                {
+                    Application.Current.Properties.Remove("NombreMaterial" + j);
+                }
+            }
+
+            #endregion
+
+            #region Ciclo para Guardar en Persistencia
             i = 0; //inicio el contador de mis elementos o filas en (0)
             foreach (var material in Materiales)
             {
-                Application.Current.Properties["Boleta"+i] = material.Boleta.ToString();
-                Application.Current.Properties["Cantidad"+i] = material.Cantidad.ToString();
-                Application.Current.Properties["Comentario"+i] = material.Comentario;
-                Application.Current.Properties["Fecha"+i] = material.Fecha;
+                Application.Current.Properties["Boleta" + i] = material.Boleta.ToString();
+                Application.Current.Properties["Cantidad" + i] = material.Cantidad.ToString();
+                Application.Current.Properties["Comentario" + i] = material.Comentario;
+                Application.Current.Properties["Fecha" + i] = material.Fecha;
                 //Application.Current.Properties["IdMaterial"] = material.IdMaterial;
-                Application.Current.Properties["NombreMaterial"+i] = material.NombreMaterial;
+                Application.Current.Properties["NombreMaterial" + i] = material.NombreMaterial;
                 i++;
                 Application.Current.Properties["Contador"] = i.ToString();
                 await Application.Current.SavePropertiesAsync();
-
             }
+            #endregion
+
             await Application.Current.MainPage.DisplayAlert("Notificación", "el Numero de Filas Guardadas es: "+Application.Current.Properties["Contador"] as string, "Excelente");
             await PopupNavigation.PopAsync(); //para cerrar el popup
             await Application.Current.MainPage.Navigation.PushAsync(new MaterialEntregadoView()); //esto es provisional, debo buscar otra forma que no me apile la misma vista

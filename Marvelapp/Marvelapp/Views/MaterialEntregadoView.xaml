@@ -107,6 +107,7 @@
                 <!-- aqui empieza el previewer-->
                 <StackLayout HeightRequest="{Binding HeighListView}"
                              Margin="10,1,10,1"
+                             x:Name="StacklayoutHeigh"
                              >
                     <ListView ItemsSource="{Binding Materiales}"
                       x:Name="listview"
