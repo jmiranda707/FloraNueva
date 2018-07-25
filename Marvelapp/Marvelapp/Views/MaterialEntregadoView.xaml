@@ -137,7 +137,7 @@
                            Grid.Column="0"
                            Grid.Row="0">
                                     <Image.GestureRecognizers>
-                                        <TapGestureRecognizer Command="{Binding SelectedEliminarCommand}"></TapGestureRecognizer>
+                                        <TapGestureRecognizer Command="{Binding cambiameeeeeeee}"></TapGestureRecognizer>
                                     </Image.GestureRecognizers>
                                 </Image>
                                 <custom:CustomDatePicker

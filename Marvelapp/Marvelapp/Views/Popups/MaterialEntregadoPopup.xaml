@@ -28,7 +28,7 @@
                 
                 <!---opcion 1: Agregar Nueva Fila-->
                 <Label Text="Agregar Nuevo"
-                   TextColor="Green"
+                   TextColor="Blue"
                    VerticalOptions="Center"
                    FontAttributes="Bold"
                    FontSize="Medium"
@@ -47,19 +47,19 @@
                 </Image>
                 <!--opcion 2: Guardar Cambios en Popup-->
                 <Label Text="Listo"
-                   TextColor="Red"
+                   TextColor="Green"
                    VerticalOptions="Center"
                    FontAttributes="Bold"
                    FontSize="Medium"
                    Grid.Row="0"
                    HorizontalOptions="EndAndExpand"
                    Grid.Column="3"/>
-                <Image Source="guardar.png"
+                <Image Source="listo_black.png"
                            VerticalOptions="Center"
                            HorizontalOptions="Start"
-                           Grid.Column="1"
-                           WidthRequest="35"
-                           Grid.Row="4">
+                           Grid.Column="4"
+                           WidthRequest="28"
+                           Grid.Row="0">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ListoCommand}"></TapGestureRecognizer>
                     </Image.GestureRecognizers>
