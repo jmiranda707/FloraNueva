@@ -20,7 +20,10 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
-                    <ColumnDefinition Width="50"></ColumnDefinition>
+                    <ColumnDefinition Width="40"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="Auto"></ColumnDefinition>
+                    <ColumnDefinition Width="40"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="Auto"></ColumnDefinition>
                     <ColumnDefinition Width="*"></ColumnDefinition>
@@ -46,7 +49,7 @@
                     </Image.GestureRecognizers>
                 </Image>
                 <!--opcion 2: Guardar Cambios en Popup-->
-                <Label Text="Listo"
+                <Label Text="Guardar"
                    TextColor="Green"
                    VerticalOptions="Center"
                    FontAttributes="Bold"
@@ -62,6 +65,25 @@
                            Grid.Row="0">
                     <Image.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding ListoCommand}"></TapGestureRecognizer>
+                    </Image.GestureRecognizers>
+                </Image>
+                <!--opcion 3: Salir sin Guardar Cambios en Popup-->
+                <Label Text="Regresar"
+                   TextColor="Red"
+                   VerticalOptions="Center"
+                   FontAttributes="Bold"
+                   FontSize="Medium"
+                   Grid.Row="0"
+                   HorizontalOptions="EndAndExpand"
+                   Grid.Column="6"/>
+                <Image Source="ic_chevron_left_black.png"
+                           VerticalOptions="Center"
+                           HorizontalOptions="Start"
+                           Grid.Column="7"
+                           WidthRequest="35"
+                           Grid.Row="0">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding SalirCommand}"></TapGestureRecognizer>
                     </Image.GestureRecognizers>
                 </Image>
             </Grid>

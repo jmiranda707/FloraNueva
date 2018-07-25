@@ -15,6 +15,7 @@ namespace Marvelapp.Views.Popups
 		public MaterialEntregadoPopup ()
 		{
 			InitializeComponent ();
-		}
+            this.CloseWhenBackgroundIsClicked = false;
+        }
 	}
 }

@@ -51,6 +51,7 @@ namespace Marvelapp.ViewModels
         #region Constructors
         public MaterialEntregadoViewModels()
         {
+          
             // this.IsRefreshing = true;
             instance = this;
             Materiales = new ObservableCollection<Material>();
@@ -63,7 +64,6 @@ namespace Marvelapp.ViewModels
         #region Methods
         private void LoadMateriales()
         {
-
             if (Application.Current.Properties.ContainsKey("Contador"))
             {
                 Elementos = int.Parse((Application.Current.Properties["Contador"]) as string);
@@ -264,16 +264,28 @@ namespace Marvelapp.ViewModels
 
             }
             await Application.Current.MainPage.DisplayAlert("Notificación", "el Numero de Filas Guardadas es: "+Application.Current.Properties["Contador"] as string, "Excelente");
+            await PopupNavigation.PopAsync(); //para cerrar el popup
             await Application.Current.MainPage.Navigation.PushAsync(new MaterialEntregadoView()); //esto es provisional, debo buscar otra forma que no me apile la misma vista
-        }
 
+        }
         private async void Volver()
         {
             await Application.Current.MainPage.Navigation.PopAsync();
         }
+        private async void Salir()
+        {
+            await PopupNavigation.PopAsync(); //para cerrar el popup
+        }
         #endregion
 
         #region Commands
+        public ICommand SalirCommand
+        {
+            get
+            {
+                return new RelayCommand(Salir);
+            }
+        }
         public ICommand GuardarCommand
         {
             get
@@ -288,7 +300,6 @@ namespace Marvelapp.ViewModels
                 return new RelayCommand(Listo);
             }
         }
-
         public ICommand VolverCommand
         {
             get
