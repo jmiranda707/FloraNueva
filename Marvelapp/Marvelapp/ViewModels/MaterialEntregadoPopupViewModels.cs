@@ -184,7 +184,11 @@ namespace Marvelapp.ViewModels
                     {
                         Application.Current.Properties.Remove("NombreMaterial" + j);
                     }
-                }
+                    if (Application.Current.Properties.ContainsKey("Contador"))
+                    {
+                        Application.Current.Properties.Remove("Contador");
+                    }
+            }
 
                 #endregion
 
@@ -201,11 +205,17 @@ namespace Marvelapp.ViewModels
                     Application.Current.Properties["Contador"] = i.ToString();
                     await Application.Current.SavePropertiesAsync();
                 }
-            #endregion
 
+            #endregion
+            int filas;
             MaterialEntregadoViewModels.GetInstance().Materiales = Materiales; // igualo el valor de mis listas
             MaterialEntregadoViewModels.GetInstance().HeighListView = 44 * i;
-            await Application.Current.MainPage.DisplayAlert("Notificación", "el Numero de Filas Guardadas es: " + Application.Current.Properties["Contador"] as string, "Excelente");    
+            if (Application.Current.Properties.ContainsKey("Contador"))
+            {
+                filas = int.Parse(Application.Current.Properties["Contador"]as string);
+            }
+            else { filas = 0; }
+            await Application.Current.MainPage.DisplayAlert("Notificación", "El Numero de Filas Guardadas es: " + filas.ToString(), "Excelente");    
             await PopupNavigation.PopAsync(); //para cerrar el popup
 
                   //LoadMateriales();
