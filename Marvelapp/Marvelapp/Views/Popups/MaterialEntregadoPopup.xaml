@@ -8,7 +8,7 @@
              xmlns:viewmodels="clr-namespace:Marvelapp.ViewModels"
              >
     <ContentPage.BindingContext>
-        <viewmodels:MaterialEntregadoViewModels/>
+        <viewmodels:MaterialEntregadoPopupViewModels/>
     </ContentPage.BindingContext>
 
     <ContentPage.Content>

@@ -32,7 +32,7 @@ namespace Marvelapp.Models
         #region Methods
         private void SelectedEliminar()
         {
-            MaterialEntregadoViewModels.GetInstance().Materiales.Remove(this);
+            MaterialEntregadoPopupViewModels.GetInstance().Materiales.Remove(this);
         }
         #endregion 
         #endregion

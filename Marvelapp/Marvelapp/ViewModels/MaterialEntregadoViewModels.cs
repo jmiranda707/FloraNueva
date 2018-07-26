@@ -17,49 +17,87 @@ using System.Runtime.CompilerServices;
 
 namespace Marvelapp.ViewModels
 {
-    public class MaterialEntregadoViewModels : BaseViewModel
+    public class MaterialEntregadoViewModels : INotifyPropertyChanged
     {
+        #region Events
+        public event PropertyChangedEventHandler PropertyChanged;
+        #endregion
+
         #region Attributes
         private ObservableCollection<Material> material;
         private Double heighList;
         private bool isRefreshing;
-        string cantidad, fecha, nombre, comentario;
-        string boleta;
-        int i, Elementos;
+        private string cantidad;
+        private string fecha;
+        private string nombre;
+        private string comentario;
+        private string boleta;
+        private int i;
+        private int Elementos;
 
         #endregion
 
         #region Properties
         public Double HeighListView
         {
-            get { return heighList; }
-            set { SetValue(ref heighList, value); }
+            get
+            {
+                return heighList;
+            }
+            set
+            {
+                if (heighList != value)
+                {
+                    heighList = value;
+                    PropertyChanged?.Invoke(
+                                            this,
+                                            new PropertyChangedEventArgs(nameof(HeighListView)));
+                }
+            }
         }
         public ObservableCollection<Material> Materiales
         {
-            get { return material; }
-            set { SetValue(ref material, value); }
+            get
+            {
+                return material;
+            }
+            set
+            {
+                if (material != value)
+                {
+                    material = value;
+                    PropertyChanged?.Invoke(
+                                            this,
+                                            new PropertyChangedEventArgs(nameof(Materiales)));
+                }
+            }
         }
-
-
         public bool IsRefreshing //para refrescar el listview
         {
-            get { return isRefreshing; }
-            set { SetValue(ref isRefreshing, value); }
+            get
+            {
+                return isRefreshing;
+            }
+            set
+            {
+                if (isRefreshing != value)
+                {
+                    isRefreshing = value;
+                    PropertyChanged?.Invoke(
+                                            this,
+                                            new PropertyChangedEventArgs(nameof(IsRefreshing)));
+                }
+            }
         }
         #endregion
 
         #region Constructors
         public MaterialEntregadoViewModels()
         {
-          
-            // this.IsRefreshing = true;
             instance = this;
             Materiales = new ObservableCollection<Material>();
-            LoadMateriales(); //cargo el listado de materiales
-            //NewMaterial();
+            LoadMateriales(); //carga el listado de materiales
         }
-
         #endregion
 
         #region Methods
@@ -67,41 +105,47 @@ namespace Marvelapp.ViewModels
 
         private void LoadMateriales()
         {
-            if (Application.Current.Properties.ContainsKey("Contador"))
+            if (Application.Current.Properties.ContainsKey("Contador")) //contador de la cantidad de elementos en la lista
             {
                 Elementos = int.Parse((Application.Current.Properties["Contador"]) as string);
             }
             else { Elementos = 0; }
 
             IsRefreshing = true;
-            for (int j = 0; j < Elementos; j++) //i va a representar el total de elementos o filas existentes en mi persistencia
+
+            for (int j = 0; j < Elementos; j++) //Elementos va a representar el total de elementos o filas existentes en mi persistencia
             {
                 if (Application.Current.Properties.ContainsKey("Boleta"+j))
                 {
                     boleta = (Application.Current.Properties["Boleta"+j]) as string;
                 }
                 else { boleta = "0"; }
+
                 if (Application.Current.Properties.ContainsKey("Cantidad"+j))
                 {
                     cantidad = (Application.Current.Properties["Cantidad"+j] as string);
                 }
                 else { cantidad = "0"; }
+
                 if (Application.Current.Properties.ContainsKey("Comentario"+j))
                 {
                     comentario = (Application.Current.Properties["Comentario"+j] as string);
                 }
                 else { comentario = ""; }
+
                 if (Application.Current.Properties.ContainsKey("Fecha"+j))
                 {
                     fecha = (Application.Current.Properties["Fecha"+j] as string);
                 }
                 else { fecha = ""; }
+
                 if (Application.Current.Properties.ContainsKey("NombreMaterial"+j))
                 {
                     nombre = (Application.Current.Properties["NombreMaterial"+j] as string);
                 }
                 else { nombre = ""; }
-                Materiales.Add(new Material()
+
+                Materiales.Add(new Material() //agrega a mi lista todos los elementos existentes en persistencia
                 {
                     Boleta = boleta,
                     Cantidad = cantidad,
@@ -110,6 +154,7 @@ namespace Marvelapp.ViewModels
                     NombreMaterial = nombre,
                 });
             }
+
             IsRefreshing = false;
 
             HeighListView = 44 * Materiales.Count; //cantidad de filas en mi lista, multiplicado por 44 que es el alto maximo de cada fila
@@ -126,67 +171,15 @@ namespace Marvelapp.ViewModels
             await Application.Current.MainPage.Navigation.PushAsync(new BuscarVisitaIndividual());
         }
 
-        private async void TapPopup()//me envia a buscar una visita individual (VISTA 40)
+        private async void TapPopup()//me envia al popup para adicionar o eliminar filas del listado
         {
-
-            ///Aqui viene el popup para agregar un nuevo Material///
-            //PopupNavigation.Instance.PushAsync;
-            await PopupNavigation.PushAsync(new MaterialEntregadoPopup()); //me redirecciona al popup page
+            await PopupNavigation.PushAsync(new MaterialEntregadoPopup());
         }
-
-        private void TapAgregar()//me envia a buscar una visita individual (VISTA 40)
-        {
-
-            IsRefreshing = true;
-            Materiales.Add(new Material()
-            {
-                Boleta = "0",
-                NombreMaterial = "",
-                Cantidad = "0",
-                Fecha = "",
-                Comentario = ""
-            });
-            IsRefreshing = false;
-        }
-
+      
         private async void Guardar()
         {
-            /*
             #region Validaciones  
-            if (string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty() ||
-                string.IsNullOrEmpty())
-            {
-                await Application.Current.MainPage.DisplayAlert("Mensaje", "Por Favor Llene los Campos Obligatorios", "Aceptar");
-                return;
-            }
-            #endregion
-            */
-
-            await Application.Current.MainPage.DisplayAlert("Guardado", "Usted ha Guardado Exitosamente", "Excelente");
-        }
-
-        private async void Listo()
-        {
-            
-            #region Validaciones  
-            /*
-            if (string.IsNullOrEmpty() ||
+           /* if (string.IsNullOrEmpty() ||
                 string.IsNullOrEmpty() ||
                 string.IsNullOrEmpty() ||
                 string.IsNullOrEmpty() ||
@@ -210,94 +203,26 @@ namespace Marvelapp.ViewModels
             }*/
             #endregion
             
-            #region Limpiar Cache
-
-            if (Application.Current.Properties.ContainsKey("Contador"))
-            {
-                Elementos = int.Parse((Application.Current.Properties["Contador"]) as string);
-            }
-            else { Elementos = 0; }
-
-            for (int j = 0; j < Elementos; j++) //i va a representar el total de elementos o filas existentes en mi persistencia
-            {
-                if (Application.Current.Properties.ContainsKey("Boleta" + j))
-                {
-                    Application.Current.Properties.Remove("Boleta" + j);
-                }
-                if (Application.Current.Properties.ContainsKey("Cantidad" + j))
-                {
-                    Application.Current.Properties.Remove("Cantidad" + j);
-                }
-                if (Application.Current.Properties.ContainsKey("Comentario" + j))
-                {
-                    Application.Current.Properties.Remove("Comentario" + j);
-                }
-                if (Application.Current.Properties.ContainsKey("Fecha" + j))
-                {
-                    Application.Current.Properties.Remove("Fecha" + j);
-                }
-                if (Application.Current.Properties.ContainsKey("NombreMaterial" + j))
-                {
-                    Application.Current.Properties.Remove("NombreMaterial" + j);
-                }
-            }
-
-            #endregion
-
-            #region Ciclo para Guardar en Persistencia
-            i = 0; //inicio el contador de mis elementos o filas en (0)
-            foreach (var material in Materiales)
-            {
-                Application.Current.Properties["Boleta" + i] = material.Boleta.ToString();
-                Application.Current.Properties["Cantidad" + i] = material.Cantidad.ToString();
-                Application.Current.Properties["Comentario" + i] = material.Comentario;
-                Application.Current.Properties["Fecha" + i] = material.Fecha;
-                //Application.Current.Properties["IdMaterial"] = material.IdMaterial;
-                Application.Current.Properties["NombreMaterial" + i] = material.NombreMaterial;
-                i++;
-                Application.Current.Properties["Contador"] = i.ToString();
-                await Application.Current.SavePropertiesAsync();
-            }
-            #endregion
-            await Application.Current.MainPage.DisplayAlert("Notificación", "el Numero de Filas Guardadas es: "+Application.Current.Properties["Contador"] as string, "Excelente");
-            await PopupNavigation.PopAsync(); //para cerrar el popup
-            await Application.Current.MainPage.Navigation.PushAsync(new MaterialEntregadoView()); //esto es provisional, debo buscar otra forma que no me apile la misma vista
-
+            await Application.Current.MainPage.DisplayAlert("Guardado", "Su Lista se Ha Guardado Exitosamente", "Excelente");
         }
-
+      
         private async void Volver()
         {
-            await Application.Current.MainPage.Navigation.PopAsync();
+            await Application.Current.MainPage.Navigation.PopAsync();//
         }
 
-        private async void Salir()
-        {
-            await PopupNavigation.PopAsync(); //para cerrar el popup
-        }
+        
         #endregion
 
         #region Commands
-        public ICommand SalirCommand
-        {
-            get
-            {
-                return new RelayCommand(Salir);
-            }
-        }
+       
         public ICommand GuardarCommand
         {
             get
             {
                 return new RelayCommand(Guardar);
             }
-        }
-        public ICommand ListoCommand
-        {
-            get
-            {
-                return new RelayCommand(Listo);
-            }
-        }
+        }  
         public ICommand VolverCommand
         {
             get
@@ -326,14 +251,6 @@ namespace Marvelapp.ViewModels
                 return new RelayCommand(SearchVisita);
             }
         }
-        public ICommand TapAgregarCommand
-        {
-            get
-            {
-                return new RelayCommand(TapAgregar);
-            }
-        }
-
         public ICommand TapPopupCommand
         {
             get
@@ -345,6 +262,7 @@ namespace Marvelapp.ViewModels
 
         #region Singleton 
         private static MaterialEntregadoViewModels instance;
+
 
         public static MaterialEntregadoViewModels GetInstance()
         {
