@@ -48,7 +48,7 @@ namespace Marvelapp.ViewModels
             }
             #endregion
 
-            #region Constructors
+        #region Constructors
             public MaterialEntregadoPopupViewModels()
             {
                 instance = this;
@@ -57,7 +57,7 @@ namespace Marvelapp.ViewModels
             }
             #endregion
 
-            #region Methods
+        #region Methods
 
             private void LoadMateriales()
             {
@@ -230,7 +230,7 @@ namespace Marvelapp.ViewModels
             }
             #endregion
 
-            #region Commands
+        #region Commands
 
             public ICommand SalirCommand
             {
@@ -266,7 +266,7 @@ namespace Marvelapp.ViewModels
    
             #endregion
 
-            #region Singleton 
+        #region Singleton 
 
             private static MaterialEntregadoPopupViewModels instance;
             public static MaterialEntregadoPopupViewModels GetInstance()
@@ -280,6 +280,7 @@ namespace Marvelapp.ViewModels
 
             #endregion
        
+        //nuevo comentario// este viewmodel es agregado hoy
 
     }
 }

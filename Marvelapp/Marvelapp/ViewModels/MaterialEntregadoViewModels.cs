@@ -102,7 +102,6 @@ namespace Marvelapp.ViewModels
 
         #region Methods
        
-
         private void LoadMateriales()
         {
             if (Application.Current.Properties.ContainsKey("Contador")) //contador de la cantidad de elementos en la lista
@@ -170,16 +169,34 @@ namespace Marvelapp.ViewModels
         {
             await Application.Current.MainPage.Navigation.PushAsync(new BuscarVisitaIndividual());
         }
-
-        private async void TapPopup()//me envia al popup para adicionar o eliminar filas del listado
-        {
-            await PopupNavigation.PushAsync(new MaterialEntregadoPopup());
-        }
       
-        private async void Guardar()
+        private async void Volver()
         {
+            await Application.Current.MainPage.Navigation.PopAsync();//
+        }
+
+        private void TapAgregar()//agrega una fila vacia a la tabla materiales
+        {
+
+            IsRefreshing = true;
+            Materiales.Add(new Material()
+            {
+                Boleta = "0",
+                NombreMaterial = "",
+                Cantidad = "0",
+                Fecha = "",
+                Comentario = ""
+            });
+            HeighListView = HeighListView + 44;
+            IsRefreshing = false;
+        }
+
+        private async void Listo()
+        {
+
             #region Validaciones  
-           /* if (string.IsNullOrEmpty() ||
+            /*
+            if (string.IsNullOrEmpty() ||
                 string.IsNullOrEmpty() ||
                 string.IsNullOrEmpty() ||
                 string.IsNullOrEmpty() ||
@@ -202,27 +219,75 @@ namespace Marvelapp.ViewModels
                 return;
             }*/
             #endregion
-            
-            await Application.Current.MainPage.DisplayAlert("Guardado", "Su Lista se Ha Guardado Exitosamente", "Excelente");
-        }
-      
-        private async void Volver()
-        {
-            await Application.Current.MainPage.Navigation.PopAsync();//
-        }
 
-        
+            #region Limpiar Cache //borrar los datos existentes en persistencia
+
+            if (Application.Current.Properties.ContainsKey("Contador"))
+            {
+                Elementos = int.Parse((Application.Current.Properties["Contador"]) as string);
+            }
+            else { Elementos = 0; }
+
+            for (int j = 0; j < Elementos; j++) //i va a representar el total de elementos o filas existentes en mi persistencia
+            {
+                if (Application.Current.Properties.ContainsKey("Boleta" + j))
+                {
+                    Application.Current.Properties.Remove("Boleta" + j);
+                }
+                if (Application.Current.Properties.ContainsKey("Cantidad" + j))
+                {
+                    Application.Current.Properties.Remove("Cantidad" + j);
+                }
+                if (Application.Current.Properties.ContainsKey("Comentario" + j))
+                {
+                    Application.Current.Properties.Remove("Comentario" + j);
+                }
+                if (Application.Current.Properties.ContainsKey("Fecha" + j))
+                {
+                    Application.Current.Properties.Remove("Fecha" + j);
+                }
+                if (Application.Current.Properties.ContainsKey("NombreMaterial" + j))
+                {
+                    Application.Current.Properties.Remove("NombreMaterial" + j);
+                }
+                if (Application.Current.Properties.ContainsKey("Contador"))
+                {
+                    Application.Current.Properties.Remove("Contador");
+                }
+            }
+
+            #endregion
+
+            #region Ciclo para Guardar en Persistencia
+            i = 0; //inicio el contador de mis elementos o filas en (0)
+            foreach (var material in Materiales)
+            {
+                Application.Current.Properties["Boleta" + i] = material.Boleta.ToString();
+                Application.Current.Properties["Cantidad" + i] = material.Cantidad.ToString();
+                Application.Current.Properties["Comentario" + i] = material.Comentario;
+                Application.Current.Properties["Fecha" + i] = material.Fecha;
+                Application.Current.Properties["NombreMaterial" + i] = material.NombreMaterial;
+                i++;
+                Application.Current.Properties["Contador"] = i.ToString();
+                await Application.Current.SavePropertiesAsync();
+            }
+
+            #endregion
+            int filas;
+            HeighListView = 44 * i;
+            if (Application.Current.Properties.ContainsKey("Contador"))
+            {
+                filas = int.Parse(Application.Current.Properties["Contador"] as string);
+            }
+            else { filas = 0; }
+            await Application.Current.MainPage.DisplayAlert("Notificación", "El Numero de Filas Guardadas es: " + filas.ToString(), "Excelente");
+
+        }
+       
         #endregion
 
         #region Commands
-       
-        public ICommand GuardarCommand
-        {
-            get
-            {
-                return new RelayCommand(Guardar);
-            }
-        }  
+
         public ICommand VolverCommand
         {
             get
@@ -251,11 +316,18 @@ namespace Marvelapp.ViewModels
                 return new RelayCommand(SearchVisita);
             }
         }
-        public ICommand TapPopupCommand
+        public ICommand ListoCommand
         {
             get
             {
-                return new RelayCommand(TapPopup);
+                return new RelayCommand(Listo);
+            }
+        }
+        public ICommand TapAgregarCommand
+        {
+            get
+            {
+                return new RelayCommand(TapAgregar);
             }
         }
         #endregion
@@ -273,6 +345,7 @@ namespace Marvelapp.ViewModels
             return instance;
         }
         #endregion
+    
     }
 }
 

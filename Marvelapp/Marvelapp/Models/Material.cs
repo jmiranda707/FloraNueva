@@ -32,7 +32,8 @@ namespace Marvelapp.Models
         #region Methods
         private void SelectedEliminar()
         {
-            MaterialEntregadoPopupViewModels.GetInstance().Materiales.Remove(this);
+            MaterialEntregadoViewModels.GetInstance().Materiales.Remove(this);
+            MaterialEntregadoViewModels.GetInstance().HeighListView = MaterialEntregadoViewModels.GetInstance().HeighListView - 44; //le resto 44, el ancho de la fila que estoy eliminando
         }
         #endregion 
         #endregion
