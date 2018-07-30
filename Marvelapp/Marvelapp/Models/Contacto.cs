@@ -33,5 +33,4 @@ namespace Marvelapp.Models
         #endregion 
         #endregion
     }
-
 }

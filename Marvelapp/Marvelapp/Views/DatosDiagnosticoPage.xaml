@@ -1,0 +1,343 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marvelapp.Views.DatosDiagnosticoPage"
+             xmlns:customs="clr-namespace:Marvelapp.Customs"
+             xmlns:viewModels="clr-namespace:Marvelapp.ViewModels"
+             Title="Datos del dianóstico">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Command="{Binding BackToolCommand, Mode=TwoWay}"
+            Icon="ic_chevron_left_white"
+            Name="IconBar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding EditToolCommand, Mode=TwoWay}"
+            Icon="ic_edit_white"
+            Name="IconEdir" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding SaveToolCommand, Mode=TwoWay}"
+            Icon="ic_save_white"
+            Name="IconGuardar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding CloseToolCommand, Mode=TwoWay}"
+            Icon="ic_close_white"
+            Name="IconCerrar" 
+            Order="Primary"/>
+    </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <viewModels:DatosDiagnosticoViewModel/>
+    </ContentPage.BindingContext>
+    <ScrollView>
+        <StackLayout
+            Margin="0,5,20,5">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <!--Row #0-->
+                    <RowDefinition Height="0.2*"/>
+                    <!--Row #1-->
+                    <RowDefinition Height="0.2*"/>
+                    <!--Row #2-->
+                    <RowDefinition Height="0.2*"/>
+                    <!--Row #3-->
+                    <RowDefinition Height="0.2*"/>
+                    <!--Row #4-->
+                    <RowDefinition Height="0.2*"/>
+                    <!--Row #5-->
+                    <RowDefinition Height="0.2*"/>
+                    <!--Row #6-->
+                    <RowDefinition Height="0.2*"/>
+                    <!--Row #7-->
+                    <RowDefinition Height="0.2*"/>
+                   
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--Row #0-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    HorizontalTextAlignment="End"
+                    Margin="0,10,0,0"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.Row="0"
+                    Margin="0,10,0,0"
+                    Text="Nombre del encuestador"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #1-->
+                <Picker
+                    SelectedItem="{Binding Encuestador}"
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="1"
+                    Margin="0,-5,0,0"
+                    Title="Seleccione">
+                    <Picker.Items>
+                        <x:String>Clemence Padioleau</x:String>
+                        <x:String>Unión libre</x:String>
+                    </Picker.Items>
+                </Picker>
+                <!--Row #2-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    />
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.Row="2"
+                    Text="Fecha de la encuesta"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <customs:CustomDatePicker
+                    Date="{Binding DateSelected}"
+                    FontSize="Large"
+                    Grid.Column="3"
+                    Grid.Row="2"
+                    VerticalOptions="Center"
+                    x:Name="Datepicker">
+                    <customs:CustomDatePicker.Format>
+                        dd/MM/yyyy
+                    </customs:CustomDatePicker.Format>
+                </customs:CustomDatePicker>
+                <!--Row #3-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="3"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.Row="3"
+                    Text="Visita a la casa"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <StackLayout
+                    Grid.Column="3"
+                    Grid.Row="3"
+                    Orientation="Horizontal">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout
+                            Grid.Column="1"
+                            Orientation="Horizontal">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                HorizontalOptions="End"
+                                Text="Si"
+                                TextColor="Black"
+                                VerticalOptions="Center"/>
+                            <Switch
+                                HorizontalOptions="End" 
+                                IsToggled="{Binding VisitaCasa}"
+                                VerticalOptions="Center"/>
+                            <Label
+                                FontSize="Medium"
+                                HorizontalOptions="End"
+                                FontAttributes="Bold"
+                                Text="No"
+                                TextColor="Black"
+                                VerticalOptions="Center"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+                <!--Row #4-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="4"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="4"
+                    Text="Estatus del diagnóstico"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #5-->
+                <Picker
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="5"
+                    Margin="0,-5,0,0"
+                    SelectedItem="{Binding Diagnostico}"
+                    Title="Seleccione">
+                    <Picker.Items>
+                        <x:String>Pendiente</x:String>
+                        <x:String>Completo</x:String>
+                        <x:String>Incompleto</x:String>
+                    </Picker.Items>
+                </Picker>
+                <!--Row #6-->
+                <StackLayout
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="6"
+                    Orientation="Horizontal">
+                    <Label
+                        FontSize="Medium"
+                        Text="Control de los documentos entregados por el productor"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <Image
+                        HorizontalOptions="Start"
+                        Source="new_black.png">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer 
+                                Command="{Binding AgregarDocumentoCommand}"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                </StackLayout>
+                <!--Row #7-->
+                <StackLayout
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="7">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Label
+                            FontSize="Medium"
+                            Grid.Column="0"
+                            Text="Tipo de Documento"
+                            TextColor="Black"/>
+                        <Label
+                            FontSize="Medium"
+                            Grid.Column="1"
+                            Text="Detalle"
+                            TextColor="Black"/>
+                    </Grid>
+                </StackLayout>
+            </Grid>
+            <!-- aqui empieza el previewer-->
+                <StackLayout HeightRequest="{Binding HeighListView,Mode=TwoWay}"
+                             Margin="1,1,10,1"
+                             x:Name="StacklayoutHeigh"
+                             >
+                    <ListView ItemsSource="{Binding Documentos}"
+                      x:Name="listview"
+                      SeparatorVisibility="None"
+                      SeparatorColor="#910b20"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      Margin="6,0,6,0">
+
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid Margin="0,0,0,1">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.1*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+
+
+                                        <StackLayout
+                                               Grid.Column="1"
+                                               Grid.ColumnSpan="3"
+                                               Grid.Row="0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackLayout
+                                               Grid.Column="0"
+                                               Orientation="Horizontal">
+                                                    <Image
+                                                 HorizontalOptions="Start"
+                                                 Source="close_black.png">
+                                                    <Image.GestureRecognizers>
+                                                        <TapGestureRecognizer 
+                                                            Command="{Binding SelectedEliminarCommand}"/>
+                                                    </Image.GestureRecognizers>
+                                                </Image>
+                                                <Picker
+                                                        FontSize="Medium"
+                                                        HorizontalOptions="FillAndExpand"
+                                                        SelectedItem="{Binding TipoDocumento, Mode=TwoWay}"
+                                                        Title="Seleccione">
+                                                        <Picker.Items>
+                                                            <x:String>Copia de cedula</x:String>
+                                                            <x:String>Copia de titulo</x:String>
+                                                            <x:String>Copia de algo mas</x:String>
+                                                        </Picker.Items>
+                                                    </Picker>
+                                                </StackLayout>
+                                                <customs:CustomEntry
+                                                 FontSize="Medium"
+                                                 Grid.Column="1"
+                                                    
+                                                 Text="{Binding DetalleDocumento,Mode=TwoWay}"/>
+                                            </Grid>
+                                        </StackLayout>
+
+
+
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+
+            <!--BOTONES-->
+            <StackLayout Padding="4,0,4,0" Margin="20,10,5,15">
+                <Button
+                    Command="{Binding GuardarCommand}"
+                    BackgroundColor="#910b20"
+                    BorderRadius="8"
+                    IsEnabled="{Binding IsEnabled, Mode=TwoWay}"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Margin="0,0,0,0"
+                    Text="Guardar"
+                    TextColor="White"/>
+                <Button
+                    Command="{Binding VolverCommand}"
+                    BackgroundColor="#910b20"
+                    BorderRadius="8"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="Volver"
+                    TextColor="White"/>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

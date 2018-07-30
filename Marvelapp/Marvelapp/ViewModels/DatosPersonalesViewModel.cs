@@ -22,6 +22,17 @@ namespace Marvelapp.ViewModels
         #endregion
 
         #region Attributes
+
+        private int Elementos;
+
+        private string tipo;
+
+        private string nombrecontacto;
+
+        private string detalle;
+
+        int i;
+
         private ObservableCollection<Contacto> contacto;
 
         private Double heighList;
@@ -49,6 +60,7 @@ namespace Marvelapp.ViewModels
         string _estadoCivil;
 
         string _grupoEtnico;
+
         #endregion
 
         #region Properties
@@ -274,7 +286,6 @@ namespace Marvelapp.ViewModels
                 return new RelayCommand(Volver);
             }
         }
-
         public ICommand ChangeImageCommand
         {
             get
@@ -285,12 +296,7 @@ namespace Marvelapp.ViewModels
 
 
         #endregion
-
-        private int Elementos;
-        private string tipo;
-        private string nombrecontacto;
-        private string detalle;
-        int i;
+  
         #region Methods
         async void LoadContactos()
         {
@@ -339,7 +345,7 @@ namespace Marvelapp.ViewModels
         async void Guardar()
         {
             IsEnabled = false;
-            /*
+           
             #region Eleazar
             var fecha = DateSelected.ToString("dd/MM/yyyy");
 
@@ -351,8 +357,9 @@ namespace Marvelapp.ViewModels
                 return;
             }
             #endregion
-            */
+            
             #region Miranda: Guardar Tabla
+
             #region Limpiar Cache //borrar los datos existentes en persistencia
 
             if (Application.Current.Properties.ContainsKey("ContadorContacto"))
@@ -407,6 +414,7 @@ namespace Marvelapp.ViewModels
             IsEnabled = true;
 
             #endregion
+           
             /*
             await Application.Current.MainPage.DisplayAlert(
                 "Hola",
@@ -424,7 +432,7 @@ namespace Marvelapp.ViewModels
         {
             await Application.Current.MainPage.Navigation.PopAsync();
         }
-        private void TapAgregar()//agrega una fila vacia a la tabla materiales
+        private void TapAgregar()//agrega una fila vacia a la tabla contactos
         {
 
             IsRefreshing = true;
@@ -438,7 +446,6 @@ namespace Marvelapp.ViewModels
             HeighListView = HeighListView + 44;
             IsRefreshing = false;
         }
-
         async void CloseTool()
         {
             await Application.Current.MainPage.Navigation.PopAsync();
@@ -454,7 +461,6 @@ namespace Marvelapp.ViewModels
                 "EditTool",
                 "Aceptar");
         }
-
         async void BackTool()
         {
             await Application.Current.MainPage.Navigation.PopAsync();
