@@ -1,0 +1,1496 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marvelapp.Views.BienestarSocialPage"
+             xmlns:viewModels="clr-namespace:Marvelapp.ViewModels"
+             xmlns:custom="clr-namespace:Marvelapp.Customs"
+             Title="Bienestar social y familiar del productor y del hogar">
+        <ContentPage.ToolbarItems>
+            <ToolbarItem 
+            Command="{Binding BackToolCommand, Mode=TwoWay}"
+            Icon="ic_chevron_left_white"
+            Name="IconBar" 
+            Order="Primary"/>
+            <ToolbarItem 
+            Command="{Binding EditToolCommand, Mode=TwoWay}"
+            Icon="ic_edit_white"
+            Name="IconEdir" 
+            Order="Primary"/>
+            <ToolbarItem 
+            Command="{Binding SaveToolCommand, Mode=TwoWay}"
+            Icon="ic_save_white"
+            Name="IconGuardar" 
+            Order="Primary"/>
+            <ToolbarItem 
+            Command="{Binding CloseToolCommand, Mode=TwoWay}"
+            Icon="ic_close_white"
+            Name="IconCerrar" 
+            Order="Primary"/>
+        </ContentPage.ToolbarItems>
+        <ContentPage.BindingContext>
+            <viewModels:BienestarSocialViewModel/>
+        </ContentPage.BindingContext>
+        <!--69-->
+    <ScrollView>
+        <StackLayout
+            Margin="0,5,20,5">
+            <Label
+                FontSize="Large"
+                FontAttributes="Bold"
+                HorizontalTextAlignment="Start"
+                Margin="15"
+                Text="COMPOSICIÓN DEL HOGAR E INCLUSIÓN SOCIAL"
+                TextColor="#1c9e2b"
+                VerticalOptions="Center"/>
+            <StackLayout
+                Margin="15,5"
+                Orientation="Horizontal">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Text="Agregar miembro"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <Image
+                    Source="new_black.png">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                            Command="{Binding AddMemberCommand}"/>
+                    </Image.GestureRecognizers>
+                </Image>
+            </StackLayout>
+            <StackLayout Margin="0,0,6,0">
+                <Grid Margin="0,0,0,0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="0.35*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                        <ColumnDefinition Width="*"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <Image Source=""
+                                           WidthRequest="27"
+                                           HorizontalOptions="Start"
+                                           Grid.Row="0"
+                                           Grid.Column="1">
+                    </Image>
+                    <Image Source=""
+                                           WidthRequest="27"
+                                           HorizontalOptions="Start"
+                                           Grid.Row="0"
+                                           Grid.Column="2">
+                    </Image>
+                    <custom:CustomEntry
+                                FontSize="Small"
+                                Grid.Column="3"
+                                Grid.Row="0"
+                                Text="Nombre"/>
+                    <custom:CustomEntry
+                                FontSize="Small"
+                                Grid.Column="4"
+                                Grid.Row="0"
+                                Text="Parentesco"/>
+                    <custom:CustomEntry
+                                FontSize="Small"
+                                Grid.Column="5"
+                                Grid.Row="0"
+                                Text="Edad"/>
+                    <custom:CustomEntry
+                                FontSize="Small"
+                                Grid.Column="6"
+                                Grid.Row="0"
+                                Text="Discapacidad?"/>
+                    <custom:CustomEntry
+                                FontSize="Small"
+                                Grid.Column="7"
+                                Grid.Row="0"
+                                Text="Condicion Laboral"/>
+                    <custom:CustomEntry
+                                FontSize="Small"
+                                Grid.Column="8"
+                                Grid.Row="0"
+                                Text="Escolaridad"/>
+
+                </Grid>
+            </StackLayout>
+            <!-- aqui empieza el previewer-->
+            <StackLayout HeightRequest="{Binding HeighListViewB, Mode=TwoWay}"
+                             Margin="1,0,6,0"
+                             x:Name="StacklayoutHeigh"
+                             >
+                <ListView ItemsSource="{Binding MiembrosBienestar}"
+                      x:Name="listview"
+                      SeparatorVisibility="None"
+                      SeparatorColor="#910b20"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      Margin="0,0,0,0">
+
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <ViewCell>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="0.1"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="0.35*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <Image Source="close_black.png"
+                                           WidthRequest="27"
+                                           HorizontalOptions="Start"
+                                           Grid.Row="0"
+                                           Grid.Column="1">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                              Command="{Binding SelectedEliminarCommand}">
+                                            </TapGestureRecognizer>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <Image Source="editar_black.png"
+                                           WidthRequest="27"
+                                           HorizontalOptions="Start"
+                                           Grid.Row="0"
+                                           Grid.Column="2">
+                                        <Image.GestureRecognizers>
+                                            <TapGestureRecognizer
+                                              Command="{Binding SelectedEditarCommand}">
+                                            </TapGestureRecognizer>
+                                        </Image.GestureRecognizers>
+                                    </Image>
+                                    <custom:CustomEntry
+                                FontSize="Small"
+                                Grid.Column="3"
+                                Grid.Row="0"
+                                Text="{Binding NombreMiembro, Mode=TwoWay}"/>
+                                    <custom:CustomEntry
+                                FontSize="Small"
+                                Grid.Column="4"
+                                Grid.Row="0"
+                                Text="{Binding ParentescoMiembro, Mode=TwoWay}"/>
+                                    <custom:CustomEntry
+                                FontSize="Small"
+                                Grid.Column="5"
+                                Grid.Row="0"
+                                Text="{Binding EdadMiembro, Mode=TwoWay}"/>
+                                    <custom:CustomEntry
+                                FontSize="Small"
+                                Grid.Column="6"
+                                Grid.Row="0"
+                                Text="{Binding DiscapacidadMiembro, Mode=TwoWay}"/>
+                                    <custom:CustomEntry
+                                FontSize="Small"
+                                Grid.Column="7"
+                                Grid.Row="0"
+                                Text="{Binding CondicionLaboral, Mode=TwoWay}"/>
+                                    <custom:CustomEntry
+                                FontSize="Small"
+                                Grid.Column="8"
+                                Grid.Row="0"
+                                Text="{Binding Escolaridad, Mode=TwoWay}"/>
+
+                                </Grid>
+                            </ViewCell>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </StackLayout>
+
+
+            <Grid Margin="0,5,0,0">
+                <Grid.RowDefinitions>
+                    <!--Row #0-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #1-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #2-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #3-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #4-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #5-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #6-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #7-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #8-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #9-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #10-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #11-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #12-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #13-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #14-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #15-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #16-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #17-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #18-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #19-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #20-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #21-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #22-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #23-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #24-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #25-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #26-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #27-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #28-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #29-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #30-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #31-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #32-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #33-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #34-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #35-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #36-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #37-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #38-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #39-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #40-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #41-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #42-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #43-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #44-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #45-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #46-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #47-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #48-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #49-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #50-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #51-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #52-->
+                    <RowDefinition Height="1.5*"/>
+                    <!--Row #53-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #54-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #55-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #56-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #57-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #58-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #59-->
+                    <RowDefinition Height="*"/>
+                    <!--Row #60-->
+                    <RowDefinition Height="*"/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.1*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+                <!--Row #0-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="0"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="0"
+                    Text="Total de personas en el hogar"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="0"
+                    Keyboard="Numeric"
+                    Text="{Binding PersonasHogar}"
+                    VerticalOptions="Center"/>
+                <!--Row #1-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="1"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="1"
+                    Text="Total de personas activas económicamente"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="1"
+                    Keyboard="Numeric"
+                    Text="{Binding PersonasActivas}"
+                    VerticalOptions="Center"/>
+                <!--Row #2-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="2"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="2"
+                    Text="Total de personas *dependientes*"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="2"
+                    Keyboard="Numeric"
+                    Text="{Binding PersonasDependientes}"
+                    VerticalOptions="Center"/>
+                <!--Row #3-->
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="3"
+                    Text="Índices de inclusión social del PRODUCTOR"
+                    TextColor="#db6262"
+                    VerticalOptions="Center"/>
+                <!--Row #4-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="4"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="4"
+                    Text="Índice de inserción laboral del productor"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="4"
+                    Keyboard="Numeric"
+                    Text="{Binding InsercionLaboral}"
+                    VerticalOptions="Center"/>
+                <!--Row #5-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="5"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="5"
+                    Text="Índice del nivel educativo del productor"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="5"
+                    Keyboard="Numeric"
+                    Text="{Binding NivelEducativo}"
+                    VerticalOptions="Center"/>
+                <!--Row #6-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="6"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="6"
+                    Text="Índice de ciudadania social del productor"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="6"
+                    Keyboard="Numeric"
+                    Text="{Binding CiudadaniaSocial}"
+                    VerticalOptions="Center"/>
+                <!--Row #7-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="7"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="7"
+                    Text="Índice de inserción productiva"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="7"
+                    Keyboard="Numeric"
+                    Text="{Binding InsercionProductiva}"
+                    VerticalOptions="Center"/>
+                <!--Row #8-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="8"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="8"
+                    Text="Índice de inclusión social del productor"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="8"
+                    Keyboard="Numeric"
+                    Text="{Binding InclusionSocial}"
+                    VerticalOptions="Center"/>
+                <!--Row #9-->
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="9"
+                    Text="Índices de inclusión social del HOGAR (mayores de 15 años)"
+                    TextColor="#db6262"
+                    VerticalOptions="Center"/>
+                <!--Row #10-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="10"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="10"
+                    Text="Índice de inserción laboral del hogar"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="10"
+                    Text="{Binding IndInsercionLaboral}"
+                    VerticalOptions="Center"/>
+                <!--Row #11-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="11"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="11"
+                    Text="Índice de nivel educativo del hogar"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="11"
+                    Keyboard="Numeric"
+                    Text="{Binding IndNivelEducativo}"
+                    VerticalOptions="Center"/>
+                <!--Row #12-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="12"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="12"
+                    Text="Índice ciudadania social del hogar"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="12"
+                    Keyboard="Numeric"
+                    Text="{Binding IndCiudadaniaSocial}"
+                    VerticalOptions="Center"/>
+                <!--Row #13-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="13"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="13"
+                    Text="Índice de inserción productiva del hogar"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="13"
+                    Keyboard="Numeric"
+                    Text="{Binding IndInsercionProductiva}"
+                    VerticalOptions="Center"/>
+                <!--Row #14-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="14"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="14"
+                    Text="Tasa de actividad económica del hogar"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="14"
+                    Keyboard="Numeric"
+                    Text="{Binding ActividadEconomica}"
+                    VerticalOptions="Center"/>
+                <!--Row #15-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="15"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="15"
+                    Text="Índice inclusión social del hogar"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="15"
+                    Keyboard="Numeric"
+                    Text="{Binding IndInclusionSocial}"
+                    VerticalOptions="Center"/>
+                <!--Row #16-->
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="16"
+                    HorizontalTextAlignment="Start"
+                    Margin="0,15"
+                    Text="Conexión y proximidad geográfica"
+                    TextColor="#1c9e2b"
+                    VerticalOptions="Center"/>
+                <!--Row #17-->
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="17"
+                    Text="Facilidad de acceso"
+                    TextColor="#db6262"
+                    VerticalOptions="Center"/>
+                <!--Row #18-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="18"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="18"
+                    Text="Facilidad de acceso a la comunidad"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #19-->
+                <Picker
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="19"
+                    SelectedItem="{Binding FacilidadAcceso}"
+                    Title="Seleccione"
+                    VerticalOptions="Center">
+                    <Picker.Items>
+                        <x:String>Acceso a la comunidad dificil</x:String>
+                        <x:String>Acceso a la comunidad regular</x:String>
+                        <x:String>Acceso a la comunidad fácil</x:String>
+                    </Picker.Items>
+                </Picker>
+                <!--Row #20-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="20"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="20"
+                    Text="Facilidad de acceso a la vivienda (desde la comunidad mas cercana)"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #21-->
+                <Picker
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="21"
+                    SelectedItem="{Binding FacilidadAccesoCercana}"
+                    Title="Seleccione"
+                    VerticalOptions="Center">
+                    <Picker.Items>
+                        <x:String>Acceso a la comunidad dificil</x:String>
+                        <x:String>Acceso a la comunidad regular</x:String>
+                        <x:String>Acceso a la comunidad fácil</x:String>
+                    </Picker.Items>
+                </Picker>
+                <!--Row #22-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="22"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="22"
+                    Text="Indice de facildiad de acceso"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="22"
+                    Keyboard="Numeric"
+                    Text="{Binding IndiceFA}"
+                    VerticalOptions="Center"/>
+                <!--Row #23-->
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="23"
+                    HorizontalTextAlignment="Start"
+                    Margin="0,15"
+                    Text="Cercania de los servicios básicos"
+                    TextColor="#1c9e2b"
+                    VerticalOptions="Center"/>
+                <!--Row #24-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="24"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="24"
+                    Text="Tiempo para llegar a un centro de salud"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #25-->
+                <Picker
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="25"
+                    Title="Seleccione"
+                    SelectedItem="{Binding TiempoCentroSalud}"
+                    VerticalOptions="Center">
+                    <Picker.Items>
+                        <x:String>Mas de una hora</x:String>
+                        <x:String>Menos de una hora</x:String>
+                    </Picker.Items>
+                </Picker>
+                <!--Row #26-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="26"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="26"
+                    Text="Tiempo para llegar a un centro educativo"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #27-->
+                <Picker
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="27"
+                    Title="Seleccione"
+                    SelectedItem="{Binding TiempoCentroEducativo}"
+                    VerticalOptions="Center">
+                    <Picker.Items>
+                        <x:String>Mas de una hora</x:String>
+                        <x:String>Menos de una hora</x:String>
+                    </Picker.Items>
+                </Picker>
+                <!--Row #28-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="28"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="28"
+                    Text="Indice de cercanía de los servicios básicos"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="28"
+                    Keyboard="Numeric"
+                    Text="{Binding CercaniaServBasicos}"
+                    VerticalOptions="Center"/>
+                <!--Row #29-->
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="29"
+                    HorizontalTextAlignment="Start"
+                    Margin="0,15"
+                    Text="Capacidad de desplazamiento"
+                    TextColor="#db6262"
+                    VerticalOptions="Center"/>
+                <!--Row #30-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="30"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="30"
+                    Text="Existencia de transporte público"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #31-->
+                <Picker
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="31"
+                    SelectedItem="{Binding TransportePublico}"
+                    Title="Seleccione"
+                    VerticalOptions="Center">
+                    <Picker.Items>
+                        <x:String>Existe un buen servicio del transporte publico</x:String>
+                        <x:String>Existe un mal servicio del transporte publico</x:String>
+                    </Picker.Items>
+                </Picker>
+                <!--Row #32-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="32"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="32"
+                    Text="Posesión de medio de transporte propio"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #33-->
+                <Picker
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="33"
+                    SelectedItem="{Binding TransportePropio}"
+                    Title="Seleccione"
+                    VerticalOptions="Center">
+                    <Picker.Items>
+                        <x:String>Posee medio de transporte propio</x:String>
+                        <x:String>No posee medio de transporte propio</x:String>
+                    </Picker.Items>
+                </Picker>
+                <!--Row #34-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="34"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="34"
+                    Text="Especificar medio de transporte"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #35-->
+                <custom:CustomEntry
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="35"
+                    Text="{Binding EspecificarMT}"
+                    VerticalOptions="Center"/>
+                <!--Row #36-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="36"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="36"
+                    Text="Indice de capacidad de desplazamiento"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="36"
+                    Keyboard="Numeric"
+                    Text="{Binding CapacidadDesplazamiento}"
+                    VerticalOptions="Center"/>
+                <!--Row #37-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="37"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="37"
+                    Text="Indice de conexión y proximidad geografica"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="37"
+                    Keyboard="Numeric"
+                    Text="{Binding ConProximidadGeo}"
+                    VerticalOptions="Center"/>
+                <!--Row #38-->
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Large"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="38"
+                    HorizontalTextAlignment="Start"
+                    Margin="0,15"
+                    Text="Relaciones sociales"
+                    TextColor="#1c9e2b"
+                    VerticalOptions="Center"/>
+                <!--Row #39-->
+                <Label
+                    FontSize="Large"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="39"
+                    HorizontalTextAlignment="Start"
+                    Margin="0,15"
+                    Text="Cercania y relación con la familia"
+                    TextColor="#db6262"
+                    VerticalOptions="Center"/>
+                <!--Row #40-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="40"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="40"
+                    Text="Estructura generacional del hogar"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #41-->
+                <Picker
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="41"
+                    SelectedItem="{Binding EstructuraGeneracional}"
+                    Title="Seleccione"
+                    VerticalOptions="Center">
+                    <Picker.Items>
+                        <x:String>Persona sola</x:String>
+                        <x:String>Pareja de ancianos</x:String>
+                        <x:String>Hogar monoparental con hijos</x:String>
+                        <x:String>Familiar</x:String>
+                    </Picker.Items>
+                </Picker>
+                <!--Row #42-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="42"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <StackLayout
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="42"
+                    Orientation="Horizontal">
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="40"
+                        Text="Otros familiares viven en la misma comunidad o comunidades cercanas"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <StackLayout
+                            Orientation="Horizontal">
+                        <Label
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                HorizontalOptions="End"
+                                Text="Si"
+                                TextColor="Black"
+                                VerticalOptions="Center"/>
+                        <Switch
+                                HorizontalOptions="End" 
+                                IsToggled="{Binding FamiliaresComunidad}"
+                                VerticalOptions="Center"/>
+                        <Label
+                                FontSize="Medium"
+                                HorizontalOptions="End"
+                                FontAttributes="Bold"
+                                Text="No"
+                                TextColor="Black"
+                                VerticalOptions="Center"/>
+                    </StackLayout>
+
+                </StackLayout>
+                <!--Row #43-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="43"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="43"
+                    Text="Usted considera que puede contar con el apoyo de su familia en caso de necesidad"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #44-->
+                <Picker
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="44"
+                    SelectedItem="{Binding ApoyoFamilia}"
+                    Title="Seleccione"
+                    VerticalOptions="Center">
+                    <Picker.Items>
+                        <x:String>Completamente</x:String>
+                        <x:String>Depende</x:String>
+                        <x:String>No</x:String>
+                    </Picker.Items>
+                </Picker>
+                <!--Row #45-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="45"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="45"
+                    Text="Indice de cercania y relación familiar"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="45"
+                    Keyboard="Numeric"
+                    Text="{Binding CercaniaFamiliar}"
+                    VerticalOptions="Center"/>
+                <!--Row #46-->
+                <Label
+                    FontSize="Large"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="46"
+                    HorizontalTextAlignment="Start"
+                    Margin="0,15"
+                    Text="Cercania y relación con la comunidad/el vecindario"
+                    TextColor="#db6262"
+                    VerticalOptions="Center"/>
+                <!--Row #47-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="47"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="47"
+                    Text="Usted considera que puede contar con el apoyo de sus vecinos en caso de necesidad?"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #48-->
+                <Picker
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="48"
+                    SelectedItem="{Binding ApoyoVecinos}"
+                    Title="Seleccione"
+                    VerticalOptions="Center">
+                    <Picker.Items>
+                        <x:String>Completamente</x:String>
+                        <x:String>Depende</x:String>
+                        <x:String>No</x:String>
+                    </Picker.Items>
+                </Picker>
+                <!--Row #49-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="49"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="49"
+                    Text="Como considera el ambiente social en su comunidad?"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #50-->
+                <Picker
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="50"
+                    SelectedItem="{Binding AmbienteComunidad}"
+                    Title="Seleccione"
+                    VerticalOptions="Center">
+                    <Picker.Items>
+                        <x:String>Muy buen ambiente, todos se llevan bien</x:String>
+                        <x:String>Mas o menos buen ambiente</x:String>
+                        <x:String>Hay unos</x:String>
+                    </Picker.Items>
+                </Picker>
+                <!--Row #51-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="51"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <StackLayout
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="51"
+                    Orientation="Horizontal">
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="51"
+                        Text="Se siente USTED que es parte de este barrio o comunidad?"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <StackLayout
+                        Grid.Column="3"
+                        Grid.Row="51"
+                        HorizontalOptions="End"
+                        Orientation="Horizontal">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <StackLayout
+                                Grid.Column="1"
+                                Orientation="Horizontal">
+                                <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    HorizontalOptions="End"
+                                    Text="Si"
+                                    TextColor="Black"
+                                    VerticalOptions="Center"/>
+                                <Switch
+                                    HorizontalOptions="End" 
+                                    IsToggled="{Binding ParteComunidad}"
+                                    VerticalOptions="Center"/>
+                                <Label
+                                    FontSize="Medium"
+                                    HorizontalOptions="End"
+                                    FontAttributes="Bold"
+                                    Text="No"
+                                    TextColor="Black"
+                                    VerticalOptions="Center"/>
+                            </StackLayout>
+                        </Grid>
+                    </StackLayout>
+                </StackLayout>
+                <!--Row #52-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="52"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <StackLayout
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="52"
+                    Orientation="Horizontal">
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="52"
+                        Text="Usted o un miembro del hogar es un miembro activo de algún grupo de la comunidad (religioso, deportivo, comité, grupo politico, otro...)"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                </StackLayout>
+                <StackLayout
+                    Grid.Column="3"
+                    Grid.Row="52"
+                    Orientation="Horizontal">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <StackLayout
+                            Grid.Column="1"
+                            Margin="-3,0,0,0"
+                            Orientation="Horizontal">
+                            <Label
+                                FontAttributes="Bold"
+                                FontSize="Medium"
+                                HorizontalOptions="End"
+                                Text="Si"
+                                TextColor="Black"
+                                VerticalOptions="Start"/>
+                            <Switch
+                                HorizontalOptions="End" 
+                                IsToggled="{Binding MiembroGrupoComunidad}"
+                                VerticalOptions="Start"/>
+                            <Label
+                                FontSize="Medium"
+                                HorizontalOptions="End"
+                                FontAttributes="Bold"
+                                Text="No"
+                                TextColor="Black"
+                                VerticalOptions="Start"/>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+                <!--Row #53-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="53"
+                    Text="Especificar"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <!--Row #54-->
+                <custom:CustomEditor
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="54"
+                    Text="{Binding EspecifiqueMC}"
+                    VerticalOptions="Center"/>
+                <!--Row #55-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="55"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="55"
+                    Text="Indice de cercania y relación con la comunidad"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="55"
+                    Keyboard="Numeric"
+                    Text="{Binding IndCercaniaFamiliar}"
+                    VerticalOptions="Center"/>
+
+                <!--Row #56-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="56"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="56"
+                    Text="Indice de relaciones sociales"
+                    TextColor="Black"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="56"
+                    Keyboard="Numeric"
+                    Text="{Binding TRelacionesSociales}"
+                    VerticalOptions="Center"/>
+                <!--Row #58-->
+                <Label
+                    FontSize="Medium"
+                    Grid.Column="0"
+                    Grid.Row="58"
+                    HorizontalTextAlignment="End"
+                    Text="*"
+                    TextColor="Red"
+                    VerticalOptions="Center"/>
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="2"
+                    Grid.Row="58"
+                    Text="Indice global de bienestar social y familiar"
+                    TextColor="#1c9e2b"
+                    VerticalOptions="Center"/>
+                <custom:CustomEntryCenter
+                    Grid.Column="3"
+                    Grid.Row="58"
+                    Keyboard="Numeric"
+                    Text="{Binding TBienestarSocial}"
+                    VerticalOptions="Center"/>
+                <!--Row #59-->
+                <Button
+                    BackgroundColor="#910b20"
+                    BorderRadius="8"
+                    Command="{Binding GuardarCommand}"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="59"
+                    Text="Guardar"
+                    TextColor="White"/>
+                <!--Row #60-->
+                <Button
+                    BackgroundColor="#910b20"
+                    BorderRadius="8"
+                    Command="{Binding VolverCommand}"
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    Grid.Column="1"
+                    Grid.ColumnSpan="3"
+                    Grid.Row="60"
+                    Margin="0,0,0,5"
+                    Text="Volver"
+                    TextColor="White"/>
+            </Grid>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
