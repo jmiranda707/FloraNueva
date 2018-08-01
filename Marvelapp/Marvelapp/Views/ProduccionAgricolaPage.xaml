@@ -1,0 +1,1517 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marvelapp.Views.ProduccionAgricolaPage"
+             xmlns:viewModels="clr-namespace:Marvelapp.ViewModels"
+             xmlns:custom="clr-namespace:Marvelapp.Customs"
+             Title="Producción agrícola">
+    <ContentPage.BindingContext>
+        <viewModels:ProduccionAgricolaViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem 
+            Command="{Binding BackToolCommand, Mode=TwoWay}"
+            Icon="ic_chevron_left_white"
+            Name="IconBar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding EditToolCommand, Mode=TwoWay}"
+            Icon="ic_edit_white"
+            Name="IconEdir" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding SaveToolCommand, Mode=TwoWay}"
+            Icon="ic_save_white"
+            Name="IconGuardar" 
+            Order="Primary"/>
+        <ToolbarItem 
+            Command="{Binding CloseToolCommand, Mode=TwoWay}"
+            Icon="ic_close_white"
+            Name="IconCerrar" 
+            Order="Primary"/>
+    </ContentPage.ToolbarItems>
+    <ScrollView
+        >
+        <StackLayout
+            >
+            <StackLayout
+                Margin="0,15,20,5">
+                <Grid
+                    Margin="0,0,0,0">
+                    <Grid.RowDefinitions>
+                        <!--Row #0-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #1-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #2-->
+                        <RowDefinition Height="0.8*"/>
+                        <!--Row #3-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #4-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #5-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #6-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #7-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #8-->
+                        <RowDefinition Height="0.8*"/>
+                        <!--Row #9-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #10-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #11-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #12-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #13-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #14-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #15-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #16-->
+                        <RowDefinition Height="4*"/>
+                        <!--Row #17-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #18-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #19-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #20-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #21-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #22-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #23-->
+                        <RowDefinition Height="0.6*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--Row #0-->
+                    <Label
+                        FontSize="Large"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="0"
+                        HorizontalTextAlignment="Start"
+                        Text="Caracteristicas generales"
+                        TextColor="#db6262"
+                        VerticalOptions="Center"/>
+                    <!--Row #1-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="1"
+                        Text="Forma juridica de la explotación"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #2-->
+                    <Picker
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="2"
+                        SelectedItem="{Binding FormaJuridica}"
+                        Title="Seleccione"
+                        VerticalOptions="Center">
+                        <Picker.Items>
+                            <x:String>Persona individual</x:String>
+                            <x:String>Sociedad de derecho</x:String>
+                            <x:String>Sociedad del hecho</x:String>
+                            <x:String>Otro</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <!--Row #3-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="3"
+                        Text="¿Pertenece a una organización agropecuaria?"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <StackLayout
+                        Grid.Column="3"
+                        Grid.Row="3"
+                        HorizontalOptions="End"
+                        Orientation="Horizontal">
+                        <Label
+                            FontSize="Medium"
+                            HorizontalOptions="End"
+                            Text="Si"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                        <Switch
+                            HorizontalOptions="End" 
+                            IsToggled="{Binding PropiosAlimentos}"
+                            VerticalOptions="Center"/>
+                        <Label
+                            FontSize="Medium"
+                            HorizontalOptions="End"
+                            FontAttributes="Bold"
+                            Text="No"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                    </StackLayout>
+                    <!--Row #4-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="4"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="4"
+                        Text="Nombre de la (s) organización (es)"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #5-->
+                    <custom:CustomEntry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="5"
+                        Text="{Binding Organizaciones}"
+                        VerticalOptions="Center"/>
+                    <!--Row #6-->
+                    <Label
+                        FontSize="Large"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="6"
+                        HorizontalTextAlignment="Start"
+                        Text="Tierras agrícolas"
+                        TextColor="#db6262"
+                        VerticalOptions="Center"/>
+                    <!--Row #7-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="7"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="7"
+                        Text="Tenenecia de la tierra"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #8-->
+                    <Picker
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="8"
+                        SelectedItem="{Binding TenenciaTierra}"
+                        Title="Seleccione"
+                        VerticalOptions="Center">
+                        <Picker.Items>
+                            <x:String>Propia totalmente pagada</x:String>
+                            <x:String>Propia parcialmente pagada</x:String>
+                            <x:String>Alquilada</x:String>
+                            <x:String>En precario</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <!--Row #9-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="9"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Grid
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="9">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="*" />
+                        </Grid.ColumnDefinitions>
+                        <Label
+                                FontSize="Medium"
+                                Grid.Column="0"
+                                Text="¿A nombre de quien esta el terreno?"
+                                TextColor="Black"
+                                VerticalTextAlignment="Center"/>
+                        <StackLayout
+                                Grid.Column="1"
+                                HorizontalOptions="End"
+                                Orientation="Horizontal"
+                                VerticalOptions="Center">
+                            <Label
+                                    FontAttributes="Bold"
+                                    FontSize="Medium"
+                                    HorizontalOptions="End"
+                                    Text="Del productor"
+                                    TextColor="Black"
+                                    VerticalOptions="Center"/>
+                            <Switch
+                                    HorizontalOptions="End" 
+                                    IsToggled="{Binding DuenoTerreno}"
+                                    VerticalOptions="Center"/>
+                            <Label
+                                    FontSize="Medium"
+                                    HorizontalOptions="End"
+                                    FontAttributes="Bold"
+                                    Text="De otra persona"
+                                    TextColor="Black"
+                                    VerticalOptions="Center"/>
+                        </StackLayout>
+                    </Grid>
+
+                    <!--Row #10-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="10"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="10"
+                        Text="Si es a nombre de otra persona, especificar"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #11-->
+                    <custom:CustomEntry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="11"
+                        Text="{Binding EspecificarTerreno}"
+                        VerticalOptions="Center"/>
+                    <!--Row #12-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="12"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="12"
+                        Text="Especificar ubicacion de la tierra"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #13-->
+                    <custom:CustomEntry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="13"
+                        Text="{Binding UbicacionTierra}"
+                        VerticalOptions="Center"/>
+                    <!--Row #14-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="14"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="14"
+                        Text="Superficie de la parcela/finca (en ha)"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <custom:CustomEntryCenter
+                        Grid.Column="3"
+                        Grid.Row="14"
+                        Text="{Binding SuperficieParcela}"
+                        VerticalOptions="Center"/>
+                    <!--Row #15-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="15"
+                        Text="Mini descripción de la finca / parcela y de su entorno"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #16-->
+                    <custom:CustomEditor
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="16"
+                        Text="{Binding DescripcionFinca}"/>
+                    <!--<custom:CustomEditor
+                        FontSize="Medium"
+                        Grid.Column="3"
+                        Grid.Row="16"
+                        Margin="5,0"/>-->
+                    <Image
+                        Grid.Column="3"
+                        Grid.Row="16"
+                        HeightRequest="100"
+                        Margin="5,0"
+                        Source="gris.jpg"/>
+                    <!--Row #17-->
+                    <Label
+                        FontSize="Large"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="17"
+                        HorizontalTextAlignment="Start"
+                        Text="Producción"
+                        TextColor="#db6262"
+                        VerticalOptions="Center"/>
+                    <!--Row #18-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="18"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="18"
+                        Text="¿Cual es su producción principal?"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #19-->
+                    <custom:CustomEntry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="19"
+                        Text="{Binding ProduccionPrincipal}"
+                        VerticalOptions="Center"/>
+                    <!--Row #20-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="20"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="20"
+                        Text="¿Cuales son las otras producciones que tiene?"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #21-->
+                    <custom:CustomEntry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="21"
+                        Text="{Binding OtraProduccion}"
+                        VerticalOptions="Center"/>
+                    <!--Row #22-->
+                    <StackLayout
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="22"
+                        Orientation="Horizontal">
+                        <Label
+                            FontSize="Medium"
+                            Text="Detalles de la producción vegetal (opcional)"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                        <Image
+                            HorizontalOptions="Start"
+                            Source="new_black.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                Command="{Binding AgregarVegetalCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                    <!--Row #23-->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="23"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.Row="23"
+                        Text="Categoria de uso de suelo"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+
+                    <StackLayout
+                        Grid.Column="2"
+                        Grid.Row="23"
+                        Orientation="Horizontal"
+                        VerticalOptions="Center">
+                        <Label
+                            
+                            HorizontalTextAlignment="End"
+                            Text="*"
+                            TextColor="Red"
+                            VerticalOptions="Center"/>
+                        <Label
+                            FontSize="Medium"
+                            Text="Detalles"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout
+                        Grid.Column="3"
+                        Grid.Row="23"
+                        Orientation="Horizontal"
+                        VerticalOptions="Center">
+                        <Label
+                            HorizontalTextAlignment="End"
+                            Text="*"
+                            TextColor="Red"
+                            VerticalOptions="Center"/>
+                        <Label
+                            FontSize="Medium"
+                            Text="Superficie"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                    </StackLayout>
+                </Grid>
+                <!-- aqui empieza el previewer tabla 1-->
+                <StackLayout HeightRequest="{Binding HeighListViewVegetal, Mode=TwoWay}"
+                             Margin="1,0,6,0"
+                             x:Name="StacklayoutHeigh"
+                             >
+                    <ListView ItemsSource="{Binding Vegetales}"
+                      x:Name="listview"
+                      SeparatorVisibility="None"
+                      SeparatorColor="#910b20"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      Margin="0,0,0,0">
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
+                                    <Grid
+                                        Margin="0,0,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.1*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout
+                                            Grid.Column="1"
+                                            Grid.ColumnSpan="3"
+                                            Grid.Row="0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackLayout
+                                                    Grid.Column="0"
+                                                    Grid.Row="0"
+                                                    Orientation="Horizontal">
+                                                    <Image
+                                                      HorizontalOptions="Start"
+                                                      Source="close_black.png">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer 
+                                                                    Command="{Binding SelectedEliminarCommand}"/>
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                    <Picker
+                                                         HorizontalOptions="FillAndExpand"
+                                                         SelectedItem="{Binding CategoriaVegetal}"
+                                                         Title="Seleccione">
+                                                        <Picker.Items>
+                                                            <x:String>Cultivos anuales</x:String>
+                                                            <x:String>Cultivos</x:String>
+                                                            <x:String>Cultivos</x:String>
+                                                        </Picker.Items>
+                                                    </Picker>
+                                                </StackLayout>
+                                                <custom:CustomEntry
+                                                     FontSize="Medium"
+                                                     Grid.Column="1"
+                                                     Grid.Row="0"
+                                                     Text="{Binding DetalleVegetal}"/>
+                                                <custom:CustomEntry
+                                                     FontSize="Medium"
+                                                     Grid.Column="2"
+                                                     Grid.Row="0"
+                                                     Text="{Binding SuperficieVegetal}"/>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Grid>
+                                </ViewCell>
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <Grid 
+                    Margin="0,0,0,0">
+                    <Grid.RowDefinitions>
+                        <!--Row #0-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #1-->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--Row #0-->
+                    <StackLayout
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="0"
+                        Orientation="Horizontal">
+                        <Label
+                            FontSize="Medium"
+                            Text="Detalles de la producción animal (opcional)"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                        <Image
+                            HorizontalOptions="Start"
+                            Source="new_black.png">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer 
+                                Command="{Binding AgregarAnimalCommand}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </StackLayout>
+                    <!--Row #1-->
+                    <Label
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        Text="Animales"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+
+                    <StackLayout
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        Orientation="Horizontal"
+                        VerticalOptions="Center">
+                        <Label
+                            
+                            HorizontalTextAlignment="End"
+                            Text="*"
+                            TextColor="Red"
+                            VerticalOptions="Center"/>
+                        <Label
+                            FontSize="Medium"
+                            Text="Detalles"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                    </StackLayout>
+                    <StackLayout
+                        Grid.Column="3"
+                        Grid.Row="1"
+                        Orientation="Horizontal"
+                        VerticalOptions="Center">
+                        <Label
+                            HorizontalTextAlignment="End"
+                            Text="*"
+                            TextColor="Red"
+                            VerticalOptions="Center"/>
+                        <Label
+                            FontSize="Medium"
+                            Text="Cantidad"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                    </StackLayout>
+                </Grid>
+                <!-- aqui abajo va el listview2-->
+
+                    <!-- aqui empieza el previewer tabla 2-->
+                    <StackLayout HeightRequest="{Binding HeighListViewAnimal, Mode=TwoWay}"
+                             Margin="1,0,6,0"
+                             x:Name="StacklayoutHe"
+                             >
+                        <ListView ItemsSource="{Binding Animales}"
+                      x:Name="listv"
+                      SeparatorVisibility="None"
+                      SeparatorColor="#910b20"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      Margin="0,0,0,0">
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+
+                                    <!--Row #2-->
+                                    <StackLayout>
+                                        <Grid>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                            <StackLayout
+                                Grid.Column="0"
+                                Grid.Row="0"
+                                Orientation="Horizontal">
+                                                <Image
+                                    HorizontalOptions="Start"
+                                    Source="close_black.png"/>
+                                                <Picker
+                                    HorizontalOptions="FillAndExpand"
+                                    Title="Seleccione">
+                                                    <Picker.Items>
+                                                        <x:String>Cultivos anuales</x:String>
+                                                        <x:String>Cultivos</x:String>
+                                                        <x:String>Cultivos</x:String>
+                                                    </Picker.Items>
+                                                </Picker>
+                                            </StackLayout>
+                                            <custom:CustomEntry
+                                FontSize="Medium"
+                                Grid.Column="1"
+                                Grid.Row="0"/>
+                                            <custom:CustomEntry
+                                FontSize="Medium"
+                                Grid.Column="2"
+                                Grid.Row="0"/>
+                                        </Grid>
+                                    </StackLayout>
+                                </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                    <!-- aqui termina tabla 2-->
+       
+                <Grid
+                    Margin="0,0,0,0">
+                    <Grid.RowDefinitions>
+                        <!--Row #0-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #1-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #2-->
+                        <RowDefinition Height="0.8*"/>
+                        <!--Row #3-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #4-->
+                        <RowDefinition Height="0.8*"/>
+                        <!--Row #5-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #6-->
+                        <RowDefinition Height="0.8*"/>
+                        <!--Row #7-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #8-->
+                        <RowDefinition Height="0.8*"/>
+                        <!--Row #9-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #10-->
+                        <RowDefinition Height="0.8*"/>
+                        <!--Row #11-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #12-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #13-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #14-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #15-->
+                        <RowDefinition Height="0.8*"/>
+                        <!--Row #16-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #17-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #18-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #19-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #20-->
+                        <RowDefinition Height="0.8*"/>
+                        <!--Row #21-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #22-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #23-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #24-->
+                        <RowDefinition Height="0.8*"/>
+                        <!--Row #25-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #26-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #27-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #28-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #29-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #30-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #31-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #32-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #33-->
+                        <RowDefinition Height="0.8*"/>
+                        <!--Row #34-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #35-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #36-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #37-->
+                        <RowDefinition Height="0.8*"/>
+                        <!--Row #38-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #39-->
+                        <RowDefinition Height="0.8*"/>
+                        <!--Row #40-->
+                        <RowDefinition Height="0.6*"/>
+                        <!--Row #41-->
+                        <RowDefinition Height="2*"/>
+                        <!--Row #42-->
+                        <RowDefinition Height="*"/>
+                        <!--Row #43-->
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="0.1*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--Row #0-->
+                    <Label
+                        FontSize="Large"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="0"
+                        HorizontalTextAlignment="Start"
+                        Text="Practicas agropecuarias"
+                        TextColor="#db6262"
+                        VerticalOptions="Center"/>
+                    <!--Row #1-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="1"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="1"
+                        Text="Abono"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #2-->
+                    <Picker
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="2"
+                        SelectedItem="{Binding Abono}"
+                        Title="Seleccione"
+                        VerticalOptions="Center">
+                        <Picker.Items>
+                            <x:String>No abona</x:String>
+                            <x:String>Abono organico</x:String>
+                            <x:String>Fertilizantes quimicos</x:String>
+                            <x:String>Combinación</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <!--Row #3-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="3"
+                        Text="Control de malezas"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #4-->
+                    <Picker
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="4"
+                        SelectedItem="{Binding ControlMalezas}"
+                        Title="Seleccione"
+                        VerticalOptions="Center">
+                        <Picker.Items>
+                            <x:String>No controla</x:String>
+                            <x:String>Manual o mecánico</x:String>
+                            <x:String>Quimico</x:String>
+                            <x:String>Combinación</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <!--Row #5-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="5"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="5"
+                        Text="Plaguicidas"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #6-->
+                    <Picker
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="6"
+                        SelectedItem="{Binding Plaguicidas}"
+                        Title="Seleccione"
+                        VerticalOptions="Center">
+                        <Picker.Items>
+                            <x:String>No utiliza</x:String>
+                            <x:String>Organico (bioinsumo)</x:String>
+                            <x:String>Quimico</x:String>
+                            <x:String>Combinación</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <!--Row #7-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="7"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="7"
+                        Text="Origen de las semillas"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #8-->
+                    <Picker
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="8"
+                        SelectedItem="{Binding Semillas}"
+                        Title="Seleccione"
+                        VerticalOptions="Center">
+                        <Picker.Items>
+                            <x:String>Propias</x:String>
+                            <x:String>Compradas</x:String>
+                            <x:String>Combinación</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <!--Row #9-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="9"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="9"
+                        Text="Sistema de riego de cultivos"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #10-->
+                    <Picker
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="10"
+                        SelectedItem="{Binding RiegoCultivos}"
+                        Title="Seleccione"
+                        VerticalOptions="Center">
+                        <Picker.Items>
+                            <x:String>No riega</x:String>
+                            <x:String>Manual</x:String>
+                            <x:String>Aspersión</x:String>
+                            <x:String>Gravedad</x:String>
+                            <x:String>Goteo</x:String>
+                            <x:String>Otros</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <!--Row #11-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="11"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="11"
+                        Text="¿Posee una certificación?"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <StackLayout
+                        Grid.Column="3"
+                        Grid.Row="11"
+                        HorizontalOptions="End"
+                        Orientation="Horizontal">
+                        <Label
+                            FontSize="Medium"
+                            HorizontalOptions="End"
+                            Text="Si"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                        <Switch
+                            HorizontalOptions="End" 
+                            IsToggled="{Binding PoseeCertificacion}"
+                            VerticalOptions="Center"/>
+                        <Label
+                            FontSize="Medium"
+                            HorizontalOptions="End"
+                            FontAttributes="Bold"
+                            Text="No"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                    </StackLayout>
+                    <!--Row #12-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="12"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="12"
+                        Text="Especificar certificación"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #13-->
+                    <custom:CustomEntry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="13"
+                        Text="{Binding Certifiacion}"
+                        VerticalOptions="Center"/>
+                    <!--Row #14-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="14"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="14"
+                        Text="Categoria de manejo"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #15-->
+                    <Picker
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="15"
+                        SelectedItem="{Binding CategoriaManejo}"
+                        Title="Seleccione"
+                        VerticalOptions="Center">
+                        <Picker.Items>
+                            <x:String>Organico</x:String>
+                            <x:String>Convensional extensivo</x:String>
+                            <x:String>Convensional intensivo</x:String>
+                            <x:String>Otros</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <!--Row #16-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="16"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="16"
+                        Text="Comentario de manejo"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #17-->
+                    <custom:CustomEntry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="17"
+                        Text="{Binding Manejo}"
+                        VerticalOptions="Center"/>
+                    <!--Row #18-->
+                    <Label
+                        FontSize="Large"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="18"
+                        HorizontalTextAlignment="Start"
+                        Text="Maquinaria, equipo e infraestructura"
+                        TextColor="#db6262"
+                        VerticalOptions="Center"/>
+                    <!--Row #19-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="19"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="19"
+                        Text="Lista de maquinaria disponible en la finca"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #20-->
+                    <custom:CustomEntry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="20"
+                        Text="{Binding ListaMaquinarias}"
+                        VerticalOptions="Center"/>
+                    <!--Row #21-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="21"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="21"
+                        Text="Categoria de mecanización"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #22-->
+                    <Picker
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="22"
+                        SelectedItem="{Binding CategoriaMecanizacion}"
+                        Title="Seleccione"
+                        VerticalOptions="Center">
+                        <Picker.Items>
+                            <x:String>Trabajo principalmente manual</x:String>
+                            <x:String>Trabajo parcialmente mecanizado</x:String>
+                            <x:String>Otros</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <!--Row #23-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="23"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="23"
+                        Text="Lista de infraestructura disponible en la finca"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #24-->
+                    <custom:CustomEntry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="24"
+                        Text="{Binding ListaInfraestructura}"
+                        VerticalOptions="Center"/>
+                    <!--Row #25-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="25"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="25"
+                        Text="Categoria de infraestructura"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #26-->
+                    <Picker
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="26"
+                        SelectedItem="{Binding CatInfraestructura}"
+                        Title="Seleccione"
+                        VerticalOptions="Center">
+                        <Picker.Items>
+                            <x:String>Sin infraestructura dedicada</x:String>
+                            <x:String>Infraestructura existente pero deficiente</x:String>
+                            <x:String>Infraestructura existente</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <!--Row #27-->
+                    <Label
+                        FontSize="Large"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="27"
+                        HorizontalTextAlignment="Start"
+                        Text="Transformación y valor agregado a la producción"
+                        TextColor="#db6262"
+                        VerticalOptions="Center"/>
+                    <!--Row #28-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="28"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="28"
+                        Text="¿Realiza algún proceso de transformación o de valor agregado de su producción?"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <StackLayout
+                        Grid.Column="3"
+                        Grid.Row="28"
+                        HorizontalOptions="End"
+                        Orientation="Horizontal">
+                        <Label
+                            FontSize="Medium"
+                            HorizontalOptions="End"
+                            Text="Si"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                        <Switch
+                            HorizontalOptions="End" 
+                            IsToggled="{Binding TransValorAgregado}"
+                            VerticalOptions="Center"/>
+                        <Label
+                            FontSize="Medium"
+                            HorizontalOptions="End"
+                            FontAttributes="Bold"
+                            Text="No"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                    </StackLayout>
+                    <!--Row #29-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="29"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="29"
+                        Text="Especificar transformación o valor agregado"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #30-->
+                    <custom:CustomEntry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="30"
+                        Text="{Binding ValorAgregado}"
+                        VerticalOptions="Center"/>
+                    <!--Row #31-->
+                    <Label
+                        FontSize="Large"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="31"
+                        HorizontalTextAlignment="Start"
+                        Text="Destino de la producción"
+                        TextColor="#db6262"
+                        VerticalOptions="Center"/>
+                    <!--Row #32-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="32"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="32"
+                        Text="Destino de la producción"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #33-->
+                    <Picker
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="33"
+                        SelectedItem="{Binding DestinoProduccion}"
+                        Title="Seleccione"
+                        VerticalOptions="Center">
+                        <Picker.Items>
+                            <x:String>Exclusivamente autoconsumo</x:String>
+                            <x:String>Exclusivamente venta</x:String>
+                            <x:String>Ambas</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <!--Row #34-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="34"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="34"
+                        Text="Si venta, especificar canales de comercialización"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #35-->
+                    <custom:CustomEntry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="35"
+                        Text="{Binding CanalesComercializacion}"
+                        VerticalOptions="Center"/>
+                    <!--Row #36-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="36"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="36"
+                        Text="Categoria de explotación agrícola"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #37-->
+                    <Picker
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="37"
+                        SelectedItem="{Binding CatExplotacion}"
+                        Title="Seleccione"
+                        VerticalOptions="Center">
+                        <Picker.Items>
+                            <x:String>De hobby</x:String>
+                            <x:String>Subsistencia familiar</x:String>
+                            <x:String>Empresarial pequeña</x:String>
+                            <x:String>Empresarial mediana</x:String>
+                            <x:String>Empresarial grande</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <!--Row #38-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="38"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="38"
+                        Text="Orientación técnico - eco"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #39-->
+                    <Picker
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="39"
+                        SelectedItem="{Binding TecnicoEco}"
+                        Title="Seleccione"
+                        VerticalOptions="Center">
+                        <Picker.Items>
+                            <x:String>Producción agropecuaria diversificada</x:String>
+                            <x:String>Producción agrícola diversificada</x:String>
+                        </Picker.Items>
+                    </Picker>
+                    <!--Row #40-->
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="0"
+                        Grid.Row="40"
+                        HorizontalTextAlignment="End"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="Center"/>
+                    <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="40"
+                        Text="Comentario explotación agricola"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    <!--Row #41-->
+                    <custom:CustomEditor
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="41"
+                        Text="{Binding ComExplotacion}"/>
+                    <!--Row #42-->
+                    <Button
+                        BackgroundColor="#910b20"
+                        BorderRadius="10"
+                        Command="{Binding GuardarCommand}"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="42"
+                        Text="Guardar"
+                        TextColor="White"/>
+                    <!--Row #43-->
+                    <Button
+                        BackgroundColor="#910b20"
+                        BorderRadius="10"
+                        Command="{Binding VolverCommand}"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="43"
+                        Margin="0,0,0,5"
+                        Text="Volver"
+                        TextColor="White"/>
+                </Grid>
+            </StackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
