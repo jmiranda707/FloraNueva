@@ -592,6 +592,7 @@ namespace Marvelapp.ViewModels
 
             int filas;
             filas = MiembrosBienestar.Count;
+            Application.Current.Properties["ContadorMiembros"] = filas.ToString(); //hay que examinar esta linea, es de prueba porque creo que no se actualiza bien el contador en la otra viewmodel cuando se borran todos los registros y esta linea evita eso
             HeighListViewB = 44 * filas;//actalizo mi heigh
             ComposicionHogarViewModel.GetInstance().Miembros = this.MiembrosBienestar; //asigno los datos de mi lista 
             await Application.Current.MainPage.DisplayAlert("Notificación", "Usted Tiene hasta Ahora: " + filas + " Parientes Registrados", "Excelente");
