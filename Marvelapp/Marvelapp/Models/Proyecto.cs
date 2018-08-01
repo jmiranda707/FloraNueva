@@ -10,8 +10,8 @@ namespace Marvelapp.Models
     {
         public string NombreProyecto { set; get; }
         public string EstatusIntegracion { set; get; }
-        public DateTime FechaIntegracion { set; get; }
-        public DateTime FechaSalida { set; get; }
+        public string FechaIntegracion { set; get; }
+        public string FechaSalida { set; get; }
         public string RazonSalida { set; get; }
         /*
         #region Exception

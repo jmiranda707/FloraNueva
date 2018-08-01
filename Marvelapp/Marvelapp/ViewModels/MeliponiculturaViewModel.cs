@@ -273,7 +273,7 @@ namespace Marvelapp.ViewModels
         #region constructors
         public MeliponiculturaViewModel()
         {
-            
+            IsEnabled = true;
             instance = this;
             InventariosMeliponicultura = InventarioEspeciesViewModel.GetInstance().Inventarios; //obtengo los datos de mi lista en InventarioEspeciesViewModel
             HeighListViewB = InventarioEspeciesViewModel.GetInstance().HeighListView; //obtengo el heigh de InventarioEspeciesViewModel
@@ -458,7 +458,7 @@ namespace Marvelapp.ViewModels
             HeighListViewB = 44 * filas;//actalizo mi heigh
             InventarioEspeciesViewModel.GetInstance().Inventarios = this.InventariosMeliponicultura; //asigno los datos de mi lista 
             await Application.Current.MainPage.DisplayAlert("Notificación", "Hay: " + filas + " Elementos en Inventario", "Excelente");
-
+            IsEnabled = true;
 
 
         }

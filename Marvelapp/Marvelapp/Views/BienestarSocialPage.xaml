@@ -1470,6 +1470,7 @@
                     BackgroundColor="#910b20"
                     BorderRadius="8"
                     Command="{Binding GuardarCommand}"
+                    IsEnabled="{Binding IsEnabled}"
                     FontAttributes="Bold"
                     FontSize="Medium"
                     Grid.Column="1"

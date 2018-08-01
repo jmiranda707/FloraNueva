@@ -828,7 +828,7 @@
                         FontSize="Medium"
                         HeightRequest="50"
                         HorizontalOptions="FillAndExpand"
-                        IsEnabled="True"
+                        IsEnabled="{Binding IsEnabled}"
                         Text="Guardar"
                         TextColor="White"/>
 

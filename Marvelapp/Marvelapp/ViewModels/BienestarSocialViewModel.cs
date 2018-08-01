@@ -28,6 +28,7 @@ namespace Marvelapp.ViewModels
             private Double heighListB;
             int Elementos;
             int i;
+            private bool isEnabled;
             private ObservableCollection<Miembro> miembrobienestar;
             string _personasHogar;
             string _personasActivas;
@@ -83,6 +84,23 @@ namespace Marvelapp.ViewModels
                     PropertyChanged?.Invoke(
                                             this,
                                             new PropertyChangedEventArgs(nameof(HeighListViewB)));
+                }
+            }
+        }
+            public bool IsEnabled
+        {
+            get
+            {
+                return isEnabled;
+            }
+            set
+            {
+                if (isEnabled != value)
+                {
+                    isEnabled = value;
+                    PropertyChanged?.Invoke(
+                                            this,
+                                            new PropertyChangedEventArgs(nameof(IsEnabled)));
                 }
             }
         }
@@ -441,6 +459,7 @@ namespace Marvelapp.ViewModels
         #region Constructors
         public BienestarSocialViewModel()
         {
+            IsEnabled = true;
             instance = this;
             MiembrosBienestar = ComposicionHogarViewModel.GetInstance().Miembros; //obtengo los datos de mi lista en la otra ComposicionHogarViewModel
             HeighListViewB = ComposicionHogarViewModel.GetInstance().HeighListView; //obtengo el heigh de ComposicionHogarViewModel
@@ -502,6 +521,7 @@ namespace Marvelapp.ViewModels
         #region Methods
             async void Guardar()
             {
+            IsEnabled = false;
             #region Eleazar
             /*
               if (string.IsNullOrEmpty(PersonasHogar) || string.IsNullOrEmpty(PersonasActivas) || string.IsNullOrEmpty(PersonasDependientes) ||
@@ -519,6 +539,7 @@ namespace Marvelapp.ViewModels
                     string.IsNullOrEmpty(TRelacionesSociales) || string.IsNullOrEmpty(TBienestarSocial))
                 {
                     await Application.Current.MainPage.DisplayAlert("Error", "Llene los campos obligatorios", "aceptar");
+                    IsEnabled = true;
                     return;
                 }
 
@@ -596,9 +617,10 @@ namespace Marvelapp.ViewModels
             HeighListViewB = 44 * filas;//actalizo mi heigh
             ComposicionHogarViewModel.GetInstance().Miembros = this.MiembrosBienestar; //asigno los datos de mi lista 
             await Application.Current.MainPage.DisplayAlert("Notificación", "Usted Tiene hasta Ahora: " + filas + " Parientes Registrados", "Excelente");
+            IsEnabled = true;
 
-            }
-            async void AddMember()
+        }
+        async void AddMember()
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new ComposicionHogarPage());
             }
