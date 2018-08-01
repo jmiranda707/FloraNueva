@@ -567,7 +567,7 @@ namespace Marvelapp.ViewModels
 
             #endregion
 
-        }
+            }
             async void CloseTool()
             {
                 await Application.Current.MainPage.Navigation.PopAsync();

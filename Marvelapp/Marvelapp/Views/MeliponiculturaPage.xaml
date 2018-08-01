@@ -8,48 +8,127 @@
         <ContentPage.BindingContext>
             <viewmodels:MeliponiculturaViewModel/>
         </ContentPage.BindingContext>
-        <ContentPage.ToolbarItems>
-            <ToolbarItem 
-            Command="{Binding BackToolCommand, Mode=TwoWay}"
-            Icon="ic_chevron_left_white"
-            Name="IconBar" 
-            Order="Primary"/>
-            <ToolbarItem 
-            Command="{Binding EditToolCommand, Mode=TwoWay}"
-            Icon="ic_edit_white"
-            Name="IconEdir" 
-            Order="Primary"/>
-            <ToolbarItem 
-            Command="{Binding SaveToolCommand, Mode=TwoWay}"
-            Icon="ic_save_white"
-            Name="IconGuardar" 
-            Order="Primary"/>
-            <ToolbarItem 
-            Command="{Binding CloseToolCommand, Mode=TwoWay}"
-            Icon="ic_close_white"
-            Name="IconCerrar" 
-            Order="Primary"/>
-        </ContentPage.ToolbarItems>
         <ContentPage.Content>
-            <ScrollView>
-
-                <StackLayout 
-                HorizontalOptions="FillAndExpand"
-                Margin="10,10,10,0" 
-                Padding="0,0,0,0">
-                    <Grid>
+            <StackLayout>
+                <StackLayout
+            BackgroundColor="#901D3E"
+            HeightRequest="170"
+            Padding="0,5"
+            VerticalOptions="Center">
+                    <Grid
+                HeightRequest="170">
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.5*"/>
                         </Grid.ColumnDefinitions>
-                        <Label 
+                        <Image 
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        Margin="5,0"
+                        Source="hamb"
+                        VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                Tapped="TapGestureRecognizer_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <StackLayout
+                        Grid.Column="1"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center">
+                            <Label
+                            FontSize="18"
+                            HorizontalOptions="Start"
+                            Margin="0,0,0,-2"
+                            Text="{Binding Productores}"
+                            TextColor="White"
+                            VerticalOptions="End"/>
+                            <Label
+                            FontSize="18"
+                            HorizontalOptions="Start"
+                            Margin="0,-2,0,0"
+                            Text="Meliponicultura"
+                            TextColor="White"
+                            VerticalOptions="Start"/>
+                        </StackLayout>
+                        <StackLayout
+                        Grid.Column="2"
+                        VerticalOptions="Center">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image 
+                            Grid.Column="0"
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="ic_chevron_left_white"
+                            VerticalOptions="Center">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                        Command="{Binding BackToolCommand, Mode=TwoWay}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Image 
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="ic_edit_white"
+                            VerticalOptions="Center">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                        Command="{Binding EditToolCommand, Mode=TwoWay}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Image 
+                            Grid.Column="2"
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="ic_save_white"
+                            VerticalOptions="Center">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                        Command="{Binding SaveToolCommand, Mode=TwoWay}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Image 
+                            Grid.Column="3"
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="ic_close_white"
+                            VerticalOptions="Center">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                        Command="{Binding BackToolCommand, Mode=TwoWay}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+                <ScrollView>
+
+                    <StackLayout 
+                HorizontalOptions="FillAndExpand"
+                Margin="10,10,20,0" 
+                Padding="0,0,0,0">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label 
                         Grid.Column="0"
                         Grid.Row="0"
                         Text="*"
                         TextColor="Red"
                         VerticalOptions="Center"/>
-                        <Label 
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.Row="0"
@@ -57,32 +136,32 @@
                         Text="¿Tiene Abejas sin aguijón?"
                         TextColor="Black"
                         VerticalOptions="Center"/>
-                        <StackLayout 
+                            <StackLayout 
                         Grid.Column="2"
                         Grid.Row="0"
                         HorizontalOptions="End"
                         Orientation="Horizontal">
-                            <Label 
+                                <Label 
                             FontSize="Medium"
                             Text="SI"
                             TextColor="Black"
                             VerticalOptions="Center"/>
-                            <Switch 
+                                <Switch 
                             IsToggled="{Binding AbejasSinAguijon, Mode=TwoWay}"
                             VerticalOptions="Center"></Switch>
-                            <Label 
+                                <Label 
                             FontSize="Medium"
                             Text="NO"
                             TextColor="Black"
                             VerticalOptions="Center"/>
-                        </StackLayout>
-                        <Label 
+                            </StackLayout>
+                            <Label 
                         Grid.Column="0"
                         Grid.Row="1"
                         Text="*"
                         TextColor="Red"
                         VerticalOptions="Center"/>
-                        <Label 
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.Row="1"
@@ -90,24 +169,24 @@
                         Text="¿Desde cuándo las tiene?"
                         TextColor="Black"
                         VerticalOptions="Center"/>
-                        <custom:CustomEntryCenter
+                            <custom:CustomEntryCenter
                         BackgroundColor="LightGray"
                         Grid.Column="2"
                         Grid.Row="1"
                         Keyboard="Numeric"
                         Text="{Binding DesdeCuando, Mode=TwoWay}"
                         VerticalOptions="Center">
-                        </custom:CustomEntryCenter>
-                    </Grid>
+                            </custom:CustomEntryCenter>
+                        </Grid>
 
-                    <Grid 
+                        <Grid 
                     Margin="0,0,0,0">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="10"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label 
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="10"></ColumnDefinition>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.Row="0"
@@ -115,34 +194,35 @@
                         Text="Inventario de especies"
                         TextColor="Black"
                         VerticalOptions="Center"  />
-                        <Image 
+                            <Image 
                         Grid.Column="2"
                         Grid.Row="0"
                         HorizontalOptions="Start"
-                        Source="ic_plus_black"
+                        Source="new_black.png"
                         VerticalOptions="Center"
                         WidthRequest="35">
-                            <Image.GestureRecognizers>
-                                <TapGestureRecognizer Command="{Binding InventarioCommand}"></TapGestureRecognizer>
-                            </Image.GestureRecognizers>
-                        </Image>
-                    </Grid>
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer Command="{Binding InventarioCommand}"></TapGestureRecognizer>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </Grid>
 
-                    <!-- GRID NUMERO 2: TABLAS-->
-                    <Grid 
+                        <!-- GRID NUMERO 2: TABLAS-->
+                    <Grid
                     Margin="0,0,0,0">
                         <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition Width="0.6*"></ColumnDefinition>
+                            <ColumnDefinition Width="0.75*"></ColumnDefinition>
                             <ColumnDefinition Width="*"></ColumnDefinition>
-                            <ColumnDefinition Width="25"></ColumnDefinition>
-                            <ColumnDefinition Width="25"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.15*"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
 
                         <custom:CustomEntryCenter
+                        FontSize="Small"
                         TextColor="Black"
                         Text="Especie"
                         HorizontalOptions="Fill"
@@ -153,6 +233,7 @@
                         Grid.Row="0"/>
 
                         <custom:CustomEntryCenter
+                        FontSize="Small"
                         Grid.Column="4"
                         Grid.Row="0"
                         HorizontalOptions="Fill"
@@ -162,6 +243,7 @@
                         TextColor="Black"
                         VerticalOptions="Fill"/>
                         <custom:CustomEntryCenter
+                        FontSize="Small"
                         Grid.Column="5"
                         Grid.Row="0"
                         HorizontalOptions="Fill"
@@ -171,6 +253,7 @@
                         TextColor="Black"
                         VerticalOptions="Fill"/>
                         <custom:CustomEntryCenter
+                        FontSize="Small"
                         Grid.Column="6"
                         Grid.Row="0"
                         HorizontalOptions="Fill"
@@ -180,6 +263,7 @@
                         VerticalOptions="Fill"
                         Margin="0"/>
                         <custom:CustomEntryCenter
+                        FontSize="Small"
                         Grid.Column="7"
                         Grid.Row="0"
                         HorizontalOptions="Fill"
@@ -187,244 +271,133 @@
                         TextColor="Black"
                         Text="Cant. en caja tecnificada"
                         VerticalOptions="Fill"/>
-                        <Image 
-                        Grid.Column="1"
-                        Grid.Row="1"
-                        HorizontalOptions="FillAndExpand"
-                        Source="close_black"
-                        VerticalOptions="FillAndExpand"/>
 
-                        <Image 
-                        Grid.Column="2"
-                        Grid.Row="1"
-                        HorizontalOptions="FillAndExpand"
-                        Source="editar_black.png"
-                        VerticalOptions="FillAndExpand"/>
-
-                        <custom:CustomEntryCenter
-                        TextColor="Black"
-                        Grid.Column="3"
-                        Grid.Row="1"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""
-                        VerticalOptions="Fill"/>
-
-                        <custom:CustomEntryCenter
-                        Grid.Column="4"
-                        Grid.Row="1"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""
-                        TextColor="Black"
-                        VerticalOptions="Fill"/>
-
-                        <custom:CustomEntryCenter
-                        Grid.Column="5"
-                        Grid.Row="1"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""
-                        TextColor="Black"
-                        VerticalOptions="Fill"/>
-                        <custom:CustomEntryCenter
-                        Grid.Column="6"
-                        Grid.Row="1"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""
-                        TextColor="Black"
-                        VerticalOptions="Fill"/>
-                        <custom:CustomEntryCenter
-                        Grid.Column="7"
-                        Grid.Row="1"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""    
-                        TextColor="Black"
-                        VerticalOptions="Fill"/>
-                        <!-- aqui viene la Fila 2-->
-                        <Image 
-                        Grid.Column="1"
-                        Grid.Row="2"
-                        HorizontalOptions="FillAndExpand"
-                        Source="close_black"
-                        VerticalOptions="FillAndExpand"/>
-                        <Image 
-                        Grid.Column="2"
-                        Grid.Row="2"
-                        HorizontalOptions="FillAndExpand"
-                        Source="editar_black.png"
-                        VerticalOptions="FillAndExpand"/>
-                        <custom:CustomEntryCenter
-                        Grid.Column="3"
-                        Grid.Row="2"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""
-                        TextColor="Black"
-                        VerticalOptions="Fill"/>
-                        <custom:CustomEntryCenter
-                        Grid.Column="4"
-                        Grid.Row="2"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""
-                        TextColor="Black"
-                        VerticalOptions="Fill"/>
-                        <custom:CustomEntryCenter
-                        Grid.Column="5"
-                        Grid.Row="2"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""
-                        TextColor="Black"
-                        VerticalOptions="Fill"/>
-                        <custom:CustomEntryCenter
-                        Grid.Column="6"
-                        Grid.Row="2"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""
-                        TextColor="Black"
-                        VerticalOptions="Fill"/>
-                        <custom:CustomEntryCenter
-                        Grid.Column="7"
-                        Grid.Row="2"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""
-                        TextColor="Black"
-                        VerticalOptions="Fill"/>
-
-                        <!--aqui viene la Fila 3-->
-                        <Image 
-                        Grid.Column="1"
-                        Grid.Row="3"
-                        HorizontalOptions="FillAndExpand"
-                        Source="close_black"
-                        VerticalOptions="FillAndExpand"/>
-
-                        <Image 
-                        Grid.Column="2"
-                        Grid.Row="3"
-                        HorizontalOptions="FillAndExpand"
-                        Source="editar_black.png"
-                        VerticalOptions="FillAndExpand"/>
-
-                        <custom:CustomEntryCenter
-                        Grid.Column="3"
-                        Grid.Row="3"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""
-                        TextColor="Black"
-                        VerticalOptions="Fill"/>
-                        <custom:CustomEntryCenter
-                        Grid.Column="4"
-                        Grid.Row="3"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""
-                        TextColor="Black"
-                        VerticalOptions="Fill"/>
-                        <custom:CustomEntryCenter
-                        Grid.Column="5"
-                        Grid.Row="3"
-                        HorizontalOptions="Fill"
-                        Text=""
-                        Margin="0"
-                        TextColor="Black"
-                        VerticalOptions="Fill"/>
-                        <custom:CustomEntryCenter
-                        Grid.Column="6"
-                        Grid.Row="3"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""
-                        TextColor="Black"
-                        VerticalOptions="Fill"/>
-                        <custom:CustomEntryCenter
-                        Grid.Column="7"
-                        Grid.Row="3"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""
-                        TextColor="Black"/>
-
-                        <!--aqui viene la Fila 4-->
-                        <Image 
-                        Grid.Column="1"
-                        Grid.Row="4"
-                        HorizontalOptions="FillAndExpand"
-                        Source="close_black"
-                        VerticalOptions="FillAndExpand"/>
-
-                        <Image 
-                        Grid.Row="4"
-                        Grid.Column="2"
-                        HorizontalOptions="FillAndExpand"
-                        Source="editar_black.png"
-                        VerticalOptions="FillAndExpand"/>
-
-                        <custom:CustomEntryCenter
-                        Text=""
-                        HorizontalOptions="Fill"
-                        VerticalOptions="Fill"
-                        TextColor="Black"
-                        Grid.Column="3"
-                        Margin="0"
-                        Grid.Row="4"/>
-                        <custom:CustomEntryCenter
-                        Text=""
-                        TextColor="Black"
-                        Grid.Column="4"
-                        Margin="0"
-                        HorizontalOptions="Fill"
-                        VerticalOptions="Fill"
-                        Grid.Row="4"/>
-                        <custom:CustomEntryCenter
-                        Grid.Column="5"
-                        Grid.Row="4"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""
-                        TextColor="Black"
-                        VerticalOptions="Fill"/>
-                        <custom:CustomEntryCenter
-                        Grid.Column="6"
-                        Grid.Row="4"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""
-                        TextColor="Black"
-                        VerticalOptions="Fill"/>
-
-                        <custom:CustomEntryCenter
-                        Grid.Column="7"
-                        Grid.Row="4"
-                        HorizontalOptions="Fill"
-                        Margin="0"
-                        Text=""
-                        TextColor="Black"
-                        VerticalOptions="Fill"/>
                     </Grid>
 
-                    <!-- VIENE EL GRID DE OTRAS ESPECIES EN ADELANTE-->
-                    <Grid 
+
+                    <!-- aqui empieza el previewer-->
+                    <StackLayout HeightRequest="{Binding HeighListViewB, Mode=TwoWay}"
+                             Margin="1,0,0,0"
+                             x:Name="StacklayoutHeigh">
+                        <ListView ItemsSource="{Binding InventariosMeliponicultura}"
+                      x:Name="listview"
+                      SeparatorVisibility="None"
+                      SeparatorColor="#910b20"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      Margin="0,0,0,0">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Margin="0,0,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                                                <ColumnDefinition Width="25"></ColumnDefinition>
+                                                <ColumnDefinition Width="25"></ColumnDefinition>
+                                                <ColumnDefinition Width="0.6*"></ColumnDefinition>
+                                                <ColumnDefinition Width="0.75*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="1.15*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Image 
+                                                Grid.Column="1"
+                                                Grid.Row="0"
+                                                HorizontalOptions="FillAndExpand"
+                                                Source="close_black.png"
+                                                VerticalOptions="FillAndExpand">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding SelectedEliminarCommand}"></TapGestureRecognizer>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Image 
+                                                 Grid.Column="2"
+                                                 Grid.Row="0"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Source="editar_black.png"
+                                                 VerticalOptions="FillAndExpand">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding SelectedEditarCommand}"></TapGestureRecognizer>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+
+                                            <custom:CustomEntryCenter
+                                                TextColor="Black"
+                                                FontSize="Small"
+                                                Grid.Column="3"
+                                                Grid.Row="0"
+                                                HorizontalOptions="Fill"
+                                                Margin="0"
+                                                Text="{Binding Especie, Mode=TwoWay}"
+                                                VerticalOptions="Fill"/>
+
+                                            <custom:CustomEntryCenter
+                                                 FontSize="Small"
+                                                 Grid.Column="4"
+                                                 Grid.Row="0"
+                                                 HorizontalOptions="Fill"
+                                                 Margin="0"
+                                                 Text="{Binding CantidadTronco, Mode=TwoWay}"
+                                                 TextColor="Black"
+                                                 VerticalOptions="Fill"/>
+
+                                            <custom:CustomEntryCenter
+                                                 FontSize="Small"
+                                                 Grid.Column="5"
+                                                 Grid.Row="0"
+                                                 HorizontalOptions="Fill"
+                                                 Margin="0"
+                                                 Text="{Binding CantidadArtificial,Mode=TwoWay}"
+                                                 TextColor="Black"
+                                                 VerticalOptions="Fill"/>
+                                            <custom:CustomEntryCenter
+                                                FontSize="Small"
+                                                Grid.Column="6"
+                                                Grid.Row="0"
+                                                HorizontalOptions="Fill"
+                                                Margin="0"
+                                                Text="{Binding CantidadRustica, Mode=TwoWay}"
+                                                TextColor="Black"
+                                                VerticalOptions="Fill"/>
+                                            <custom:CustomEntryCenter
+                                                FontSize="Small"
+                                                Grid.Column="7"
+                                                Grid.Row="0"
+                                                HorizontalOptions="Fill"
+                                                 Margin="0"
+                                                 Text="{Binding CantidadTecnificada, Mode=TwoWay}"    
+                                                 TextColor="Black"
+                                                 VerticalOptions="Fill"/>
+
+                                        </Grid>
+
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+
+
+
+
+
+
+                        <!-- VIENE EL GRID DE OTRAS ESPECIES EN ADELANTE-->
+                        <Grid 
                     Margin="0,-5,0,-5">
-                        <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="Auto"></ColumnDefinition>
-                            <ColumnDefinition Width="2.5*"></ColumnDefinition>
-                            <ColumnDefinition Width="*"></ColumnDefinition>
-                        </Grid.ColumnDefinitions>
-                        <Label 
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label 
                         Grid.Column="0"
                         Grid.Row="0"
                         Text="*"
                         TextColor="Red"
                         VerticalOptions="End"/>
-                        <Label 
+                            <Label 
                         Grid.Column="1"
                         Grid.Row="0"
                         FontSize="Medium"
@@ -432,7 +405,7 @@
                         Text="Otras especies"
                         TextColor="Black"
                         VerticalOptions="End"/>
-                        <custom:CustomEntry
+                            <custom:CustomEntry
                         Grid.ColumnSpan="2"
                         Grid.Row="1"
                         Grid.Column="1"
@@ -441,13 +414,13 @@
                         Text="{Binding OtrasEspecies, Mode=TwoWay}"
                         TextColor="Black"/>
 
-                        <Label 
+                            <Label 
                         Grid.Column="0"
                         Grid.Row="2"
                         Text="*"
                         TextColor="Red"
                         VerticalOptions="End"/>
-                        <Label 
+                            <Label 
                         Grid.Column="1"
                         Grid.Row="2"
                         FontSize="Medium"
@@ -455,7 +428,7 @@
                         Text="¿Dónde y cómo obtuvo esas colmenas?"
                         TextColor="Black"
                         VerticalOptions="End"/>
-                        <custom:CustomEntry
+                            <custom:CustomEntry
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
                         Grid.Row="3"
@@ -463,7 +436,7 @@
                         Margin="0"
                         Text="{Binding ComoObtuvoColmena, Mode=TwoWay}"    
                         TextColor="Black"/>
-                        <Label 
+                            <Label 
                         Grid.Column="1"
                         Grid.Row="4"
                         FontSize="Medium"
@@ -472,13 +445,13 @@
                         TextColor="#db6262"
                         VerticalOptions="Center"/>
 
-                        <Label 
+                            <Label 
                         Grid.Column="0"
                         Grid.Row="5"
                         Text="*"
                         TextColor="Red"
                         VerticalOptions="Center"/>
-                        <Label 
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.Row="5"
@@ -487,33 +460,33 @@
                         TextColor="Black"
                         VerticalOptions="Center"/>
 
-                        <StackLayout 
+                            <StackLayout 
                         Grid.Column="2"
                         Grid.Row="5"
                         HorizontalOptions="End"
                         Orientation="Horizontal">
-                            <Label 
+                                <Label 
                             FontSize="Medium"
                             Text="SI"
                             TextColor="Black"
                             VerticalOptions="Center"/>
-                            <Switch 
+                                <Switch 
                             IsToggled="{Binding ProduceMiel, Mode=TwoWay}"
                             VerticalOptions="Center"/>
-                            <Label 
+                                <Label 
                             FontSize="Medium"
                             Text="NO"
                             TextColor="Black"
                             VerticalOptions="Center"/>
-                        </StackLayout>
+                            </StackLayout>
 
-                        <Label 
+                            <Label 
                         Grid.Column="0"
                         Grid.Row="6"
                         Text="*"
                         TextColor="Red"
                         VerticalOptions="End"/>
-                        <Label 
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.Row="6"
@@ -521,7 +494,7 @@
                         Text="¿Cómo la cosecha?"
                         TextColor="Black"
                         VerticalOptions="End"/>
-                        <custom:CustomEntry
+                            <custom:CustomEntry
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
                         Grid.Row="7"
@@ -530,13 +503,13 @@
                         Text="{Binding ComoCosecha, Mode=TwoWay}"
                         TextColor="Black"/>
 
-                        <Label 
+                            <Label 
                         Grid.Column="0"
                         Grid.Row="8"
                         Text="*"
                         TextColor="Red"
                         VerticalOptions="End"/>
-                        <Label 
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.Row="8"
@@ -544,7 +517,7 @@
                         Text="¿Cuál es el destino de la miel?"
                         TextColor="Black"
                         VerticalOptions="End"/>
-                        <Picker 
+                            <Picker 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
@@ -552,19 +525,19 @@
                         HorizontalOptions="FillAndExpand"
                         SelectedItem="{Binding SelectedOption}"
                         Title="Seleccione">
-                            <Picker.Items>
-                                <x:String>Venta</x:String>
-                                <x:String>Autoconsumo</x:String>
-                                <x:String>Venta y Autoconsumo</x:String>
-                            </Picker.Items>
-                        </Picker>
-                        <Label 
+                                <Picker.Items>
+                                    <x:String>Venta</x:String>
+                                    <x:String>Autoconsumo</x:String>
+                                    <x:String>Venta y Autoconsumo</x:String>
+                                </Picker.Items>
+                            </Picker>
+                            <Label 
                         Grid.Column="0"
                         Grid.Row="10"
                         Text="*"
                         TextColor="Red"
                         VerticalOptions="End"/>
-                        <Label 
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.Row="10"
@@ -572,7 +545,7 @@
                         Text="Especificar a donde se vende"
                         TextColor="Black"
                         VerticalOptions="End"/>
-                        <custom:CustomEntry
+                            <custom:CustomEntry
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
                         Grid.Row="11"
@@ -581,13 +554,13 @@
                         Text="{Binding DondeSeVende, Mode=TwoWay}"
                         TextColor="Black"/>
 
-                        <Label 
+                            <Label 
                         Grid.Column="0"
                         Grid.Row="12"
                         Text="*"
                         TextColor="Red"
                         VerticalOptions="End"/>
-                        <Label 
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.Row="12"
@@ -595,7 +568,7 @@
                         Text="Precio de venta"
                         TextColor="Black"
                         VerticalOptions="End"/>
-                        <custom:CustomEntry
+                            <custom:CustomEntry
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
                         Grid.Row="13"
@@ -605,7 +578,7 @@
                         Text="{Binding PrecioVenta, Mode=TwoWay}"
                         TextColor="Black"/>
 
-                        <Label 
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.Row="14"
@@ -614,13 +587,13 @@
                         TextColor="#db6262"
                         VerticalOptions="Center"/>
 
-                        <Label 
+                            <Label 
                         Grid.Column="0"
                         Grid.Row="15"
                         Text="*"
                         TextColor="Red"
                         VerticalOptions="End"/>
-                        <Label 
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.Row="15"
@@ -628,7 +601,7 @@
                         Text="¿Dónde se coloca las colmenas?"
                         TextColor="Black"
                         VerticalOptions="End"/>
-                        <Picker 
+                            <Picker 
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
                         Grid.Row="16"
@@ -636,19 +609,13 @@
                         HorizontalOptions="FillAndExpand"
                         SelectedItem="{Binding DondeColocaColmena}"
                         Title="Seleccione">
-                            <Picker.Items>
-                                <x:String>Sin Meliponario</x:String>
-                                <x:String>Meliponario Individual</x:String>
-                                <x:String>Meliponario Gregario</x:String>
-                            </Picker.Items>
-                        </Picker>
-                        <Label 
-                        Grid.Column="0"
-                        Grid.Row="17"
-                        Text="*"
-                        TextColor="Red"
-                        VerticalOptions="End"/>
-                        <Label 
+                                <Picker.Items>
+                                    <x:String>Sin Meliponario</x:String>
+                                    <x:String>Meliponario Individual</x:String>
+                                    <x:String>Meliponario Gregario</x:String>
+                                </Picker.Items>
+                            </Picker>
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.Row="17"
@@ -656,7 +623,7 @@
                         Text="¿Dónde se ubican las colmenas/el meliponario?"
                         TextColor="Black"
                         VerticalOptions="End"/>
-                        <custom:CustomEntry
+                            <custom:CustomEntry
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.Row="18"
@@ -666,13 +633,13 @@
                         Text="{Binding DondeUbicanColmenas, Mode=TwoWay}"
                         TextColor="Black"/>
 
-                        <Label 
+                            <Label 
                         Grid.Column="0"
                         Grid.Row="19"
                         Text="*"
                         TextColor="Red"
                         VerticalOptions="End"/>
-                        <Label 
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.Row="19"
@@ -680,7 +647,7 @@
                         Text="Diagnóstico visual del meliponario y de su entorno"
                         TextColor="Black"
                         VerticalOptions="End"/>
-                        <custom:CustomEntry
+                            <custom:CustomEntry
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
                         Grid.Row="20"
@@ -689,13 +656,13 @@
                         Text="{Binding DiagnosticoMeliponario, Mode=TwoWay}"
                         TextColor="Black"/>
 
-                        <Label 
+                            <Label 
                         Grid.Column="0"
                         Grid.Row="21"
                         Text="*"
                         TextColor="Red"
                         VerticalOptions="End"/>
-                        <Label 
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.Row="21"
@@ -704,7 +671,7 @@
                         TextColor="Black"
                         VerticalOptions="End"/>
 
-                        <Picker 
+                            <Picker 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
@@ -712,20 +679,20 @@
                         HorizontalOptions="FillAndExpand"
                         SelectedItem="{Binding PotencialLugarTenerAbejas}"
                         Title="Seleccione">
-                            <Picker.Items>
-                                <x:String>Inadecuado</x:String>
-                                <x:String>Favorable</x:String>
-                                <x:String>Muy Favorable</x:String>
-                            </Picker.Items>
-                        </Picker>
+                                <Picker.Items>
+                                    <x:String>Inadecuado</x:String>
+                                    <x:String>Favorable</x:String>
+                                    <x:String>Muy Favorable</x:String>
+                                </Picker.Items>
+                            </Picker>
 
-                        <Label 
+                            <Label 
                         Grid.Column="0"
                         Grid.Row="23"
                         Text="*"
                         TextColor="Red"
                         VerticalOptions="End"/>
-                        <Label 
+                            <Label 
                         Grid.Column="1"
                         Grid.Row="23"
                         FontSize="Medium"
@@ -734,7 +701,7 @@
                         TextColor="Black"
                         VerticalOptions="End"/>
 
-                        <Picker 
+                            <Picker 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
@@ -742,126 +709,119 @@
                         HorizontalOptions="FillAndExpand"
                         SelectedItem="{Binding RiesgoRobo}"
                         Title="Seleccione">
-                            <Picker.Items>
-                                <x:String>Mínimo</x:String>
-                                <x:String>Limitado</x:String>
-                                <x:String>Alto</x:String>
-                            </Picker.Items>
-                        </Picker>
-                        <Label 
+                                <Picker.Items>
+                                    <x:String>Mínimo</x:String>
+                                    <x:String>Limitado</x:String>
+                                    <x:String>Alto</x:String>
+                                </Picker.Items>
+                            </Picker>
+                            <Image
+                        BackgroundColor="Gray"
+                        Grid.Column="0"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="25"
+                        Grid.RowSpan="3"
+                        Margin="10,0,0,0"/>
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
-                        Grid.Row="25"
+                        Grid.Row="28"
                         HorizontalOptions="StartAndExpand"
                         Text="Intereses y conocimientos"
                         TextColor="#db6262"
                         VerticalOptions="Center"/>
 
-                        <Label 
-                        Grid.Column="0"
-                        Grid.Row="26"
-                        Text="*"
-                        TextColor="Red"
-                        VerticalOptions="End"/>
-                        <Label 
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
-                        Grid.Row="26"
+                        Grid.Row="29"
                         HorizontalOptions="StartAndExpand"
-                        Text="¿Cuál es su motivación para tenerla?"
+                        Text="¿Cuál es su motivación para tenerlas?"
                         TextColor="Black"
                         VerticalOptions="End"/>
-                        <custom:CustomEntry
+                            <custom:CustomEntry
                         Grid.Column="1"
-                        Grid.Row="27"
+                        Grid.Row="30"
                         Grid.ColumnSpan="2"
                         HorizontalOptions="Fill"
                         Margin="0"
                         Text="{Binding MotivacionTenerla, Mode=TwoWay}"
                         TextColor="Black"/>
-
-                        <Label 
-                        Grid.Column="0"
-                        Grid.Row="28"
-                        Text="*"
-                        TextColor="Red"
-                        VerticalOptions="End"/>
-                        <Label 
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
-                        Grid.Row="28"
+                        Grid.Row="31"
                         HorizontalOptions="StartAndExpand"
                         Text="¿Cómo aprendió a criarlas?"
                         TextColor="Black"
                         VerticalOptions="End"/>
-                        <custom:CustomEntry
+                            <custom:CustomEntry
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
-                        Grid.Row="29"
+                        Grid.Row="32"
                         HorizontalOptions="Fill"
                         Margin="0"
                         Text="{Binding ComoAprendioCriarlas, Mode=TwoWay}"
                         TextColor="Black"/>
 
-                        <Label 
+                            <Label 
                         Grid.Column="0"
-                        Grid.Row="30"
+                        Grid.Row="33"
                         Text="*"
                         TextColor="Red"
                         VerticalOptions="End"/>
-                        <Label 
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
-                        Grid.Row="30"
+                        Grid.Row="33"
                         HorizontalOptions="StartAndExpand"
                         Text="Nivel de conocimiento"
                         TextColor="Black"
                         VerticalOptions="End"/>
 
-                        <Picker 
+                            <Picker 
                         FontSize="Medium"
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
-                        Grid.Row="31"
+                        Grid.Row="34"
                         HorizontalOptions="FillAndExpand"
                         SelectedItem="{Binding NivelConocimiento}"
                         Title="Seleccione">
-                            <Picker.Items>
-                                <x:String>Principiante</x:String>
-                                <x:String>Regular</x:String>
-                                <x:String>Profesional</x:String>
-                            </Picker.Items>
-                        </Picker>
-
-                        <Label 
+                                <Picker.Items>
+                                    <x:String>Principiante</x:String>
+                                    <x:String>Regular</x:String>
+                                    <x:String>Profesional</x:String>
+                                </Picker.Items>
+                            </Picker>
+                            <Label 
                         Grid.Column="0"
-                        Grid.Row="32"
+                        Grid.Row="35"
                         Text="*"
                         TextColor="Red"
                         VerticalOptions="End"/>
-                        <Label 
+                            <Label 
                         FontSize="Medium"
                         Grid.Column="1"
-                        Grid.Row="32"
+                        Grid.Row="35"
                         HorizontalOptions="StartAndExpand"
                         Text="Comentario meliponicultura"
                         TextColor="Black"
                         VerticalOptions="End"/>
-                        <custom:CustomEditor
+                            <custom:CustomEditor
                         FontSize="Medium"
                         Text="{Binding ComentarioMeliponicultura, Mode=TwoWay}"
                         TextColor="Black"
                         Grid.Column="1"
                         Grid.ColumnSpan="2"
-                        Grid.Row="33"
+                        Grid.Row="36"
                         HorizontalOptions="Fill"
                         Margin="0"/>
-                    </Grid>
-                    <!-- estos son los BOTONES-->
-                    <StackLayout
+                        </Grid>
+                        <!-- estos son los BOTONES-->
+                        <StackLayout
                     Margin="10,15,0,10">
-                        <Button 
-                        BackgroundColor="#910b20"
+                            <Button 
+                        BackgroundColor="#901D3E"
                         BorderRadius="8"
                         Command="{Binding GuardarCommand}"
                         FontAttributes="Bold"
@@ -872,8 +832,8 @@
                         Text="Guardar"
                         TextColor="White"/>
 
-                        <Button 
-                        BackgroundColor="#910b20"
+                            <Button 
+                        BackgroundColor="#901D3E"
                         BorderRadius="8"
                         Command="{Binding VolverCommand}"
                         FontAttributes="Bold"
@@ -883,8 +843,9 @@
                         IsEnabled="True"
                         Text="Volver"
                         TextColor="White"/>
+                        </StackLayout>
                     </StackLayout>
-                </StackLayout>
-            </ScrollView>
+                </ScrollView>
+            </StackLayout>
         </ContentPage.Content>
     </ContentPage>

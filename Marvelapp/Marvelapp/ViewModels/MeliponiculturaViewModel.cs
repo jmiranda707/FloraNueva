@@ -1,231 +1,32 @@
-﻿using GalaSoft.MvvmLight.Command;
-using Marvelapp.Views;
-using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using Marvelapp.Views;
+using GalaSoft.MvvmLight.Command;
+using System.ComponentModel;
 using System.Windows.Input;
 using Xamarin.Forms;
+using System;
+using System.Collections.ObjectModel;
+using Marvelapp.Models;
 
 namespace Marvelapp.ViewModels
 {
-    public class MeliponiculturaViewModel :BaseViewModel
+    public class MeliponiculturaViewModel : INotifyPropertyChanged
     {
+        #region INotifyPropertyChanged
+        public event PropertyChangedEventHandler PropertyChanged;
 
-        #region Properties
-        public bool IsEnabled
+        protected void OnPropertyChanged(string propertyName)
         {
-            get
-            {
-                return isEnabled;
-            }
-            set
-            {
-                SetValue(ref isEnabled, value);
-            }
-        }
-        public bool ProduceMiel
-        {
-            get
-            {
-                return produceMiel;
-            }
-            set
-            {
-                SetValue(ref produceMiel, value);
-            }
-        }
-        public bool AbejasSinAguijon
-        {
-            get
-            {
-                return abejasSinAguijon;
-            }
-            set
-            {
-                SetValue(ref abejasSinAguijon, value);
-            }
-        }
-        public int DesdeCuando
-        {
-            get
-            {
-                return desdeCuando;
-            }
-            set
-            {
-                SetValue(ref desdeCuando, value);
-            }
-        }
-
-        public string OtrasEspecies
-        {
-            get
-            {
-                return otrasEspecies;
-            }
-            set
-            {
-                SetValue(ref otrasEspecies, value);
-            }
-        }
-
-        public string ComoObtuvoColmena
-        {
-            get
-            {
-                return comoObtuvoColmena;
-            }
-            set
-            {
-                SetValue(ref comoObtuvoColmena, value);
-            }
-        }
-        public string ComoCosecha
-        {
-            get
-            {
-                return comoCosecha;
-            }
-            set
-            {
-                SetValue(ref comoCosecha, value);
-            }
-        }
-        public string SelectedOption
-        {
-            get
-            {
-                return selectedOption;
-            }
-            set
-            {
-                SetValue(ref selectedOption, value);
-            }
-        }
-        public string DondeSeVende
-        {
-            get
-            {
-                return dondeSeVende;
-            }
-            set
-            {
-                SetValue(ref dondeSeVende, value);
-            }
-        }
-        public int PrecioVenta
-        {
-            get
-            {
-                return precioVenta;
-            }
-            set
-            {
-                SetValue(ref precioVenta, value);
-            }
-        }
-        public string DondeColocaColmena
-        {
-            get
-            {
-                return dondeColocaColmena;
-            }
-            set
-            {
-                SetValue(ref dondeColocaColmena, value);
-            }
-        }
-        public string DondeUbicanColmenas
-        {
-            get
-            {
-                return dondeUbicanColmenas;
-            }
-            set
-            {
-                SetValue(ref dondeUbicanColmenas, value);
-            }
-        }
-        public string DiagnosticoMeliponario
-        {
-            get
-            {
-                return diagnosticoMeliponario;
-            }
-            set
-            {
-                SetValue(ref diagnosticoMeliponario, value);
-            }
-        }
-        public string PotencialLugarTenerAbejas
-        {
-            get
-            {
-                return potencialLugarTenerAbejas;
-            }
-            set
-            {
-                SetValue(ref potencialLugarTenerAbejas, value);
-            }
-        }
-        public string RiesgoRobo
-        {
-            get
-            {
-                return riesgoRobo;
-            }
-            set
-            {
-                SetValue(ref riesgoRobo, value);
-            }
-        }
-        public string MotivacionTenerla
-        {
-            get
-            {
-                return motivacionTenerla;
-            }
-            set
-            {
-                SetValue(ref motivacionTenerla, value);
-            }
-        }
-        public string ComoAprendioCriarlas
-        {
-            get
-            {
-                return comoAprendioCriarlas;
-            }
-            set
-            {
-                SetValue(ref comoAprendioCriarlas, value);
-            }
-        }
-        public string NivelConocimiento
-        {
-            get
-            {
-                return nivelConocimiento;
-            }
-            set
-            {
-                SetValue(ref nivelConocimiento, value);
-            }
-        }
-        public string ComentarioMeliponicultura
-        {
-            get
-            {
-                return comentarioMeliponicultura;
-            }
-            set
-            {
-                SetValue(ref comentarioMeliponicultura, value);
-            }
+            var handler = PropertyChanged;
+            if (handler != null)
+                handler(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
 
         #region Attributes
+        private Double heighListB;
+        int Elementos;
+        int i;
+        private ObservableCollection<Inventario> inventariomeliponicultura;
         private bool isEnabled;
         private string comentarioMeliponicultura;
         private string nivelConocimiento;
@@ -245,6 +46,224 @@ namespace Marvelapp.ViewModels
         private string comoObtuvoColmena;
         private int desdeCuando;
         private string otrasEspecies;
+        string _productores;
+        #endregion
+
+        #region Properties
+        public Double HeighListViewB
+        {
+            get
+            {
+                return heighListB;
+            }
+            set
+            {
+                if (heighListB != value)
+                {
+                    heighListB = value;
+                    PropertyChanged?.Invoke(
+                                            this,
+                                            new PropertyChangedEventArgs(nameof(HeighListViewB)));
+                }
+            }
+        }
+        public ObservableCollection<Inventario> InventariosMeliponicultura
+        {
+            get
+            {
+                return inventariomeliponicultura;
+            }
+            set
+            {
+                if (inventariomeliponicultura != value)
+                {
+                    inventariomeliponicultura = value;
+                    PropertyChanged?.Invoke(
+                                            this,
+                                            new PropertyChangedEventArgs(nameof(InventariosMeliponicultura)));
+                }
+            }
+        }
+        public string Productores
+        {
+            get { return _productores; }
+            set
+            {
+                _productores = value;
+                OnPropertyChanged("Productores");
+            }
+        }
+        public bool IsEnabled
+        {
+            get { return isEnabled; }
+            set
+            {
+                isEnabled = value;
+                OnPropertyChanged("IsEnabled");
+            }
+        }
+        public bool ProduceMiel
+        {
+            get { return produceMiel; }
+            set
+            {
+                produceMiel = value;
+                OnPropertyChanged("ProduceMiel");
+            }
+        }
+        public bool AbejasSinAguijon
+        {
+            get { return abejasSinAguijon; }
+            set
+            {
+                abejasSinAguijon = value;
+                OnPropertyChanged("AbejasSinAguijon");
+            }
+        }
+        public int DesdeCuando
+        {
+            get { return desdeCuando; }
+            set
+            {
+                desdeCuando = value;
+                OnPropertyChanged("DesdeCuando");
+            }
+        }
+        public string OtrasEspecies
+        {
+            get { return otrasEspecies; }
+            set
+            {
+                otrasEspecies = value;
+                OnPropertyChanged("OtrasEspecies");
+            }
+        }
+        public string ComoObtuvoColmena
+        {
+            get { return comoObtuvoColmena; }
+            set
+            {
+                comoObtuvoColmena = value;
+                OnPropertyChanged("ComoObtuvoColmena");
+            }
+        }
+        public string ComoCosecha
+        {
+            get { return comoCosecha; }
+            set
+            {
+                comoCosecha = value;
+                OnPropertyChanged("ComoCosecha");
+            }
+        }
+        public string SelectedOption
+        {
+            get { return selectedOption; }
+            set
+            {
+                selectedOption = value;
+                OnPropertyChanged("SelectedOption");
+            }
+        }
+        public string DondeSeVende
+        {
+            get { return dondeSeVende; }
+            set
+            {
+                dondeSeVende = value;
+                OnPropertyChanged("DondeSeVende");
+            }
+        }
+        public int PrecioVenta
+        {
+            get { return precioVenta; }
+            set
+            {
+                precioVenta = value;
+                OnPropertyChanged("PrecioVenta");
+            }
+        }
+        public string DondeColocaColmena
+        {
+            get { return dondeColocaColmena; }
+            set
+            {
+                dondeColocaColmena = value;
+                OnPropertyChanged("DondeColocaColmena");
+            }
+        }
+        public string DondeUbicanColmenas
+        {
+            get { return dondeUbicanColmenas; }
+            set
+            {
+                dondeUbicanColmenas = value;
+                OnPropertyChanged("DondeUbicanColmenas");
+            }
+        }
+        public string DiagnosticoMeliponario
+        {
+            get { return diagnosticoMeliponario; }
+            set
+            {
+                diagnosticoMeliponario = value;
+                OnPropertyChanged("DiagnosticoMeliponario");
+            }
+        }
+        public string PotencialLugarTenerAbejas
+        {
+            get { return potencialLugarTenerAbejas; }
+            set
+            {
+                potencialLugarTenerAbejas = value;
+                OnPropertyChanged("PotencialLugarTenerAbejas");
+            }
+        }
+        public string RiesgoRobo
+        {
+            get { return riesgoRobo; }
+            set
+            {
+                riesgoRobo = value;
+                OnPropertyChanged("RiesgoRobo");
+            }
+        }
+        public string MotivacionTenerla
+        {
+            get { return motivacionTenerla; }
+            set
+            {
+                motivacionTenerla = value;
+                OnPropertyChanged("MotivacionTenerla");
+            }
+        }
+        public string ComoAprendioCriarlas
+        {
+            get { return comoAprendioCriarlas; }
+            set
+            {
+                comoAprendioCriarlas = value;
+                OnPropertyChanged("ComoAprendioCriarlas");
+            }
+        }
+        public string NivelConocimiento
+        {
+            get { return nivelConocimiento; }
+            set
+            {
+                nivelConocimiento = value;
+                OnPropertyChanged("NivelConocimiento");
+            }
+        }
+        public string ComentarioMeliponicultura
+        {
+            get { return comentarioMeliponicultura; }
+            set
+            {
+                comentarioMeliponicultura = value;
+                OnPropertyChanged("ComentarioMeliponicultura");
+            }
+        }
         #endregion
 
         #region ApiServices
@@ -254,7 +273,18 @@ namespace Marvelapp.ViewModels
         #region constructors
         public MeliponiculturaViewModel()
         {
+            
+            instance = this;
+            InventariosMeliponicultura = InventarioEspeciesViewModel.GetInstance().Inventarios; //obtengo los datos de mi lista en InventarioEspeciesViewModel
+            HeighListViewB = InventarioEspeciesViewModel.GetInstance().HeighListView; //obtengo el heigh de InventarioEspeciesViewModel
+            string productores; //esto es provicional, debe eliminarse la condicion
+            if (Application.Current.Properties.ContainsKey("Productores")) 
+            {
+                 productores = Application.Current.Properties["Productores"] as string;
+            }
+            else { productores = "Alejandro Navarro"; }
 
+            this.Productores = productores;
         }
         #endregion
 
@@ -280,25 +310,55 @@ namespace Marvelapp.ViewModels
                 return new RelayCommand(Volver);
             }
         }
+        public ICommand BackToolCommand
+        {
+            get
+            {
+                return new RelayCommand(BackTool);
+            }
+        }
+        public ICommand EditToolCommand
+        {
+            get
+            {
+                return new RelayCommand(EditTool);
+            }
+        }
+        public ICommand SaveToolCommand
+        {
+            get
+            {
+                return new RelayCommand(SaveTool);
+            }
+        }
+        public ICommand CloseToolCommand
+        {
+            get
+            {
+                return new RelayCommand(CloseTool);
+            }
+        }
         #endregion
 
         #region Methods
-        private async void Inventario()
+        async void Inventario()
         {
-            
-            await Application.Current.MainPage.Navigation.PushAsync(new InventarioEspecies());
+            await Application.Current.MainPage.Navigation.PushAsync(new InventarioEspeciesPage());
         }
         private async void Guardar()
         {
-            #region Validaciones  
+            IsEnabled = false;
+            #region OJOOOO Descomentar Todo Esto
+            /*
+              #region Validaciones  
             if (string.IsNullOrEmpty(OtrasEspecies) ||
                 string.IsNullOrEmpty(ComoObtuvoColmena) ||
                 string.IsNullOrEmpty(ComoCosecha) ||
                 string.IsNullOrEmpty(SelectedOption) ||
                 string.IsNullOrEmpty(DondeColocaColmena) ||
-                (PrecioVenta== 0) ||
+                (PrecioVenta == 0) ||
                 string.IsNullOrEmpty(PrecioVenta.ToString()) ||
-                (DesdeCuando== 0) ||
+                (DesdeCuando == 0) ||
                 string.IsNullOrEmpty(DesdeCuando.ToString()) ||
                 string.IsNullOrEmpty(DondeColocaColmena) ||
                 string.IsNullOrEmpty(DondeUbicanColmenas) ||
@@ -309,9 +369,10 @@ namespace Marvelapp.ViewModels
                 string.IsNullOrEmpty(ComoAprendioCriarlas) ||
                 string.IsNullOrEmpty(NivelConocimiento) ||
                 string.IsNullOrEmpty(ComentarioMeliponicultura))
-                 
+
             {
                 await Application.Current.MainPage.DisplayAlert("Mensaje", "Por Favor Llene los Campos Obligatorios", "Aceptar");
+                IsEnabled = true;
                 return;
             }
             #endregion
@@ -334,12 +395,108 @@ namespace Marvelapp.ViewModels
                 ComoCosecha = string.Empty;
                 SelectedOption = string.Empty;
                 DondeColocaColmena = string.Empty;
-            }
-        }
-        private async void Volver()
-        {
+                IsEnabled = true;
 
+            }
+            */
+            #endregion
+
+            #region Limpiar Cache //borrar los datos existentes en persistencia
+
+            if (Application.Current.Properties.ContainsKey("ContadorInventarios"))
+            {
+                Elementos = int.Parse((Application.Current.Properties["ContadorInventarios"]) as string);
+            }
+            else { Elementos = 0; }
+            for (int j = 0; j < Elementos; j++) //Elementos va a representar el total de elementos o filas existentes en mi persistencia
+            {
+                if (Application.Current.Properties.ContainsKey("Especie" + j))
+                {
+                    Application.Current.Properties.Remove("Especie" + j);
+                }
+                if (Application.Current.Properties.ContainsKey("CantidadTronco" + j))
+                {
+                    Application.Current.Properties.Remove("CantidadTronco" + j);
+                }
+                if (Application.Current.Properties.ContainsKey("CantidadArtificial"))
+                {
+                    Application.Current.Properties.Remove("CantidadArtificial");
+                }
+                if (Application.Current.Properties.ContainsKey("CantidadRustica"))
+                {
+                    Application.Current.Properties.Remove("CantidadRustica");
+                }
+                if (Application.Current.Properties.ContainsKey("CantidadTecnificada"))
+                {
+                    Application.Current.Properties.Remove("CantidadTecnificada");
+                }
+                
+            }
+
+            #endregion
+
+            #region Ciclo para Guardar en Persistencia mi lista Actual
+            i = 0; //inicio el contador de mis elementos o filas en (0)
+            foreach (var inventario in InventariosMeliponicultura)
+            {
+                Application.Current.Properties["Especie" + i] = inventario.Especie.ToString();
+                Application.Current.Properties["CantidadTronco" + i] = inventario.CantidadTronco.ToString();
+                Application.Current.Properties["CantidadArtificial" + i] = inventario.CantidadArtificial.ToString();
+                Application.Current.Properties["CantidadRustica" + i] = inventario.CantidadRustica.ToString();
+                Application.Current.Properties["CantidadTecnificada" + i] = inventario.CantidadTecnificada.ToString();
+                i++;
+                Application.Current.Properties["ContadorInventarios"] = i.ToString();
+                await Application.Current.SavePropertiesAsync();
+            }
+
+            #endregion
+
+            int filas;
+            filas = InventariosMeliponicultura.Count;
+            Application.Current.Properties["ContadorInventarios"] = filas.ToString();
+            await Application.Current.SavePropertiesAsync();
+            HeighListViewB = 44 * filas;//actalizo mi heigh
+            InventarioEspeciesViewModel.GetInstance().Inventarios = this.InventariosMeliponicultura; //asigno los datos de mi lista 
+            await Application.Current.MainPage.DisplayAlert("Notificación", "Hay: " + filas + " Elementos en Inventario", "Excelente");
+
+
+
+        }
+        async void Volver()
+        {
             await Application.Current.MainPage.Navigation.PopAsync();
+        }
+        async void CloseTool()
+        {
+            await Application.Current.MainPage.Navigation.PopAsync();
+        }
+        void SaveTool()
+        {
+            Guardar();
+        }
+        async void EditTool()
+        {
+            await Application.Current.MainPage.DisplayAlert(
+                "Hola",
+                "EditTool",
+                "Aceptar");
+        }
+
+        async void BackTool()
+        {
+            await Application.Current.MainPage.Navigation.PopAsync();
+        }
+        #endregion
+
+        #region Singleton 
+        private static MeliponiculturaViewModel instance;
+        public static MeliponiculturaViewModel GetInstance()
+        {
+            if (instance == null)
+            {
+                return new MeliponiculturaViewModel();
+            }
+            return instance;
         }
         #endregion
     }

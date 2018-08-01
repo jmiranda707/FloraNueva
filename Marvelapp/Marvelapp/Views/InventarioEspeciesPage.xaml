@@ -1,0 +1,285 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marvelapp.Views.InventarioEspeciesPage"
+             xmlns:viewModels="clr-namespace:Marvelapp.ViewModels"
+             xmlns:custom="clr-namespace:Marvelapp.Customs"
+             Title="Inventario de Especies">
+        <ContentPage.BindingContext>
+            <viewModels:InventarioEspeciesViewModel/>
+        </ContentPage.BindingContext>
+        <ContentPage.Content>
+            <StackLayout>
+                <StackLayout
+            BackgroundColor="#901D3E"
+            HeightRequest="70"
+            Padding="0,5"
+            VerticalOptions="Center">
+                    <Grid
+                HeightRequest="70">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.2*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="0.5*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image 
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        Margin="5,0"
+                        Source="hamb"
+                        VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                Tapped="TapGestureRecognizer_Tapped"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <StackLayout
+                        Grid.Column="1"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center">
+                            <Label
+                            FontSize="18"
+                            HorizontalOptions="Start"
+                            Margin="0,0,0,-2"
+                            Text="{Binding Productores}"
+                            TextColor="White"
+                            VerticalOptions="End"/>
+                            <Label
+                            FontSize="18"
+                            HorizontalOptions="Start"
+                            Margin="0,-2,0,0"
+                            Text="Inventario de Especies"
+                            TextColor="White"
+                            VerticalOptions="Start"/>
+                        </StackLayout>
+                        <StackLayout
+                        Grid.Column="2"
+                        VerticalOptions="Center">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Image 
+                            Grid.Column="0"
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="ic_chevron_left_white"
+                            VerticalOptions="Center">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                        Command="{Binding BackToolCommand, Mode=TwoWay}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Image 
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="ic_edit_white"
+                            VerticalOptions="Center">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                        Command="{Binding EditToolCommand, Mode=TwoWay}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Image 
+                            Grid.Column="2"
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="ic_save_white"
+                            VerticalOptions="Center">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                        Command="{Binding SaveToolCommand, Mode=TwoWay}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                                <Image 
+                            Grid.Column="3"
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="ic_close_white"
+                            VerticalOptions="Center">
+                                    <Image.GestureRecognizers>
+                                        <TapGestureRecognizer
+                                        Command="{Binding BackToolCommand, Mode=TwoWay}"/>
+                                    </Image.GestureRecognizers>
+                                </Image>
+                            </Grid>
+                        </StackLayout>
+                    </Grid>
+                </StackLayout>
+                <ScrollView>
+                    <StackLayout 
+                Margin="15,10,15,2">
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label 
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="CenterAndExpand"/>
+
+                            <Label 
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        HorizontalOptions="Start"
+                        Text="Especie"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand"/>
+
+                            <Picker
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        HorizontalOptions="FillAndExpand"
+                        SelectedItem="{Binding Especie}"
+                        Title="Seleccione">
+                                <Picker.Items>
+                                    <x:String>Mariola</x:String>
+                                    <x:String>Soncuano</x:String>
+                                    <x:String>Jicote Gato</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </Grid>
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                <ColumnDefinition Width="2.5*"></ColumnDefinition>
+                                <ColumnDefinition Width="*"></ColumnDefinition>
+                            </Grid.ColumnDefinitions>
+                            <Label 
+                        Grid.Column="0"
+                        Grid.Row="0"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="CenterAndExpand"/>
+
+                            <Label 
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        HorizontalOptions="Start"
+                        FontSize="Medium"
+                        Text="Cantidad en tronco"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand"/>
+
+                            <custom:CustomEntryCenter
+                        BackgroundColor="LightGray"
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        Keyboard="Numeric"
+                        Text="{Binding CantidadEnTronco, Mode=TwoWay}"/>
+
+                            <Label 
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="CenterAndExpand"/>
+
+                            <Label 
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.Row="1"
+                        HorizontalOptions="Start"
+                        Text="Cantidad en nido artificial"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand"/>
+
+                            <custom:CustomEntryCenter
+                        BackgroundColor="LightGray"
+                        Grid.Column="2"
+                        Grid.Row="1"
+                        HorizontalTextAlignment="Center"
+                        Keyboard="Numeric"
+                        Text="{Binding CantidadNidoArtificial, Mode=TwoWay}"/>
+
+                            <Label 
+                        Grid.Column="0"
+                        Grid.Row="2"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="CenterAndExpand"/>
+
+                            <Label 
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.Row="2"
+                        HorizontalOptions="Start"
+                        Text="Cantidad en caja rústica"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand"/>
+
+                            <custom:CustomEntryCenter
+                        BackgroundColor="LightGray"
+                        Grid.Column="2"
+                        Grid.Row="2"
+                        HorizontalTextAlignment="Center"
+                        Keyboard="Numeric"
+                        Text="{Binding CantidadCajaRustica, Mode=TwoWay}"/>
+                            <Label 
+                        Grid.Column="0"
+                        Grid.Row="3"
+                        Text="*"
+                        TextColor="Red"
+                        VerticalOptions="CenterAndExpand"/>
+
+                            <Label 
+                        Grid.Column="1"
+                        Grid.Row="3"
+                        FontSize="Medium"
+                        HorizontalOptions="Start"
+                        Text="Cantidad en caja tecnificada"
+                        TextColor="Black"
+                        VerticalOptions="CenterAndExpand"/>
+
+                            <custom:CustomEntryCenter
+                        BackgroundColor="LightGray"
+                        Grid.Column="2"
+                        Grid.Row="3"    
+                        HorizontalTextAlignment="Center"
+                        Text="{Binding CantidadCajaTecnificada, Mode=TwoWay}"
+                        Keyboard="Numeric"/>
+
+                        </Grid>
+                        <StackLayout 
+                    Margin="0,15,0,15"
+                    Padding="4,0,4,0" >
+                            <Button 
+                        BackgroundColor="#901D3E"
+                        BorderRadius="8"
+                        Command="{Binding GuardarCommand}"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        HeightRequest="50"
+                        HorizontalOptions="FillAndExpand"
+                        IsEnabled="{Binding IsEnabled}"
+                        Text="Guardar"
+                        TextColor="White"
+                        VerticalOptions="CenterAndExpand"/>
+
+                            <Button 
+                        BackgroundColor="#901D3E"
+                        BorderRadius="8"
+                        Command="{Binding VolverCommand}"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        HeightRequest="50"
+                        HorizontalOptions="FillAndExpand"
+                        Text="Volver"
+                        TextColor="White"
+                        VerticalOptions="CenterAndExpand">
+                            </Button>
+                        </StackLayout>
+                    </StackLayout>
+                </ScrollView>
+            </StackLayout>
+        </ContentPage.Content>
+    </ContentPage>

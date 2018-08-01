@@ -596,7 +596,7 @@ namespace Marvelapp.ViewModels
             ComposicionHogarViewModel.GetInstance().Miembros = this.MiembrosBienestar; //asigno los datos de mi lista 
             await Application.Current.MainPage.DisplayAlert("Notificación", "Usted Tiene hasta Ahora: " + filas + " Parientes Registrados", "Excelente");
 
-        }
+            }
             async void AddMember()
             {
                 await Application.Current.MainPage.Navigation.PushAsync(new ComposicionHogarPage());
