@@ -638,6 +638,5 @@ namespace Marvelapp.ViewModels
         }
         #endregion
 
-
     }
 }

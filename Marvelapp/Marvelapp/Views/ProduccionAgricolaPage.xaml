@@ -679,12 +679,12 @@
                 </Grid>
                 <!-- aqui abajo va el listview2-->
 
-                    <!-- aqui empieza el previewer tabla 2-->
-                    <StackLayout HeightRequest="{Binding HeighListViewAnimal, Mode=TwoWay}"
+                <!-- aqui empieza el previewer tabla 2-->
+                <StackLayout HeightRequest="{Binding HeighListViewAnimal, Mode=TwoWay}"
                              Margin="1,0,6,0"
                              x:Name="StacklayoutHe"
                              >
-                        <ListView ItemsSource="{Binding Animales}"
+                    <ListView ItemsSource="{Binding Animales}"
                       x:Name="listv"
                       SeparatorVisibility="None"
                       SeparatorColor="#910b20"
@@ -693,52 +693,68 @@
                       IsRefreshing="{Binding IsRefreshing}"
                       Margin="0,0,0,0">
 
-                            <ListView.ItemTemplate>
-                                <DataTemplate>
-                                    <ViewCell>
+                        <ListView.ItemTemplate>
+                            <DataTemplate>
+                                <ViewCell>
 
-                                    <!--Row #2-->
-                                    <StackLayout>
-                                        <Grid>
-                                            <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                                <ColumnDefinition Width="*"/>
-                                            </Grid.ColumnDefinitions>
-                                            <StackLayout
-                                Grid.Column="0"
-                                Grid.Row="0"
-                                Orientation="Horizontal">
-                                                <Image
-                                    HorizontalOptions="Start"
-                                    Source="close_black.png"/>
-                                                <Picker
+                                    <Grid
+                                        Margin="0,0,0,0">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="0.1*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <StackLayout
+                                            Grid.Column="1"
+                                            Grid.ColumnSpan="3"
+                                            Grid.Row="0">
+                                            <Grid>
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                    <ColumnDefinition Width="*"/>
+                                                </Grid.ColumnDefinitions>
+                                                <StackLayout
+                                                    Grid.Column="0"
+                                                    Grid.Row="0"
+                                                    Orientation="Horizontal">
+                                                    <Image
+                                                      HorizontalOptions="Start"
+                                                      Source="close_black.png">
+                                                        <Image.GestureRecognizers>
+                                                            <TapGestureRecognizer 
+                                                                    Command="{Binding SelectedEliminarCommand}"/>
+                                                        </Image.GestureRecognizers>
+                                                    </Image>
+                                                    <Picker
                                     HorizontalOptions="FillAndExpand"
                                     Title="Seleccione">
-                                                    <Picker.Items>
-                                                        <x:String>Cultivos anuales</x:String>
-                                                        <x:String>Cultivos</x:String>
-                                                        <x:String>Cultivos</x:String>
-                                                    </Picker.Items>
-                                                </Picker>
-                                            </StackLayout>
-                                            <custom:CustomEntry
+                                                        <Picker.Items>
+                                                            <x:String>Cultivos anuales</x:String>
+                                                            <x:String>Cultivos</x:String>
+                                                            <x:String>Cultivos</x:String>
+                                                        </Picker.Items>
+                                                    </Picker>
+                                                </StackLayout>
+                                                <custom:CustomEntry
                                 FontSize="Medium"
                                 Grid.Column="1"
                                 Grid.Row="0"/>
-                                            <custom:CustomEntry
+                                                <custom:CustomEntry
                                 FontSize="Medium"
                                 Grid.Column="2"
                                 Grid.Row="0"/>
-                                        </Grid>
-                                    </StackLayout>
+                                            </Grid>
+                                        </StackLayout>
+                                    </Grid>
                                 </ViewCell>
-                                </DataTemplate>
-                            </ListView.ItemTemplate>
-                        </ListView>
-                    </StackLayout>
-                    <!-- aqui termina tabla 2-->
-       
+                            </DataTemplate>
+                        </ListView.ItemTemplate>
+                    </ListView>
+                </StackLayout>
+                <!-- aqui termina tabla 2-->
+
                 <Grid
                     Margin="0,0,0,0">
                     <Grid.RowDefinitions>
@@ -1490,6 +1506,7 @@
                         BackgroundColor="#910b20"
                         BorderRadius="10"
                         Command="{Binding GuardarCommand}"
+                        IsEnabled="{Binding IsEnabled}"
                         FontAttributes="Bold"
                         FontSize="Medium"
                         Grid.Column="1"

@@ -461,6 +461,7 @@ namespace Marvelapp.ViewModels
         public ProduccionAgricolaViewModel()
         {
             instance = this;
+            IsEnabled = true;
             Vegetales = new ObservableCollection<Vegetal>();
             Animales = new ObservableCollection<Animal>();
             LoadAnimales(); //carga el listado de Animales
@@ -469,7 +470,6 @@ namespace Marvelapp.ViewModels
         }
 
         #endregion
-
 
         #region Commands
         public ICommand AgregarAnimalCommand
@@ -619,6 +619,7 @@ namespace Marvelapp.ViewModels
 
         async void Guardar()
         {
+            IsEnabled = false;
             #region Eleazar
             /*
              if (string.IsNullOrEmpty(FormaJuridica) || string.IsNullOrEmpty(Organizaciones) || string.IsNullOrEmpty(TenenciaTierra) ||
@@ -633,6 +634,7 @@ namespace Marvelapp.ViewModels
                 string.IsNullOrEmpty(ComExplotacion))
             {
                 await Application.Current.MainPage.DisplayAlert("Error", "Llene los campos obligatorios", "aceptar");
+                IsEnabled = true;
                 return;
             }
 
@@ -696,7 +698,6 @@ namespace Marvelapp.ViewModels
             }
             else { filas = 0; }
             await Application.Current.MainPage.DisplayAlert("Notificación", "El Numero de Filas Guardadas en Produccion Animal es: " + filas.ToString(), "Excelente");
-            IsEnabled = true;
 
             #endregion
 
