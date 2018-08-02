@@ -12,7 +12,7 @@ namespace Marvelapp
 		{
 			InitializeComponent();
 
-			MainPage = new NavigationPage(new MeliponiculturaPage());
+			MainPage = new NavigationPage(new ANMeliponarioCajaPage());
 		}
 
 		protected override void OnStart ()

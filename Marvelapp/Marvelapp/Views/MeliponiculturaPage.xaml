@@ -207,7 +207,7 @@
                             </Image>
                         </Grid>
 
-                        <!-- GRID NUMERO 2: TABLAS-->
+                        <!-- GRID NUMERO 2: TABLAS (copiar este codigo y el del previewer como modelo)-->
                     <Grid
                     Margin="0,0,0,0">
                         <Grid.ColumnDefinitions>
@@ -377,9 +377,6 @@
                             </ListView.ItemTemplate>
                         </ListView>
                     </StackLayout>
-
-
-
 
 
 
