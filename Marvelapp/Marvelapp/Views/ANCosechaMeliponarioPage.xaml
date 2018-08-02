@@ -1,0 +1,550 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Marvelapp.Views.ANCosechaMeliponarioPage"
+             xmlns:viewModels="clr-namespace:Marvelapp.ViewModels"
+             xmlns:custom="clr-namespace:Marvelapp.Customs"
+             Title="Abejas nativas Cosecha - Meliponario 20101">
+    <ContentPage.BindingContext>
+        <viewModels:ANCosechaMeliponarioViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <StackLayout
+            BackgroundColor="#901D3E"
+            HeightRequest="90"
+            Padding="0,5"
+            VerticalOptions="Center">
+            <Grid
+                HeightRequest="90">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                </Grid.ColumnDefinitions>
+                <Image 
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        Margin="5,0"
+                        Source="hamb"
+                        VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="TapGestureRecognizer_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <StackLayout
+                        Grid.Column="1"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center">
+                    <Label
+                        FontSize="18"
+                        HorizontalOptions="Start"
+                        Margin="0,0,0,-2"
+                        Text="Abejas nativas"
+                        TextColor="White"
+                        VerticalOptions="End"/>
+                    <Label
+                        FontSize="18"
+                        HorizontalOptions="Start"
+                        Margin="0,-2,0,0"
+                        LineBreakMode="TailTruncation"
+                        Text="Cosecha - Meliponario 20101"
+                        TextColor="White"
+                        VerticalOptions="Start"/>
+                </StackLayout>
+                <StackLayout
+                        Grid.Column="2"
+                        VerticalOptions="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image 
+                            Grid.Column="0"
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="ic_chevron_left_white"
+                            VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Command="{Binding BackToolCommand, Mode=TwoWay}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image 
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="ic_edit_white"
+                            VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Command="{Binding EditToolCommand, Mode=TwoWay}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image 
+                            Grid.Column="2"
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="ic_save_white"
+                            VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Command="{Binding SaveToolCommand, Mode=TwoWay}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image 
+                            Grid.Column="3"
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="ic_close_white"
+                            VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Command="{Binding BackToolCommand, Mode=TwoWay}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout
+                Margin="0,15,20,5">
+                    <Grid
+                    Margin="0,0,0,0">
+                        <Grid.RowDefinitions>
+                            <!--Row #0-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #1-->
+                            <RowDefinition Height="0.6*"/>
+                            <!--Row #2-->
+                            <RowDefinition Height="0.8*"/>
+                            <!--Row #3-->
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--Row #0-->
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="0"
+                        Text="Fecha de la cosecha"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <custom:CustomDatePicker
+                        Date="{Binding Datepicker}"
+                        Grid.Column="3"
+                        Grid.Row="0"
+                        VerticalOptions="Center"
+                        x:Name="Datepicker">
+                            <custom:CustomDatePicker.Format>
+                                dd/MM/yyyy
+                            </custom:CustomDatePicker.Format>
+                        </custom:CustomDatePicker>
+                        <!--Row #1-->
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="1"
+                        Text="Responsable"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <!--Row #2-->
+                        <Picker
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="2"
+                        SelectedItem="{Binding Responsable}"
+                        Title="Seleccione"
+                        VerticalOptions="Center">
+                            <Picker.Items>
+                                <x:String>Clemence Padioleau</x:String>
+                                <x:String>Ramon Ferandez</x:String>
+                                <x:String>Miguel Agreda</x:String>
+                            </Picker.Items>
+                        </Picker>
+                        <!--Row #3-->
+                        <StackLayout
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="3"
+                        Orientation="Horizontal">
+                            <Label
+                            FontSize="Medium"
+                            Text="Control de lote y cantidad de miel"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                            <Image
+                            HorizontalOptions="Start"
+                            Source="new_black.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                Command="{Binding AgregarCanMielCommand}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                    </Grid>
+
+                           <!--aqui empieza el encabezado de mi tabla-->
+                    <Grid 
+                    Margin="30,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="30"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="2*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        
+                        <!--Row #0-->
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.Row="0"
+                        Text="Lote"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="2"
+                        Grid.Row="0"
+                        Text="Especie"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="3"
+                        Grid.Row="0"
+                        Text="Cajas"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="4"
+                        Grid.Row="0"
+                        Text="Alzas"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="5"
+                        Grid.Row="0"
+                        Text="Peso(Kg)"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                    </Grid>
+                    <!-- aqui abajo va el listview2-->
+
+                    <!-- aqui empieza el previewer tabla 2-->
+                    <StackLayout 
+                            BackgroundColor="Blue"
+                            HeightRequest="{Binding HeighListView, Mode=TwoWay}"
+                             Margin="0,0,0,0"
+                             x:Name="StacklayoutHe"
+                             >
+                        <ListView ItemsSource="{Binding Mieles}"
+                      x:Name="listv"
+                      SeparatorVisibility="None"
+                      SeparatorColor="#910b20"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      Margin="0,0,0,0">
+
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid
+                                        Margin="30,0,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="30"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="2*"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
+                                                 <Image
+                                                    HorizontalOptions="Start"
+                                                    Source="close_black.png"
+                                                     WidthRequest="30"
+                                                     Grid.Row="0"
+                                                     Grid.Column="0">
+                                                 <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer 
+                                                    Command="{Binding SelectedEliminarCommand}"/>
+                                                 </Image.GestureRecognizers>
+                                                 </Image>
+                                            <custom:CustomEntry
+                                                TextColor="Black"
+                                                FontSize="Small"
+                                                Grid.Column="1"
+                                                Grid.Row="0"
+                                                HorizontalOptions="Fill"
+                                                Margin="0"
+                                                Keyboard="Numeric"
+                                                Text="{Binding Lote,Mode=TwoWay}"
+                                                VerticalOptions="Fill"/>
+                                            <custom:CustomEntry
+                                                TextColor="Black"
+                                                FontSize="Small"
+                                                Grid.Column="2"
+                                                Grid.Row="0"
+                                                HorizontalOptions="Fill"
+                                                Margin="0"
+                                                Text="{Binding Especie,Mode=TwoWay}"
+                                                VerticalOptions="Fill"/>
+                                            <!---aqui van los checkboxs-->
+                                            <StackLayout Grid.Column="3"
+                                                         Grid.Row="0"
+                                                         HorizontalOptions="Fill">
+                                            </StackLayout>
+                                            <custom:CustomEntry
+                                                TextColor="Black"
+                                                FontSize="Small"
+                                                Grid.Column="4"
+                                                Grid.Row="0"
+                                                HorizontalOptions="Fill"
+                                                Margin="0"
+                                                Text="{Binding Alza,Mode=TwoWay}"
+                                                VerticalOptions="Fill"/>
+                                            <custom:CustomEntry
+                                                TextColor="Black"
+                                                FontSize="Small"
+                                                Grid.Column="5"
+                                                Grid.Row="0"
+                                                Keyboard="Numeric"
+                                                HorizontalOptions="Fill"
+                                                Margin="0"
+                                                Text="{Binding Peso,Mode=TwoWay}"
+                                                VerticalOptions="Fill"/>
+                                        </Grid>
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                    <!-- aqui termina tabla-->
+
+                    <Grid
+                    Margin="0,0,0,0">
+                        <Grid.RowDefinitions>
+                            <!--Row #0-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #1-->
+                            <RowDefinition Height="0.6*"/>
+                            <!--Row #2-->
+                            <RowDefinition Height="0.8*"/>
+                            <!--Row #3-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #4-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #5-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #6-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #7-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #8-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #9-->
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <!--Row #8->0 aqui inicia las otras tablas de la vistas-->
+                        <StackLayout
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="0"
+                        Grid.RowSpan="3">
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <!--Row #0.0-->
+                                <Label
+                                FontSize="Medium"
+                                Grid.Column="1"
+                                Grid.Row="0"
+                                Text="Mariola"
+                                TextColor="Black"
+                                VerticalOptions="Center"/>
+                                <Label
+                                FontSize="Medium"
+                                Grid.Column="2"
+                                Grid.Row="0"
+                                Text="Soncuano"
+                                TextColor="Black"
+                                VerticalOptions="Center"/>
+                                <Label
+                                FontSize="Medium"
+                                Grid.Column="3"
+                                Grid.Row="0"
+                                Text="Total"
+                                TextColor="Black"
+                                VerticalOptions="Center"/>
+                                <!--Row #8.1-->
+                                <Label
+                                FontSize="Medium"
+                                Grid.Column="0"
+                                Grid.Row="1"
+                                Text="Total alzas"
+                                TextColor="Black"
+                                VerticalOptions="Center"/>
+                                <custom:CustomEntry
+                                Grid.Column="1"
+                                Grid.Row="1"
+                                Keyboard="Numeric"
+                                Text="{Binding MariolaAlzas}"
+                                VerticalOptions="Center"
+                                x:Name="xoe"/>
+                                <custom:CustomEntry
+                                Grid.Column="2"
+                                Grid.Row="1"
+                                Keyboard="Numeric"
+                                Text="{Binding SoncuanoAlzas}"
+                                VerticalOptions="Center"/>
+                                <custom:CustomEntry
+                                Grid.Column="3"
+                                Grid.Row="1"
+                                Keyboard="Numeric"
+                                Text="{Binding TotalAlzas}"
+                                VerticalOptions="Center"/>
+                                <!--Row #8.2-->
+                                <Label
+                                FontSize="Medium"
+                                Grid.Column="0"
+                                Grid.Row="2"
+                                Text="Total KG"
+                                TextColor="Black"
+                                VerticalOptions="Center"/>
+                                <custom:CustomEntry
+                                Grid.Column="1"
+                                Grid.Row="2"
+                                Keyboard="Numeric"
+                                Text="{Binding MariolaKg}"
+                                VerticalOptions="Center"/>
+                                <custom:CustomEntry
+                                Grid.Column="2"
+                                Grid.Row="2"
+                                Keyboard="Numeric"
+                                Text="{Binding SoncuanoKg}"
+                                VerticalOptions="Center"/>
+                                <custom:CustomEntry
+                                Grid.Column="3"
+                                Grid.Row="2"
+                                Keyboard="Numeric"
+                                Text="{Binding TotalKg}"
+                                VerticalOptions="Center"/>
+                            </Grid>
+                        </StackLayout>
+                        <!--Row #3-->
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="3"
+                        Text="Precio de compra (₡/kg)"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <custom:CustomEntryCenter
+                        Grid.Column="3"
+                        Grid.Row="3"
+                        Keyboard="Numeric"
+                        Text="{Binding PrecioCompra}"
+                        VerticalOptions="Center"/>
+                        <!--Row #4-->
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="4"
+                        Text="Total a pagar (₡)"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <custom:CustomEntryCenter
+                        Grid.Column="3"
+                        Grid.Row="4"
+                        Keyboard="Numeric"
+                        Text="{Binding TotalPagar}"
+                        VerticalOptions="Center"/>
+                        <!--Row #5-->
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="5"
+                        Text="Comentario"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <!--Row #6-->
+                        <custom:CustomEditor
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="6"
+                        Grid.RowSpan="2"
+                        Text="{Binding Comentario}"/>
+                        
+                        
+                        <!--Row #8 botones-->
+                        <Button
+                        BackgroundColor="#901D3E"
+                        BorderRadius="10"
+                        Command="{Binding GuardarCommand}"
+                        IsEnabled="{Binding IsEnabled}"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="8"
+                        Margin="0,10,0,0"
+                        Text="Guardar"
+                        TextColor="White"/>
+                        <!--Row #9-->
+                        <Button
+                        BackgroundColor="#901D3E"
+                        BorderRadius="10"
+                        Command="{Binding VolverCommand}"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="9"
+                        Margin="0,0,0,5"
+                        Text="Volver"
+                        TextColor="White"/>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+
+</ContentPage>

@@ -158,7 +158,6 @@ namespace Marvelapp.ViewModels
                 }
             }
         }
-
         public bool IsRefreshing //para refrescar el listview
         {
             get
