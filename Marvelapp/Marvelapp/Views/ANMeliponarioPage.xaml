@@ -591,6 +591,203 @@
                         </StackLayout>
                     </Grid>
 
+                    <!-- GRID NUMERO 2: TABLAS (copiar este codigo y el del previewer como modelo)-->
+                    <Grid
+                    Margin="0,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <custom:CustomEntryCenter
+                        FontSize="Small"
+                        TextColor="Black"
+                        Text="Fecha"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        HorizontalTextAlignment="Center"
+                        Grid.Column="3"
+                        Margin="0"
+                        Grid.Row="0"/>
+
+                        <custom:CustomEntryCenter
+                        FontSize="Small"
+                        Grid.Column="4"
+                        Grid.Row="0"
+                        HorizontalOptions="Fill"
+                        HorizontalTextAlignment="Center"
+                        Margin="0"
+                        Text="Especie"
+                        TextColor="Black"
+                        VerticalOptions="Fill"/>
+                        <custom:CustomEntryCenter
+                        FontSize="Small"
+                        Grid.Column="5"
+                        Grid.Row="0"
+                        HorizontalOptions="Fill"
+                        HorizontalTextAlignment="Center"
+                        Margin="0"
+                        Text="*Alzas"
+                        TextColor="Black"
+                        VerticalOptions="Fill"/>
+                        <custom:CustomEntryCenter
+                        FontSize="Small"
+                        Grid.Column="6"
+                        Grid.Row="0"
+                        HorizontalOptions="Fill"
+                        HorizontalTextAlignment="Center"
+                        Text="Cajas"
+                        TextColor="Black"
+                        VerticalOptions="Fill"
+                        Margin="0"/>
+                        <custom:CustomEntryCenter
+                        FontSize="Small"
+                        Grid.Column="7"
+                        Grid.Row="0"
+                        HorizontalOptions="Fill"
+                        Margin="0"
+                        TextColor="Black"
+                        Text="Volumen"
+                        VerticalOptions="Fill"/>
+                        <custom:CustomEntryCenter
+                        FontSize="Small"
+                        Grid.Column="8"
+                        Grid.Row="0"
+                        HorizontalOptions="Fill"
+                        Margin="0"
+                        TextColor="Black"
+                        Text="Monto Recibido"
+                        VerticalOptions="Fill"/>
+
+                    </Grid>
+
+
+                    <!-- aqui empieza el previewer-->
+                    <StackLayout HeightRequest="{Binding HeighListViewAN, Mode=TwoWay}"
+                             Margin="1,0,0,0"
+                             x:Name="StacklayoutHe">
+                        <ListView ItemsSource="{Binding CajasAN}"
+                      x:Name="listvie"
+                      SeparatorVisibility="None"
+                      SeparatorColor="#910b20"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      Margin="0,0,0,0">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Margin="0,0,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                                                <ColumnDefinition Width="25"></ColumnDefinition>
+                                                <ColumnDefinition Width="25"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+
+                                            </Grid.ColumnDefinitions>
+                                            <Image 
+                                                Grid.Column="1"
+                                                Grid.Row="0"
+                                                HorizontalOptions="FillAndExpand"
+                                                Source="close_black.png"
+                                                VerticalOptions="FillAndExpand">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding SelectedEliminarCommand}"></TapGestureRecognizer>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Image 
+                                                 Grid.Column="2"
+                                                 Grid.Row="0"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Source="editar_black.png"
+                                                 VerticalOptions="FillAndExpand">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding SelectedEditarCommand}"></TapGestureRecognizer>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+
+                                            <custom:CustomEntryCenter
+                                                TextColor="Black"
+                                                FontSize="Small"
+                                                Grid.Column="3"
+                                                Grid.Row="0"
+                                                HorizontalOptions="Fill"
+                                                Margin="0"
+                                                Text="{Binding IdCaja, Mode=TwoWay}"
+                                                VerticalOptions="Fill"/>
+
+                                            <custom:CustomEntryCenter
+                                                 FontSize="Small"
+                                                 Grid.Column="4"
+                                                 Grid.Row="0"
+                                                 HorizontalOptions="Fill"
+                                                 Margin="0"
+                                                 Text="{Binding TipoCaja, Mode=TwoWay}"
+                                                 TextColor="Black"
+                                                 VerticalOptions="Fill"/>
+
+                                            <custom:CustomEntryCenter
+                                                 FontSize="Small"
+                                                 Grid.Column="5"
+                                                 Grid.Row="0"
+                                                 HorizontalOptions="Fill"
+                                                 Margin="0"
+                                                 Text="{Binding FechaEntrega,Mode=TwoWay}"
+                                                 TextColor="Black"
+                                                 VerticalOptions="Fill"/>
+                                            <custom:CustomEntryCenter
+                                                FontSize="Small"
+                                                Grid.Column="6"
+                                                Grid.Row="0"
+                                                HorizontalOptions="Fill"
+                                                Margin="0"
+                                                Text="{Binding Activa, Mode=TwoWay}"
+                                                TextColor="Black"
+                                                VerticalOptions="Fill"/>
+                                            <custom:CustomEntryCenter
+                                                FontSize="Small"
+                                                Grid.Column="7"
+                                                Grid.Row="0"
+                                                HorizontalOptions="Fill"
+                                                 Margin="0"
+                                                 Text="{Binding Comentario, Mode=TwoWay}"    
+                                                 TextColor="Black"
+                                                 VerticalOptions="Fill"/>
+                                            <custom:CustomEntryCenter
+                                                FontSize="Small"
+                                                Grid.Column="8"
+                                                Grid.Row="0"
+                                                HorizontalOptions="Fill"
+                                                 Margin="0"
+                                                 Text="{Binding Comentario, Mode=TwoWay}"    
+                                                 TextColor="Black"
+                                                 VerticalOptions="Fill"/>
+                                        </Grid>
+
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+                    
+                    
+                    
+                    
+                    
+                    
+                    
 
 
                     <Grid
@@ -607,7 +804,13 @@
                             <ColumnDefinition Width="*"/>
                             <ColumnDefinition Width="*"/>
                         </Grid.ColumnDefinitions>
-                        <!--Row #0 botoness-->
+
+
+                        
+                    </Grid>
+
+
+                    <!--Row #0 botoness-->
                         <Button
                         BackgroundColor="#901D3E"
                         BorderRadius="10"
@@ -633,7 +836,7 @@
                         Margin="0,0,0,5"
                         Text="Volver"
                         TextColor="White"/>
-                    </Grid>
+                   
                 </StackLayout>
             </StackLayout>
         </ScrollView>
