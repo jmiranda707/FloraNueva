@@ -1,0 +1,641 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:viewModels="clr-namespace:Marvelapp.ViewModels"
+             xmlns:custom="clr-namespace:Marvelapp.Customs"
+             x:Class="Marvelapp.Views.ANMeliponarioPage"
+             Title="Meliponario">
+    <ContentPage.BindingContext>
+        <viewModels:ANMeliponarioViewModel/>
+    </ContentPage.BindingContext>
+    <StackLayout>
+        <StackLayout
+            BackgroundColor="#901D3E"
+            HeightRequest="150"
+            Padding="0,5"
+            VerticalOptions="Center">
+            <Grid
+                HeightRequest="150">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="0.2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="0.5*"/>
+                </Grid.ColumnDefinitions>
+                <!--<Image 
+                        Grid.Column="0"
+                        HorizontalOptions="Center"
+                        Margin="5,0"
+                        Source="hamb"
+                        VerticalOptions="Center">
+                    <Image.GestureRecognizers>
+                        <TapGestureRecognizer
+                                Tapped="TapGestureRecognizer_Tapped"/>
+                    </Image.GestureRecognizers>
+                </Image>
+                <StackLayout
+                        Grid.Column="1"
+                        HorizontalOptions="Start"
+                        VerticalOptions="Center">
+                    <Label
+                            FontSize="18"
+                            HorizontalOptions="Start"
+                            Margin="0,0,0,-2"
+                            Text="Abejas Nativas"
+                            TextColor="White"
+                            VerticalOptions="End"/>
+                    <Label
+                            FontSize="18"
+                            HorizontalOptions="Start"
+                            Margin="0,-2,0,0"
+                            Text="Meliponario"
+                            TextColor="White"
+                            VerticalOptions="Start"/>
+                </StackLayout>-->
+                <StackLayout
+                        Grid.Column="0"
+                        Grid.ColumnSpan="2"
+                        Orientation="Horizontal"
+                        VerticalOptions="Center">
+                    <Image 
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="hamb"
+                            VerticalOptions="Center"
+                            x:Name="Hamb">
+                        <Image.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Tapped="TapGestureRecognizer_Tapped"/>
+                        </Image.GestureRecognizers>
+                    </Image>
+                    <StackLayout
+                            HorizontalOptions="Start"
+                            Margin="5,0"
+                            VerticalOptions="Center">
+                        <Label
+                            FontSize="18"
+                            HorizontalOptions="Start"
+                            Margin="0,0,0,-2"
+                            Text="Abejas Nativas"
+                            TextColor="White"
+                            VerticalOptions="End"/>
+                        <Label
+                            FontSize="18"
+                            HorizontalOptions="Start"
+                            Margin="0,-2,0,0"
+                            Text="Meliponario"
+                            TextColor="White"
+                            VerticalOptions="Start"/>
+                    </StackLayout>
+                </StackLayout>
+                <StackLayout
+                        Grid.Column="2"
+                        VerticalOptions="Center">
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Image 
+                            Grid.Column="0"
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="ic_chevron_left_white"
+                            VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Command="{Binding BackToolCommand, Mode=TwoWay}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image 
+                            Grid.Column="1"
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="ic_edit_white"
+                            VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Command="{Binding EditToolCommand, Mode=TwoWay}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image 
+                            Grid.Column="2"
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="ic_save_white"
+                            VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Command="{Binding SaveToolCommand, Mode=TwoWay}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                        <Image 
+                            Grid.Column="3"
+                            HorizontalOptions="Center"
+                            Margin="5,0"
+                            Source="ic_close_white"
+                            VerticalOptions="Center">
+                            <Image.GestureRecognizers>
+                                <TapGestureRecognizer
+                                        Command="{Binding BackToolCommand, Mode=TwoWay}"/>
+                            </Image.GestureRecognizers>
+                        </Image>
+                    </Grid>
+                </StackLayout>
+            </Grid>
+        </StackLayout>
+        <ScrollView>
+            <StackLayout>
+                <StackLayout
+                Margin="0,15,20,5">
+                    <Grid
+                    Margin="0,0,0,0">
+                        <Grid.RowDefinitions>
+                            <!--Row #0-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #1-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #2-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #3-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #4-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #5-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #6-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #7-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #8-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #9-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #10-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #11-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #12-->
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--Row #0-->
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="0"
+                        Text="ID del meliponario"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <custom:CustomEntryCenter
+                        Grid.Column="3"
+                        Grid.Row="0"
+                        Keyboard="Numeric"
+                        Text="{Binding IdMeliponario}"
+                        VerticalOptions="Center"/>
+                        <!--Row #1-->
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="1"
+                        Text="Productor"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <!--Row #2-->
+                        <custom:CustomEntry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="2"
+                        Text="{Binding Productor}"
+                        VerticalOptions="Center"/>
+                        <!--Row #3-->
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="3"
+                        Text="GPS - Latitud"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <custom:CustomEntryCenter
+                        Grid.Column="3"
+                        Grid.Row="3"
+                        Keyboard="Numeric"
+                        Text="{Binding Latitud}"
+                        VerticalOptions="Center"/>
+                        <!--Row #4-->
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="4"
+                        Text="GPS - Longitud"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <custom:CustomEntryCenter
+                        Grid.Column="3"
+                        Grid.Row="4"
+                        Keyboard="Numeric"
+                        Text="{Binding Longitud}"
+                        VerticalOptions="Center"/>
+                        <!--Row #5-->
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="5"
+                        Text="Validado para recibir cajas Flora Nueva"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <StackLayout
+                        Grid.Column="3"
+                        Grid.Row="5"
+                        HorizontalOptions="End"
+                        Orientation="Horizontal">
+                            <Label
+                            FontSize="Medium"
+                            HorizontalOptions="End"
+                            Text="Si"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                            <Switch
+                            HorizontalOptions="End" 
+                            IsToggled="{Binding FloraNueva}"
+                            VerticalOptions="Center"/>
+                            <Label
+                            FontSize="Medium"
+                            HorizontalOptions="End"
+                            FontAttributes="Bold"
+                            Text="No"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                        </StackLayout>
+                        <!--Row #6-->
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="6"
+                        Text="Tipo de meliponario"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <!--Row #7-->
+                        <Picker
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="7"
+                        SelectedItem="{Binding TipoMeliponario}"
+                        Title="Seleccione"
+                        VerticalOptions="Center">
+                            <Picker.Items>
+                                <x:String>Individual</x:String>
+                                <x:String>Gregario</x:String>
+                                <x:String>Otro</x:String>
+                            </Picker.Items>
+                        </Picker>
+                        <!--Row #8-->
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="8"
+                        Text="Fecha de creación"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <custom:CustomDatePicker
+                        Date="{Binding DateSelected}"
+                        Grid.Column="3"
+                        Grid.Row="8"
+                        VerticalOptions="Center"
+                        x:Name="Dateselected">
+                            <custom:CustomDatePicker.Format>
+                                dd/MM/yyyy
+                            </custom:CustomDatePicker.Format>
+                        </custom:CustomDatePicker>
+                        <!--Row #9-->
+                        <Label
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="2"
+                        Grid.Row="9"
+                        Text="Observaciones"
+                        TextColor="Black"
+                        VerticalOptions="Center"/>
+                        <!--Row #10-->
+                        <custom:CustomEntry
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="10"
+                        Text="{Binding Observaciones}"
+                        VerticalOptions="Center"/>
+                        <!--Row #11-->
+                        <Label
+                        FontSize="Large"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="11"
+                        HorizontalTextAlignment="Start"
+                        Text="Cajas"
+                        TextColor="#db6262"
+                        VerticalOptions="Center"/>
+                        <!--Row #12-->
+                        <StackLayout
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="12"
+                        Orientation="Horizontal">
+                            <Label
+                            FontSize="Medium"
+                            Text="Agregar caja"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                            <Image
+                            HorizontalOptions="Start"
+                            Source="new_black.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                Command="{Binding AgregarCajaCommand}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                    </Grid>
+                    <!--- viene listview-->
+
+                    <!-- GRID NUMERO 2: TABLAS (copiar este codigo y el del previewer como modelo)-->
+                    <Grid
+                    Margin="0,0,0,0">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="1.3*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
+
+                        <custom:CustomEntryCenter
+                        FontSize="Small"
+                        TextColor="Black"
+                        Text="Id Caja"
+                        HorizontalOptions="Fill"
+                        VerticalOptions="Fill"
+                        HorizontalTextAlignment="Center"
+                        Grid.Column="3"
+                        Margin="0"
+                        Grid.Row="0"/>
+
+                        <custom:CustomEntryCenter
+                        FontSize="Small"
+                        Grid.Column="4"
+                        Grid.Row="0"
+                        HorizontalOptions="Fill"
+                        HorizontalTextAlignment="Center"
+                        Margin="0"
+                        Text="Tipo"
+                        TextColor="Black"
+                        VerticalOptions="Fill"/>
+                        <custom:CustomEntryCenter
+                        FontSize="Small"
+                        Grid.Column="5"
+                        Grid.Row="0"
+                        HorizontalOptions="Fill"
+                        HorizontalTextAlignment="Center"
+                        Margin="0"
+                        Text="Fecha de Entrega"
+                        TextColor="Black"
+                        VerticalOptions="Fill"/>
+                        <custom:CustomEntryCenter
+                        FontSize="Small"
+                        Grid.Column="6"
+                        Grid.Row="0"
+                        HorizontalOptions="Fill"
+                        HorizontalTextAlignment="Center"
+                        Text="Activa?"
+                        TextColor="Black"
+                        VerticalOptions="Fill"
+                        Margin="0"/>
+                        <custom:CustomEntryCenter
+                        FontSize="Small"
+                        Grid.Column="7"
+                        Grid.Row="0"
+                        HorizontalOptions="Fill"
+                        Margin="0"
+                        TextColor="Black"
+                        Text="Comentario"
+                        VerticalOptions="Fill"/>
+
+                    </Grid>
+
+
+                    <!-- aqui empieza el previewer-->
+                    <StackLayout HeightRequest="{Binding HeighListViewAN, Mode=TwoWay}"
+                             Margin="1,0,0,0"
+                             x:Name="StacklayoutHeigh">
+                        <ListView ItemsSource="{Binding CajasAN}"
+                      x:Name="listview"
+                      SeparatorVisibility="None"
+                      SeparatorColor="#910b20"
+                      IsPullToRefreshEnabled="True"
+                      RefreshCommand="{Binding RefreshCommand}"
+                      IsRefreshing="{Binding IsRefreshing}"
+                      Margin="0,0,0,0">
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
+                                        <Grid Margin="0,0,0,0">
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                                                <ColumnDefinition Width="25"></ColumnDefinition>
+                                                <ColumnDefinition Width="25"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="*"></ColumnDefinition>
+                                                <ColumnDefinition Width="1.3*"></ColumnDefinition>
+                                            </Grid.ColumnDefinitions>
+                                            <Image 
+                                                Grid.Column="1"
+                                                Grid.Row="0"
+                                                HorizontalOptions="FillAndExpand"
+                                                Source="close_black.png"
+                                                VerticalOptions="FillAndExpand">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding SelectedEliminarCommand}"></TapGestureRecognizer>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+                                            <Image 
+                                                 Grid.Column="2"
+                                                 Grid.Row="0"
+                                                 HorizontalOptions="FillAndExpand"
+                                                 Source="editar_black.png"
+                                                 VerticalOptions="FillAndExpand">
+                                                <Image.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding SelectedEditarCommand}"></TapGestureRecognizer>
+                                                </Image.GestureRecognizers>
+                                            </Image>
+
+                                            <custom:CustomEntryCenter
+                                                TextColor="Black"
+                                                FontSize="Small"
+                                                Grid.Column="3"
+                                                Grid.Row="0"
+                                                HorizontalOptions="Fill"
+                                                Margin="0"
+                                                Text="{Binding IdCaja, Mode=TwoWay}"
+                                                VerticalOptions="Fill"/>
+
+                                            <custom:CustomEntryCenter
+                                                 FontSize="Small"
+                                                 Grid.Column="4"
+                                                 Grid.Row="0"
+                                                 HorizontalOptions="Fill"
+                                                 Margin="0"
+                                                 Text="{Binding TipoCaja, Mode=TwoWay}"
+                                                 TextColor="Black"
+                                                 VerticalOptions="Fill"/>
+
+                                            <custom:CustomEntryCenter
+                                                 FontSize="Small"
+                                                 Grid.Column="5"
+                                                 Grid.Row="0"
+                                                 HorizontalOptions="Fill"
+                                                 Margin="0"
+                                                 Text="{Binding FechaEntrega,Mode=TwoWay}"
+                                                 TextColor="Black"
+                                                 VerticalOptions="Fill"/>
+                                            <custom:CustomEntryCenter
+                                                FontSize="Small"
+                                                Grid.Column="6"
+                                                Grid.Row="0"
+                                                HorizontalOptions="Fill"
+                                                Margin="0"
+                                                Text="{Binding Activa, Mode=TwoWay}"
+                                                TextColor="Black"
+                                                VerticalOptions="Fill"/>
+                                            <custom:CustomEntryCenter
+                                                FontSize="Small"
+                                                Grid.Column="7"
+                                                Grid.Row="0"
+                                                HorizontalOptions="Fill"
+                                                 Margin="0"
+                                                 Text="{Binding Comentario, Mode=TwoWay}"    
+                                                 TextColor="Black"
+                                                 VerticalOptions="Fill"/>
+
+                                        </Grid>
+
+                                    </ViewCell>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
+
+
+
+
+
+                    <Grid
+                    Margin="0,0,0,0">
+                        <Grid.RowDefinitions>
+                            <!--Row #0-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #1-->
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--Row #0-->
+                        <Label
+                        FontSize="Large"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="0"
+                        HorizontalTextAlignment="Start"
+                        Text="Cosechas"
+                        TextColor="#db6262"
+                        VerticalOptions="Center"/>
+                        <!--Row #1-->
+                        <StackLayout
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="1"
+                        Orientation="Horizontal">
+                            <Label
+                            FontSize="Medium"
+                            Text="Agregar cosecha"
+                            TextColor="Black"
+                            VerticalOptions="Center"/>
+                            <Image
+                            HorizontalOptions="Start"
+                            Source="new_black.png">
+                                <Image.GestureRecognizers>
+                                    <TapGestureRecognizer 
+                                Command="{Binding AgregarCosechaCommand}"/>
+                                </Image.GestureRecognizers>
+                            </Image>
+                        </StackLayout>
+                    </Grid>
+
+
+
+                    <Grid
+                    Margin="0,0,0,0">
+                        <Grid.RowDefinitions>
+                            <!--Row #0-->
+                            <RowDefinition Height="*"/>
+                            <!--Row #1-->
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <!--Row #0 botoness-->
+                        <Button
+                        BackgroundColor="#901D3E"
+                        BorderRadius="10"
+                        Command="{Binding GuardarCommand}"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        IsEnabled="{Binding IsEnabled}"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="0"
+                        Text="Guardar"
+                        TextColor="White"/>
+                        <!--Row #1-->
+                        <Button
+                        BackgroundColor="#901D3E"
+                        BorderRadius="10"
+                        Command="{Binding VolverCommand}"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Grid.Column="1"
+                        Grid.ColumnSpan="3"
+                        Grid.Row="1"
+                        Margin="0,0,0,5"
+                        Text="Volver"
+                        TextColor="White"/>
+                    </Grid>
+                </StackLayout>
+            </StackLayout>
+        </ScrollView>
+    </StackLayout>
+</ContentPage>

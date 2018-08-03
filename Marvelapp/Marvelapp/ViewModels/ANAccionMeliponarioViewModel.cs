@@ -157,6 +157,19 @@ namespace Marvelapp.ViewModels
         #region constructors
         public ANAccionMeliponarioViewModel()
         {
+            /*
+            Application.Current.Properties["TipoAccion" + 0] = "";
+            Application.Current.Properties["FechaAccion" + 0] = DateTime.Now.ToString();
+            Application.Current.Properties["Responsable" + 0] = "";
+            Application.Current.Properties["Comentario" + 0] = "";
+            Application.Current.Properties["ContadorAcciones"] = 1.ToString();
+            Application.Current.SavePropertiesAsync();
+            */
+
+
+
+
+
             instance = this;
             IsEnabled = true;
             Acciones = new ObservableCollection<Accion>();

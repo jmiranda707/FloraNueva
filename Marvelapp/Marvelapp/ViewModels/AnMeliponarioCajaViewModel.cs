@@ -23,12 +23,27 @@ namespace Marvelapp.ViewModels
         #endregion
 
         #region Attributes
+
+        #region atributos de caja
+        private bool valor;
+        private int ElementosCaja;
+        private string tipocaja;
+        private int idcaja;
+        private DateTime fechaentregacaja;
+        private string activacaja;
+        private string comentariocaja;
+        int j;
+        private ObservableCollection<Caja> caja;
+        private Double heighListCaja;
+
+        #endregion
+        private bool isRefreshing;
         private Double heighListB;
         int Elementos;
         int i;
         private bool isEnabled;
         private ObservableCollection<Accion> accioncaja;
-        string _IdCaja;
+        int _IdCaja;
         string _Tipo;
         string _Productor;
         DateTime _FechaEntrega;
@@ -38,6 +53,60 @@ namespace Marvelapp.ViewModels
         #endregion
 
         #region Properties
+       
+        #region propiedades de caja
+        public Double HeighListViewCaja
+        {
+            get
+            {
+                return heighListCaja;
+            }
+            set
+            {
+                if (heighListCaja != value)
+                {
+                    heighListCaja = value;
+                    PropertyChanged?.Invoke(
+                                            this,
+                                            new PropertyChangedEventArgs(nameof(HeighListViewCaja)));
+                }
+            }
+        }
+        public ObservableCollection<Caja> Cajas
+        {
+            get
+            {
+                return caja;
+            }
+            set
+            {
+                if (caja != value)
+                {
+                    caja = value;
+                    PropertyChanged?.Invoke(
+                                            this,
+                                            new PropertyChangedEventArgs(nameof(Cajas)));
+                }
+            }
+        }
+        #endregion
+        public bool IsRefreshing //para refrescar el listview
+        {
+            get
+            {
+                return isRefreshing;
+            }
+            set
+            {
+                if (isRefreshing != value)
+                {
+                    isRefreshing = value;
+                    PropertyChanged?.Invoke(
+                                            this,
+                                            new PropertyChangedEventArgs(nameof(IsRefreshing)));
+                }
+            }
+        }
         public Double HeighListViewB
         {
             get
@@ -143,7 +212,7 @@ namespace Marvelapp.ViewModels
                 OnPropertyChanged("Tipo");
             }
         }
-        public string IdCaja
+        public int IdCaja
         {
             get { return _IdCaja; }
             set
@@ -157,11 +226,23 @@ namespace Marvelapp.ViewModels
         #region Constructors
         public AnMeliponarioCajaViewModel()
         {
+            /*
+            Application.Current.Properties["Idcaja" + 0] = 1.ToString();
+            Application.Current.Properties["Tipocaja" + 0] = "".ToString();
+            Application.Current.Properties["Fechaentregacaja" + 0] = DateTime.Now.ToString();
+            Application.Current.Properties["Activacaja" + 0] = "".ToString();
+            Application.Current.Properties["Comentariocaja" + 0] = "".ToString();
+            Application.Current.Properties["Contadorcajas"] = 1.ToString();
+            Application.Current.SavePropertiesAsync();*/
+
+
+
+            Cajas = new ObservableCollection<Caja>();
+            LoadCajas(); //carga el listado de cajas
             IsEnabled = true;
             instance = this;
             AccionesCaja = ANAccionMeliponarioViewModel.GetInstance().Acciones; //obtengo los datos de mi lista en la otra ComposicionHogarViewModel
             HeighListViewB = ANAccionMeliponarioViewModel.GetInstance().HeighListView; //obtengo el heigh de ComposicionHogarViewModel
-
         }
         #endregion
 
@@ -218,9 +299,75 @@ namespace Marvelapp.ViewModels
         #endregion
 
         #region Methods
+        
+        async void LoadCajas()
+        {
+            if (Application.Current.Properties.ContainsKey("Contadorcajas")) //contador de la cantidad de elementos en la lista
+            {
+                ElementosCaja = int.Parse((Application.Current.Properties["Contadorcajas"]) as string);
+            }
+            else { ElementosCaja = 0; }
+
+            IsRefreshing = true;
+
+            for (int j = 0; j < ElementosCaja; j++) //Elementos va a representar el total de elementos o filas existentes en mi persistencia
+            {
+                if (Application.Current.Properties.ContainsKey("Idcaja" + j))
+                {
+                    idcaja = int.Parse((Application.Current.Properties["Idcaja" + j]) as string);
+                }
+                else { idcaja = 0; }
+
+                if (Application.Current.Properties.ContainsKey("Tipocaja" + j))
+                {
+                    tipocaja = (Application.Current.Properties["Tipocaja" + j] as string);
+                }
+                else { tipocaja = ""; }
+                if (Application.Current.Properties.ContainsKey("Fechaentregacaja" + j))
+                {
+                    fechaentregacaja = DateTime.Parse(Application.Current.Properties["Fechaentregacaja" + j] as string);
+                }
+                else { fechaentregacaja = DateTime.Now; }
+                if (Application.Current.Properties.ContainsKey("Activacaja" + j))
+                {
+                    activacaja = (Application.Current.Properties["Activacaja" + j] as string);
+                }
+                else { activacaja = ""; }
+                if (Application.Current.Properties.ContainsKey("Comentariocaja" + j))
+                {
+                    comentariocaja = (Application.Current.Properties["Comentariocaja" + j] as string);
+                }
+                else { comentariocaja = ""; }
+                
+
+
+
+                Cajas.Add(new Caja() //agrega a mi lista todos los elementos existentes en persistencia
+                {
+                    Activa = activacaja,
+                    Comentario = comentariocaja,
+                    FechaEntrega = fechaentregacaja,
+                    IdCaja = idcaja,
+                    TipoCaja = tipocaja,
+
+                });
+            }
+
+            IsRefreshing = false;
+
+            HeighListViewCaja = 44 * Cajas.Count; //cantidad de filas en mi lista, multiplicado por 44 que es el alto maximo de cada fila
+
+        }
+        
         async void Guardar()
         {
-            var fecha = FechaEntrega.ToString("dd/MM/yyyy");
+            isEnabled = false;
+            if (string.IsNullOrEmpty(FechaEntrega.ToString())){
+               await Application.Current.MainPage.DisplayAlert("error", "Debe Llenar El Campo Fecha", "Excelente");
+               IsEnabled = true;
+               return;
+            }
+            var fecha = FechaEntrega.ToString();
 
             #region Limpiar Cache //borrar los datos existentes en persistencia
 
@@ -279,7 +426,65 @@ namespace Marvelapp.ViewModels
                 IdCaja + " " + Tipo + " " + Productor + " " + fecha + " " + Comentario + " " + Origen + " " + FloraNueva,
                 "Aceptar");
 
+
+            #region Miranda: Guardar Tabla Cajas
+
+            #region Ciclo para Guardar en Persistencia
+            if (Application.Current.Properties.ContainsKey("Contadorcajas"))//verifico cuantos elementos tiene mi lista para saber cual es la psocion del nuevo elemento a agregar
+            {
+                ElementosCaja = (int.Parse((Application.Current.Properties["Contadorcajas"]) as string));
+            }
+            else { ElementosCaja = 0; }
+
+            if (FloraNueva)
+            {
+                activacaja = "No";
+            }
+            else
+            {
+                activacaja = "Si";
+            }
+            string fechaEntrega = FechaEntrega.ToString();
+            if (string.IsNullOrEmpty(Tipo))
+            {
+                Tipo = "";
+            }
+            if (string.IsNullOrEmpty(Comentario))//si no hago esto, se le pasan valores nulos a persistencia
+            {
+                Comentario = "";
+            }
+
+            Application.Current.Properties["Idcaja" + ElementosCaja] = IdCaja.ToString();
+            Application.Current.Properties["Tipocaja" + ElementosCaja] = Tipo.ToString();
+            Application.Current.Properties["Fechaentregacaja" + ElementosCaja] = (FechaEntrega).ToString(); //revisar, cuando no se selecciona fecha esta linea manda error OJOO
+            Application.Current.Properties["Activacaja" + ElementosCaja] = activacaja.ToString();
+            Application.Current.Properties["Comentariocaja" + ElementosCaja] = Comentario.ToString();
+            Application.Current.Properties["Contadorcajas"] = (ElementosCaja + 1).ToString();
+            await Application.Current.SavePropertiesAsync();
+            #endregion
+
+
+            int filascaja;
+            filascaja = ElementosCaja + 1;
+            HeighListViewCaja = 44 * filascaja;//actalizo mi heigh
+            await Application.Current.MainPage.DisplayAlert("Notificación", "Usted Tiene hasta Ahora: " + filascaja + " Cajas Registradas", "Excelente");
+            Cajas.Add(new Caja()
+            {
+                Activa = activacaja.ToString(),
+                Comentario = Comentario.ToString(),
+                FechaEntrega = FechaEntrega,
+                IdCaja = IdCaja, //int
+                TipoCaja = Tipo.ToString(),
+                
+            });
+            ANMeliponarioViewModel.GetInstance().CajasAN = this.Cajas; //asigno los datos de mi lista 
+            ANMeliponarioViewModel.GetInstance().HeighListViewAN = this.HeighListViewCaja; //actualizo el heigh de mi vista anterior
             IsEnabled = true;
+
+            await Application.Current.MainPage.Navigation.PopAsync();
+
+            #endregion
+
 
         }
         async void Volver()

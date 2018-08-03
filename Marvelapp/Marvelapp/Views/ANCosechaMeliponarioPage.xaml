@@ -250,7 +250,6 @@
 
                     <!-- aqui empieza el previewer tabla 2-->
                     <StackLayout 
-                            BackgroundColor="Blue"
                             HeightRequest="{Binding HeighListView, Mode=TwoWay}"
                              Margin="0,0,0,0"
                              x:Name="StacklayoutHe"
