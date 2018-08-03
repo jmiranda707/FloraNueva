@@ -235,8 +235,6 @@ namespace Marvelapp.ViewModels
             Application.Current.Properties["Contadorcajas"] = 1.ToString();
             Application.Current.SavePropertiesAsync();*/
 
-
-
             Cajas = new ObservableCollection<Caja>();
             LoadCajas(); //carga el listado de cajas
             IsEnabled = true;
