@@ -38,10 +38,12 @@ namespace Marvelapp.ViewModels
 
         #endregion
         private bool isRefreshing;
+        private Double heighListHistorico;
         private Double heighListB;
         int Elementos;
         int i;
         private bool isEnabled;
+        private ObservableCollection<Historico> historico;
         private ObservableCollection<Accion> accioncaja;
         int _IdCaja;
         string _Tipo;
@@ -53,7 +55,6 @@ namespace Marvelapp.ViewModels
         #endregion
 
         #region Properties
-       
         #region propiedades de caja
         public Double HeighListViewCaja
         {
@@ -107,6 +108,23 @@ namespace Marvelapp.ViewModels
                 }
             }
         }
+        public Double HeighListViewHistorico
+        {
+            get
+            {
+                return heighListHistorico;
+            }
+            set
+            {
+                if (heighListHistorico != value)
+                {
+                    heighListHistorico = value;
+                    PropertyChanged?.Invoke(
+                                            this,
+                                            new PropertyChangedEventArgs(nameof(HeighListViewHistorico)));
+                }
+            }
+        }
         public Double HeighListViewB
         {
             get
@@ -138,6 +156,23 @@ namespace Marvelapp.ViewModels
                     PropertyChanged?.Invoke(
                                             this,
                                             new PropertyChangedEventArgs(nameof(IsEnabled)));
+                }
+            }
+        }
+        public ObservableCollection<Historico> Historicos
+        {
+            get
+            {
+                return historico;
+            }
+            set
+            {
+                if (historico != value)
+                {
+                    historico = value;
+                    PropertyChanged?.Invoke(
+                                            this,
+                                            new PropertyChangedEventArgs(nameof(Historicos)));
                 }
             }
         }
@@ -226,16 +261,9 @@ namespace Marvelapp.ViewModels
         #region Constructors
         public AnMeliponarioCajaViewModel()
         {
-            /*
-            Application.Current.Properties["Idcaja" + 0] = 1.ToString();
-            Application.Current.Properties["Tipocaja" + 0] = "".ToString();
-            Application.Current.Properties["Fechaentregacaja" + 0] = DateTime.Now.ToString();
-            Application.Current.Properties["Activacaja" + 0] = "".ToString();
-            Application.Current.Properties["Comentariocaja" + 0] = "".ToString();
-            Application.Current.Properties["Contadorcajas"] = 1.ToString();
-            Application.Current.SavePropertiesAsync();*/
-
             Cajas = new ObservableCollection<Caja>();
+            Historicos = new ObservableCollection<Historico>();
+            LoadMeliponarios(); //carga el listado de cajas
             LoadCajas(); //carga el listado de cajas
             IsEnabled = true;
             instance = this;
@@ -297,8 +325,57 @@ namespace Marvelapp.ViewModels
         #endregion
 
         #region Methods
-        
-        async void LoadCajas()
+        async void LoadMeliponarios()
+        {
+            Historicos = new ObservableCollection<Historico>()
+            {
+                new Historico()
+            {
+                Actual = "Si",
+                FechaDesde = DateTime.Now,
+                FechaHasta= DateTime.Now,
+                IdMeliponario= 21210,
+                Productor="Jose Miranda"
+            },
+
+            new Historico()
+            {
+                Actual = "NO",
+                FechaDesde = DateTime.Now,
+                FechaHasta = DateTime.Now,
+                IdMeliponario = 21214,
+                Productor = "Jose Rivas"
+            },
+            new Historico()
+            {
+                Actual = "Si",
+                FechaDesde = DateTime.Now,
+                FechaHasta = DateTime.Now,
+                IdMeliponario = 10200,
+                Productor = "Antonio Cova"
+            },
+            new Historico()
+            {
+                Actual = "No",
+                FechaDesde = DateTime.Now,
+                FechaHasta = DateTime.Now,
+                IdMeliponario = 21250,
+                Productor = "Luis Diaz"
+            },
+            new Historico()
+            {
+                Actual = "Si",
+                FechaDesde = DateTime.Now,
+                FechaHasta = DateTime.Now,
+                IdMeliponario = 21300,
+                Productor = "Marco Lara"
+            },
+
+        };
+            
+            HeighListViewHistorico = 44 * Historicos.Count;//para definir el ancho de la tabla historico meliponario
+        }
+            async void LoadCajas()
         {
             if (Application.Current.Properties.ContainsKey("Contadorcajas")) //contador de la cantidad de elementos en la lista
             {

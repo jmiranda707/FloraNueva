@@ -112,7 +112,7 @@
         <ScrollView>
             <StackLayout>
                 <StackLayout
-                Margin="0,15,20,5">
+                Margin="0,15,20,0">
                     <Grid
                     Margin="0,0,10,0">
                         <Grid.RowDefinitions>
@@ -144,7 +144,6 @@
                             <RowDefinition Height="*"/>
                             <!--Row #13-->
                             <RowDefinition Height="*"/>
-                            
                         </Grid.RowDefinitions>
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="0.1*"/>
@@ -322,7 +321,6 @@
                         Text="Historico de meliponarios"
                         TextColor="#db6262"
                         VerticalOptions="Center"/>
-                        
                     </Grid>
 
                     <!-- GRID: TABLAS dinamicas titulos-->
@@ -349,7 +347,6 @@
                         Grid.Column="3"
                         Margin="0"
                         Grid.Row="0"/>
-
                         <custom:CustomEntryCenter
                         FontSize="Small"
                         Grid.Column="4"
@@ -390,14 +387,12 @@
                         TextColor="Black"
                         VerticalOptions="Fill"
                         Margin="0"/>
-
                     </Grid>
-
                     <!-- aqui empieza el previewer-->
-                    <StackLayout HeightRequest="{Binding HeighListViewB, Mode=TwoWay}"
+                    <StackLayout HeightRequest="{Binding HeighListViewHistorico, Mode=TwoWay}"
                              Margin="1,0,0,0"
                              x:Name="StacklayoutH">
-                        <ListView ItemsSource="{Binding AccionesCaja}"
+                        <ListView ItemsSource="{Binding Historicos}"
                       x:Name="listvie"
                       SeparatorVisibility="None"
                       SeparatorColor="#910b20"
@@ -449,7 +444,7 @@
                                                 Grid.Row="0"
                                                 HorizontalOptions="Fill"
                                                 Margin="0"
-                                                Text="{Binding TipoAccion, Mode=TwoWay}"
+                                                Text="{Binding IdMeliponario, Mode=TwoWay}"
                                                 VerticalOptions="Fill"/>
 
                                             <custom:CustomEntryCenter
@@ -458,7 +453,7 @@
                                                  Grid.Row="0"
                                                  HorizontalOptions="Fill"
                                                  Margin="0"
-                                                 Text="{Binding FechaAccion, Mode=TwoWay}"
+                                                 Text="{Binding Productor, Mode=TwoWay}"
                                                  TextColor="Black"
                                                  VerticalOptions="Fill"/>
 
@@ -468,7 +463,7 @@
                                                  Grid.Row="0"
                                                  HorizontalOptions="Fill"
                                                  Margin="0"
-                                                 Text="{Binding Responsable,Mode=TwoWay}"
+                                                 Text="{Binding FechaDesde,Mode=TwoWay}"
                                                  TextColor="Black"
                                                  VerticalOptions="Fill"/>
                                             <custom:CustomEntryCenter
@@ -477,7 +472,7 @@
                                                 Grid.Row="0"
                                                 HorizontalOptions="Fill"
                                                 Margin="0"
-                                                Text="{Binding Comentario, Mode=TwoWay}"
+                                                Text="{Binding FechaHasta, Mode=TwoWay}"
                                                 TextColor="Black"
                                                 VerticalOptions="Fill"/>
                                             <custom:CustomEntryCenter
@@ -486,7 +481,7 @@
                                                 Grid.Row="0"
                                                 HorizontalOptions="Fill"
                                                 Margin="0"
-                                                Text="{Binding Comentario, Mode=TwoWay}"
+                                                Text="{Binding Actual, Mode=TwoWay}"
                                                 TextColor="Black"
                                                 VerticalOptions="Fill"/>
 
@@ -544,19 +539,19 @@
                     </Grid>
 
                     <!-- GRID: TABLAS dinamicas titulos-->
-                        <Grid
+                    <Grid
                              Margin="0,0,30,0">
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="0.1*"></ColumnDefinition>
-                                <ColumnDefinition Width="25"></ColumnDefinition>
-                                <ColumnDefinition Width="25"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="*"></ColumnDefinition>
-                                <ColumnDefinition Width="2*"></ColumnDefinition>
-                            </Grid.ColumnDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="0.1*"></ColumnDefinition>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition Width="25"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="*"></ColumnDefinition>
+                            <ColumnDefinition Width="2*"></ColumnDefinition>
+                        </Grid.ColumnDefinitions>
 
-                            <custom:CustomEntryCenter
+                        <custom:CustomEntryCenter
                         FontSize="Small"
                         TextColor="Black"
                         Text="Tipo"
@@ -567,7 +562,7 @@
                         Margin="0"
                         Grid.Row="0"/>
 
-                            <custom:CustomEntryCenter
+                        <custom:CustomEntryCenter
                         FontSize="Small"
                         Grid.Column="4"
                         Grid.Row="0"
@@ -577,7 +572,7 @@
                         Text="Fecha"
                         TextColor="Black"
                         VerticalOptions="Fill"/>
-                            <custom:CustomEntryCenter
+                        <custom:CustomEntryCenter
                         FontSize="Small"
                         Grid.Column="5"
                         Grid.Row="0"
@@ -587,7 +582,7 @@
                         Text="Responsable"
                         TextColor="Black"
                         VerticalOptions="Fill"/>
-                            <custom:CustomEntryCenter
+                        <custom:CustomEntryCenter
                         FontSize="Small"
                         Grid.Column="6"
                         Grid.Row="0"
@@ -598,13 +593,13 @@
                         VerticalOptions="Fill"
                         Margin="0"/>
 
-                        </Grid>
+                    </Grid>
 
-                        <!-- aqui empieza el previewer-->
-                        <StackLayout HeightRequest="{Binding HeighListViewB, Mode=TwoWay}"
+                    <!-- aqui empieza el previewer-->
+                    <StackLayout HeightRequest="{Binding HeighListViewB, Mode=TwoWay}"
                              Margin="1,0,0,0"
                              x:Name="StacklayoutHeigh">
-                            <ListView ItemsSource="{Binding AccionesCaja}"
+                        <ListView ItemsSource="{Binding AccionesCaja}"
                       x:Name="listview"
                       SeparatorVisibility="None"
                       SeparatorColor="#910b20"
@@ -612,9 +607,9 @@
                       RefreshCommand="{Binding RefreshCommand}"
                       IsRefreshing="{Binding IsRefreshing}"
                       Margin="0,0,30,0">
-                                <ListView.ItemTemplate>
-                                    <DataTemplate>
-                                        <ViewCell>
+                            <ListView.ItemTemplate>
+                                <DataTemplate>
+                                    <ViewCell>
                                         <Grid Margin="0,0,0,0">
                                             <Grid.ColumnDefinitions>
                                                 <ColumnDefinition Width="0.1*"></ColumnDefinition>
@@ -687,10 +682,10 @@
 
                                         </Grid>
                                     </ViewCell>
-                                    </DataTemplate>
-                                </ListView.ItemTemplate>
-                            </ListView>
-                        </StackLayout>
+                                </DataTemplate>
+                            </ListView.ItemTemplate>
+                        </ListView>
+                    </StackLayout>
 
 
 
